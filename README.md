@@ -1,6 +1,10 @@
 # fitness_app
 
-Comp 380 Semester Project. Tony Nguyen. David Quines. Jane Cabanayan. Ben La France
+Comp 380 Semester Project. 
+Tony Nguyen. 
+David Quines. 
+Jane Cabanayan. 
+Ben La France
 
 ## Getting Started
 
