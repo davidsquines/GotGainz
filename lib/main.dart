@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash/animated_splash.dart';
+import 'package:fitness_app/tabs/tabs.dart';
 
 void main() => runApp(FitnessApp());
 
@@ -35,9 +36,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: Text('Hello World'),
-        ),
+        body: Tabs(),
       ),
     );
   }
