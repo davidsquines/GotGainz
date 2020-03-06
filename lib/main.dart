@@ -15,7 +15,7 @@ class FitnessApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: AnimatedSplash(
-        imagePath: 'assets/splashScreen.gif',
+        imagePath: 'assets/gifs/splashScreen.gif',
         home: Home(),
         customFunction: duringSplash,
         duration: 2500,

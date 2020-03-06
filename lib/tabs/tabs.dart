@@ -23,7 +23,7 @@ class Tabs extends StatelessWidget {
           tabs: <Widget>[
             Tab(
               icon: Icon(
-                Icons.explicit,
+                Icons.fitness_center,
                 size: 26.0,
               ),
             ),
@@ -35,13 +35,13 @@ class Tabs extends StatelessWidget {
             ),
             Tab(
               icon: Icon(
-                Icons.insert_chart,
+                Icons.trending_up,
                 size: 26.0,
               ),
             ),
             Tab(
                 icon: Icon(
-              Icons.person,
+              Icons.face,
               size: 26.0,
             )),
           ],
