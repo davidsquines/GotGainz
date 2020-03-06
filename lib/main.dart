@@ -1,3 +1,5 @@
+import 'package:fitness_app/pages/onboarding.dart';
+import 'package:fitness_app/pages/root-page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash/animated_splash.dart';
 import 'package:fitness_app/tabs/tabs.dart';
@@ -8,7 +10,7 @@ Function duringSplash = () {
   return 1;
 };
 
-Map<int, Widget> op = {1: Home()};
+Map<int, Widget> op = {1: SplashScreen()};
 
 class FitnessApp extends StatelessWidget {
   @override
@@ -16,7 +18,7 @@ class FitnessApp extends StatelessWidget {
     return MaterialApp(
       home: AnimatedSplash(
         imagePath: 'assets/gifs/splashScreen.gif',
-        home: Home(),
+        home: SplashScreen(),
         customFunction: duringSplash,
         duration: 2500,
         type: AnimatedSplashType.BackgroundProcess,
@@ -26,17 +28,17 @@ class FitnessApp extends StatelessWidget {
   }
 }
 
-class Home extends StatefulWidget {
+class SplashScreen extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _HomeState extends State<Home> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Tabs(),
+        body: Onboarding(), //TODO: Change this back to RootPage after testing!!
       ),
     );
   }
