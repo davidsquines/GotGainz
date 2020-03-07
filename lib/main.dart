@@ -1,8 +1,7 @@
-import 'package:fitness_app/pages/onboarding.dart';
+import 'package:fitness_app/pages/onboarding.dart'; //TODO: Remove this after switching back to RootPage
 import 'package:fitness_app/pages/root-page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash/animated_splash.dart';
-import 'package:fitness_app/tabs/tabs.dart';
 
 void main() => runApp(FitnessApp());
 

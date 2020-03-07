@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 //TODO: May have to remove static if these Widgets do something
+//TODO: May have to completely remove these and put it into onboarding.dart
 
 class OnboardingPageHelper {
   static Widget gender() {
