@@ -81,7 +81,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
               SharedPreferencesHelper.setOnBoardingStatus(true, prefs);
               Navigator.pushReplacement(
                 context,
-                CupertinoPageRoute(
+                MaterialPageRoute(
                   builder: (context) => Tabs(),
                 ),
               );
