@@ -1,0 +1,426 @@
+[
+ {
+   "id": 1,
+   "exercise_name": " Bench press",
+   "body_part": " chest",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 2,
+   "exercise_name": " Dumbbell press",
+   "body_part": " chest",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 3,
+   "exercise_name": " Chest flies",
+   "body_part": " chest",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 4,
+   "exercise_name": " Incline chest press",
+   "body_part": " chest",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 5,
+   "exercise_name": " Incline dumbbell press",
+   "body_part": " chest",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 6,
+   "exercise_name": " Cable flies",
+   "body_part": " chest",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 7,
+   "exercise_name": " Chest Dips",
+   "body_part": " chest",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 8,
+   "exercise_name": " Push-Ups",
+   "body_part": " chest",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 1
+ },
+ {
+   "id": 9,
+   "exercise_name": " Machine Flies",
+   "body_part": " chest",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 10,
+   "exercise_name": " High to Low Cable Flies",
+   "body_part": " chest",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 11,
+   "exercise_name": " Low to High Cable Flies",
+   "body_part": " chest",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 12,
+   "exercise_name": " Bent Over Rows",
+   "body_part": " back",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 13,
+   "exercise_name": " Incline rows",
+   "body_part": " back",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 14,
+   "exercise_name": " Pull Ups",
+   "body_part": " back",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 1
+ },
+ {
+   "id": 15,
+   "exercise_name": " Dumbbell Rows",
+   "body_part": " back",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 16,
+   "exercise_name": " Machine Cable Rows",
+   "body_part": " back",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 17,
+   "exercise_name": " Shrugs",
+   "body_part": " back",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 18,
+   "exercise_name": " Wide Grip Lat Pulldown",
+   "body_part": " back",
+   "strength": 1,
+   "hypertophy": 0,
+   "cardio": 0
+ },
+ {
+   "id": 19,
+   "exercise_name": " V-Grip Lat Pulldown",
+   "body_part": " back",
+   "strength": 1,
+   "hypertophy": 0,
+   "cardio": 0
+ },
+ {
+   "id": 18,
+   "exercise_name": " Rack Pull",
+   "body_part": " back",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 19,
+   "exercise_name": " Straight Arm Pull down",
+   "body_part": " back",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 20,
+   "exercise_name": " Squat",
+   "body_part": " legs",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 21,
+   "exercise_name": "  Goblet Squat",
+   "body_part": " legs",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 22,
+   "exercise_name": " Hip thrust",
+   "body_part": " legs",
+   "strength": 1,
+   "hypertophy": 0,
+   "cardio": 0
+ },
+ {
+   "id": 23,
+   "exercise_name": " Lunges",
+   "body_part": " legs",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 24,
+   "exercise_name": " Deadlift",
+   "body_part": " legs",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 25,
+   "exercise_name": " Leg Curls",
+   "body_part": " legs",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 26,
+   "exercise_name": " Leg Extension",
+   "body_part": " legs",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 27,
+   "exercise_name": " Calf Extensions",
+   "body_part": " legs",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 28,
+   "exercise_name": " Seated Calf Extensions",
+   "body_part": " legs",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 29,
+   "exercise_name": " Dumbbell Overhead Press",
+   "body_part": " shoulders",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 30,
+   "exercise_name": " Barbell Overhead Press",
+   "body_part": " shoulders",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 31,
+   "exercise_name": " Lateral Raises",
+   "body_part": " shoulders",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 32,
+   "exercise_name": " Cable Face Pulls",
+   "body_part": " shoulders",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 33,
+   "exercise_name": " Front Raises",
+   "body_part": " shoulders",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 34,
+   "exercise_name": " Bent Over Rear Deltoid Raises",
+   "body_part": " shoulders",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 35,
+   "exercise_name": " Seated Dumbbell Overhead Press",
+   "body_part": " shoulders",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 36,
+   "exercise_name": " Seated Barbell Overhead Press",
+   "body_part": " shoulders",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 37,
+   "exercise_name": " Arnold Press",
+   "body_part": " shoulders",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 38,
+   "exercise_name": " Machine Seated Shoulder Press",
+   "body_part": " shoulders",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 39,
+   "exercise_name": " Dumbell Curls",
+   "body_part": " biceps",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 40,
+   "exercise_name": " Barbell Curls",
+   "body_part": " biceps",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 50,
+   "exercise_name": " Seated Concentration Curls",
+   "body_part": " biceps",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 51,
+   "exercise_name": " Hammer Curls",
+   "body_part": " biceps",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 52,
+   "exercise_name": " Reverse Curls",
+   "body_part": " biceps",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 53,
+   "exercise_name": " Cable Pulldowns",
+   "body_part": " triceps",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 54,
+   "exercise_name": " Overhead Tricep Raise",
+   "body_part": " triceps",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 55,
+   "exercise_name": " Skullcrushers",
+   "body_part": " triceps",
+   "strength": 1,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 56,
+   "exercise_name": " Straight Bar Pulldowns",
+   "body_part": " triceps",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 57,
+   "exercise_name": " Cable Overhead Tricep Raise",
+   "body_part": " triceps",
+   "strength": 0,
+   "hypertophy": 1,
+   "cardio": 0
+ },
+ {
+   "id": 58,
+   "exercise_name": " Treadmill (45 minute run)",
+   "body_part": " full body",
+   "strength": 0,
+   "hypertophy": 0,
+   "cardio": 1
+ },
+ {
+   "id": 59,
+   "exercise_name": " Treadmill (45 minute walk)",
+   "body_part": " full body",
+   "strength": 0,
+   "hypertophy": 0,
+   "cardio": 1
+ },
+ {
+   "id": 60,
+   "exercise_name": " Stairmaster",
+   "body_part": " full body",
+   "strength": 0,
+   "hypertophy": 0,
+   "cardio": 1
+ }
+]
