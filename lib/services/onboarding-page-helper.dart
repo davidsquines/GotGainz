@@ -7,15 +7,25 @@ class OnboardingPageHelper {
   static Widget gender() {
     return Scaffold(
       body: Center(
-        child: Text('Male or Female'),
+          child: RaisedButton(
+            child: Text("Female"),
+            color: Colors.lightBlueAccent,
+            textColor: Colors.greenAccent,
+            padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+            splashColor: Colors.amber,
+            //onPressed:
+          )
       ),
     );
   }
 
   static Widget motivation() {
     return Scaffold(
-      body: Center(
-        child: Text('What Motivates You the Most?'),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+        },
+        label: Text('What motivates you the most?'),
+          backgroundColor: Colors.pink
       ),
     );
   }
@@ -53,11 +63,7 @@ class OnboardingPageHelper {
   }
 
   static Widget weight() {
-    return Scaffold(
-      body: Center(
-        child: Text('What\'s Your Current Weight?'),
-      ),
-    );
+
   }
 
   static Widget activityLevel() {

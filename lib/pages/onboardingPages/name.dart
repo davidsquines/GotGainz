@@ -24,41 +24,36 @@ class Name extends StatelessWidget {
         backgroundColor: Colors.yellow, //TODO: Pick a color
         body: SafeArea(
           child: Column(
-            children: <Widget>[
-              Text(
-                'What is your name?',
-                style: TextStyle(
-                  fontSize: 24,
-                ),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: 'What is your name?',
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(30.0, 200.0, 30.0, 0.0),
-                child: TextFormField(
-                  maxLines: 1,
-                  autofocus: false,
-                  decoration: InputDecoration(
-                    hintText: 'NAME',
-                    //TODO: Implement an onSaved trim function and validator
-                    //TODO: Something is wrong with keyboard, needs fix
-                  ),
-                ),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 30.30),
+              child: RaisedButton(
+                onPressed: () {
+                  // Validate will return true if the form is valid, or false if
+                  // the form is invalid.
+                  var _formKey;
+                  /*if (_formKey.currentState.validate()) {*/Navigator.of(context).pushNamed(
+                    '/fourth',
+                  );
+                  /*}*/
+                },
+                child: Text('Submit'),
               ),
-              Container(
-                margin: EdgeInsets.only(right: 16, bottom: 16),
-                child: FloatingActionButton(
-                  backgroundColor: Colors.deepOrange, //TODO: Pick a color
-                  heroTag: 'nextButton',
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(
-                      '/fourth',
-                    );
-                  },
-                  shape: CircleBorder(),
-                  child: Icon(Icons.arrow_forward),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
+        ),
         ),
       ),
     );

@@ -20,7 +20,7 @@ class FitnessApp extends StatelessWidget {
         imagePath: 'assets/gifs/splashScreen.gif',
         home: SplashScreen(),
         customFunction: duringSplash,
-        duration: 2500,
+        duration: 2300,
         type: AnimatedSplashType.BackgroundProcess,
         outputAndHome: op,
       ),
