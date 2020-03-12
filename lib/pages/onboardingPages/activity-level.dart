@@ -42,7 +42,7 @@ class ActivityLevel extends StatelessWidget {
                   child: FlatButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(
-                        '/seventh',
+                        '/eighth',
                       );
                     },
                     child: Text('NONE'),

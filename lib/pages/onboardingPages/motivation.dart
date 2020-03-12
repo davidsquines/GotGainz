@@ -42,7 +42,7 @@ class Motivation extends StatelessWidget {
                   child: FlatButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(
-                        '/third',
+                        '/fourth',
                       );
                     },
                     child: Text('TO GAIN STRENGTH'),

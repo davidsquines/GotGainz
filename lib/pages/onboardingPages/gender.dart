@@ -59,7 +59,7 @@ class Gender extends StatelessWidget {
                   child: FlatButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(
-                        '/second',
+                        '/third',
                       );
                     },
                     child: Text('FEMALE'),

@@ -43,7 +43,7 @@ class Weight extends StatelessWidget {
                     heroTag: 'nextButton',
                     onPressed: () {
                       Navigator.of(context).pushNamed(
-                        '/sixth',
+                        '/seventh',
                       );
                     },
                     shape: CircleBorder(),
