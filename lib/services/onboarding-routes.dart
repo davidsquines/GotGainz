@@ -1,5 +1,6 @@
 import 'package:fitness_app/pages/onboardingPages/activity-level.dart';
 import 'package:fitness_app/pages/onboardingPages/gender.dart';
+import 'package:fitness_app/pages/onboardingPages/get-started.dart';
 import 'package:fitness_app/pages/onboardingPages/height.dart';
 import 'package:fitness_app/pages/onboardingPages/motivation.dart';
 import 'package:fitness_app/pages/onboardingPages/name.dart';
@@ -13,30 +14,34 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return CupertinoPageRoute(
-          builder: (_) => Gender(),
+        return MaterialPageRoute(
+          builder: (_) => GetStarted(),
         );
       case '/second':
         return CupertinoPageRoute(
-          builder: (_) => Motivation(),
+          builder: (_) => Gender(),
         );
       case '/third':
         return CupertinoPageRoute(
-          builder: (_) => Name(),
+          builder: (_) => Motivation(),
         );
       case '/fourth':
         return CupertinoPageRoute(
-          builder: (_) => Height(),
+          builder: (_) => Name(),
         );
       case '/fifth':
         return CupertinoPageRoute(
-          builder: (_) => Weight(),
+          builder: (_) => Height(),
         );
       case '/sixth':
         return CupertinoPageRoute(
-          builder: (_) => ActivityLevel(),
+          builder: (_) => Weight(),
         );
       case '/seventh':
+        return CupertinoPageRoute(
+          builder: (_) => ActivityLevel(),
+        );
+      case '/eighth':
         return CupertinoPageRoute(
           builder: (_) => WorkoutPlanOutput(),
         );
