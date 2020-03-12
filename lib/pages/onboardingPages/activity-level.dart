@@ -6,7 +6,7 @@ class ActivityLevel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow, //TODO: Pick a color
+        backgroundColor: Colors.lightBlueAccent, //TODO: Pick a color
         elevation: 0.0,
       ),
       body: Stack(
@@ -21,7 +21,7 @@ class ActivityLevel extends StatelessWidget {
   Widget activityLevel(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.yellow, //TODO: Pick a color
+        backgroundColor: Colors.white, //TODO: Pick a color
         body: SafeArea(
           child: Center(
             child: Column(
@@ -47,7 +47,7 @@ class ActivityLevel extends StatelessWidget {
                     },
                     child: Text('NONE'),
                     shape: RoundedRectangleBorder(),
-                    color: Colors.blue, //TODO: Pick a color
+                    color: Colors.lightBlueAccent, //TODO: Pick a color
                   ),
                 ),
                 SizedBox(
@@ -64,7 +64,7 @@ class ActivityLevel extends StatelessWidget {
                     },
                     child: Text('SOME'),
                     shape: RoundedRectangleBorder(),
-                    color: Colors.pink, //TODO: Pick a color
+                    color: Colors.lightBlueAccent, //TODO: Pick a color
                   ),
                 ),
                 SizedBox(
@@ -81,7 +81,7 @@ class ActivityLevel extends StatelessWidget {
                     },
                     child: Text('EXPERIENCED'),
                     shape: RoundedRectangleBorder(),
-                    color: Colors.pink, //TODO: Pick a color
+                    color: Colors.lightBlueAccent, //TODO: Pick a color
                   ),
                 ),
               ],

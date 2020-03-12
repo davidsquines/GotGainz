@@ -6,7 +6,7 @@ class Gender extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow, //TODO: Pick a color
+        backgroundColor: Colors.lightBlueAccent, //TODO: Pick a color
         elevation: 0.0,
       ),
       body: Stack(
@@ -21,7 +21,7 @@ class Gender extends StatelessWidget {
   Widget gender(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
             child: Column(
@@ -47,7 +47,7 @@ class Gender extends StatelessWidget {
                     },
                     child: Text('MALE'),
                     shape: RoundedRectangleBorder(),
-                    color: Colors.blue, //TODO: Pick a Color
+                    color: Colors.lightBlueAccent, //TODO: Pick a Color
                   ),
                 ),
                 SizedBox(
@@ -64,7 +64,7 @@ class Gender extends StatelessWidget {
                     },
                     child: Text('FEMALE'),
                     shape: RoundedRectangleBorder(),
-                    color: Colors.pink, //TODO: Pick a Color
+                    color: Colors.lightBlueAccent, //TODO: Pick a Color
                   ),
                 ),
               ],

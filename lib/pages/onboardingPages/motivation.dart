@@ -6,7 +6,7 @@ class Motivation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow, //TODO: Pick a color
+        backgroundColor: Colors.lightBlueAccent, //TODO: Pick a color
         elevation: 0.0,
       ),
       body: Stack(
@@ -21,7 +21,7 @@ class Motivation extends StatelessWidget {
   Widget motivation(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
             child: Column(
@@ -47,7 +47,7 @@ class Motivation extends StatelessWidget {
                     },
                     child: Text('TO GAIN STRENGTH'),
                     shape: RoundedRectangleBorder(),
-                    color: Colors.grey[300], //TODO: Pick a color
+                    color: Colors.lightBlueAccent, //TODO: Pick a color
                   ),
                 ),
                 SizedBox(
@@ -64,7 +64,7 @@ class Motivation extends StatelessWidget {
                     },
                     child: Text('TO LOSE WEIGHT'),
                     shape: RoundedRectangleBorder(),
-                    color: Colors.white, //TODO: Pick a color
+                    color: Colors.lightBlueAccent, //TODO: Pick a color
                   ),
                 ),
               ],

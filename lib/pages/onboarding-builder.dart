@@ -10,20 +10,9 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding> {
   @override
   Widget build(BuildContext context) {
-    //TODO: Build UI and functions to save choice
-    /*final List<Widget> onboardingWidgetsList = <Widget>[
-      OnboardingPageHelper.gender(),
-      OnboardingPageHelper.motivation(),
-      OnboardingPageHelper.attention(),
-      OnboardingPageHelper.name(),
-      OnboardingPageHelper.birthday(),
-      OnboardingPageHelper.height(),
-      OnboardingPageHelper.weight(),
-      OnboardingPageHelper.activityLevel(),
-      OnboardingPageHelper.planOutput(),
-    ];*/
 
     return MaterialApp(
+
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,
     );

@@ -29,7 +29,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.white,
         elevation: 0.0,
       ),
       body: Stack(
@@ -45,7 +45,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   Widget plan() {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
             child: Column(
@@ -75,7 +75,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
         child: Container(
           margin: EdgeInsets.only(right: 16, bottom: 16),
           child: FloatingActionButton(
-            backgroundColor: Colors.deepOrange,
+            backgroundColor: Colors.lightBlueAccent,
             heroTag: 'nextButton',
             onPressed: () {
               SharedPreferencesHelper.setOnBoardingStatus(true, prefs);
