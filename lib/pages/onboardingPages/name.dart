@@ -46,7 +46,7 @@ class Name extends StatelessWidget {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 30.30),
-                  child: RaisedButton(
+                  child: FlatButton(
                     onPressed: () {
                       //TODO: Validator needs implementing
                       Navigator.of(context).pushNamed(

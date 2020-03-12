@@ -6,6 +6,10 @@ class GetStarted extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.lightBlueAccent, //TODO: Pick a color
+          elevation: 0.0,
+        ),
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(

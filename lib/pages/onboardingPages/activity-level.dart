@@ -12,7 +12,6 @@ class ActivityLevel extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           activityLevel(context),
-          //nextButton(context),
         ],
       ),
     );

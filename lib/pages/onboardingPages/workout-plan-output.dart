@@ -35,7 +35,6 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
       body: Stack(
         children: <Widget>[
           plan(),
-          //backButton(context),
           nextButton(context),
         ],
       ),

@@ -12,7 +12,6 @@ class Weight extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           weight(context),
-          //nextButton(context),
         ],
       ),
     );

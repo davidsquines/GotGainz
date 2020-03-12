@@ -12,7 +12,6 @@ class Gender extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           gender(context),
-          //nextButton(context),
         ],
       ),
     );
