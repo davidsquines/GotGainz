@@ -4,6 +4,7 @@ class GetStarted extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -12,7 +13,7 @@ class GetStarted extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: EdgeInsets.fromLTRB(20, 100, 20, 0),
                   child: Text(
                     'A FEW QUESTIONS BEFORE WE GET STARTED',
                     style: TextStyle(
@@ -21,7 +22,7 @@ class GetStarted extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 500,
                 ),
                 ButtonTheme(
                   minWidth: 200.0,
@@ -45,4 +46,3 @@ class GetStarted extends StatelessWidget {
     );
   }
 }
-

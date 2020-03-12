@@ -12,7 +12,6 @@ class Height extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           height(context),
-          //nextButton(context),
         ],
       ),
     );
@@ -20,6 +19,7 @@ class Height extends StatelessWidget {
 
   Widget height(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

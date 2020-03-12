@@ -3,7 +3,6 @@ import 'package:fitness_app/pages/root-page.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash/animated_splash.dart';
 
-
 void main() => runApp(FitnessApp());
 
 Function duringSplash = () {
@@ -16,6 +15,7 @@ class FitnessApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: AnimatedSplash(
         imagePath: 'assets/gifs/splashScreen.gif',
         home: SplashScreen(),
@@ -37,6 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Onboarding(), //TODO: Change this back to RootPage after testing!!
       ),

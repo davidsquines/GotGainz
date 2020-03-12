@@ -44,6 +44,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
 
   Widget plan() {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

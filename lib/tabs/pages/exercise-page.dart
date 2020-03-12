@@ -5,14 +5,15 @@ class ExercisePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.green[300],
         body: Center(
-            child: FutureBuilder(builder: (context, snapshot){
-              var showData=json.decode(snapshot.data.toString());
+          child: FutureBuilder(
+            builder: (context, snapshot) {
+              var showData = json.decode(snapshot.data.toString());
               return ListView.builder(
-
-                itemBuilder: (BuildContext context, index){
+                itemBuilder: (BuildContext context, index) {
                   return ListTile(
                     title: Text(showData[index]['exercise_name']),
                     subtitle: Text(showData[index]['body_part']),
@@ -20,7 +21,9 @@ class ExercisePage extends StatelessWidget {
                 },
                 itemCount: showData.length,
               );
-            }, future: DefaultAssetBundle.of(context).loadString("assets/exerciseList.json"),
+            },
+            future: DefaultAssetBundle.of(context)
+                .loadString("assets/exerciseList.json"),
           ),
         ),
       ),

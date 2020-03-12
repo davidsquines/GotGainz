@@ -12,7 +12,6 @@ class Name extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           name(context),
-          //nextButton(context),
         ],
       ),
     );
@@ -20,45 +19,48 @@ class Name extends StatelessWidget {
 
   Widget name(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.white, //TODO: Pick a color
         body: SafeArea(
           child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Center(
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'What is your name?',
-                ),
-                validator: (value) {
-                  if (value.isEmpty) {
-                    return 'Please enter some text';
-                  }
-                  return null;
-                },
-              ),
-            ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 30.30),
-                child: RaisedButton(
-                  onPressed: () {
-                    // Validate will return true if the form is valid, or false if
-                    // the form is invalid.
-                    var _formKey;
-                    /*if (_formKey.currentState.validate()) {*/Navigator.of(context).pushNamed(
-                      '/fifth',
-                    );
-                    /*}*/
-                  },
-                  child: Text('Submit'),
-                  color: Colors.lightBlueAccent,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'What is your name?',
+                    ),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please enter some text.';
+                      }
+                      return null;
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30.30),
+                  child: RaisedButton(
+                    onPressed: () {
+                      //TODO: Validator needs implementing
+                      Navigator.of(context).pushNamed(
+                        '/fifth',
+                      );
+                    },
+                    shape: CircleBorder(),
+                    child: Icon(Icons.arrow_forward),
+                    color: Colors.lightBlueAccent,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

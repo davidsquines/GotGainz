@@ -20,6 +20,7 @@ class Weight extends StatelessWidget {
 
   Widget weight(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(

@@ -12,7 +12,6 @@ class Motivation extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           motivation(context),
-          //nextButton(context),
         ],
       ),
     );
@@ -20,6 +19,7 @@ class Motivation extends StatelessWidget {
 
   Widget motivation(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -59,7 +59,7 @@ class Motivation extends StatelessWidget {
                   child: FlatButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(
-                        '/third',
+                        '/fourth',
                       );
                     },
                     child: Text('TO LOSE WEIGHT'),
@@ -74,5 +74,4 @@ class Motivation extends StatelessWidget {
       ),
     );
   }
-
 }

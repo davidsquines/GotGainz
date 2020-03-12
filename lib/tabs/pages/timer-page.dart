@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 //import 'dart:io';
 
-void main() => runApp(MaterialApp(
-  home: TimerPage(),
-  theme: ThemeData(
-    canvasColor: Colors.blueGrey,
-    iconTheme: IconThemeData(
-      color: Colors.white,
-    ),
-    accentColor: Colors.orange,
-    brightness: Brightness.dark,
-  ),
-));
+void main() => runApp(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: TimerPage(),
+        theme: ThemeData(
+          canvasColor: Colors.blueGrey,
+          iconTheme: IconThemeData(
+            color: Colors.white,
+          ),
+          accentColor: Colors.orange,
+          brightness: Brightness.dark,
+        ),
+      ),
+    );
 
 class TimerPage extends StatefulWidget {
   @override
@@ -69,11 +72,12 @@ class TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                           animation: controller,
                           builder: (BuildContext context, Widget child) {
                             return CustomPaint(
-                                painter: TimerPainter(
-                                  animation: controller,
-                                  backgroundColor: Colors.white,
-                                  color: themeData.indicatorColor,
-                                ));
+                              painter: TimerPainter(
+                                animation: controller,
+                                backgroundColor: Colors.white,
+                                color: themeData.indicatorColor,
+                              ),
+                            );
                           },
                         ),
                       ),
@@ -88,13 +92,14 @@ class TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                               style: themeData.textTheme.subhead,
                             ),
                             AnimatedBuilder(
-                                animation: controller,
-                                builder: (BuildContext context, Widget child) {
-                                  return Text(
-                                    timerString,
-                                    style: themeData.textTheme.display4,
-                                  );
-                                }),
+                              animation: controller,
+                              builder: (BuildContext context, Widget child) {
+                                return Text(
+                                  timerString,
+                                  style: themeData.textTheme.display4,
+                                );
+                              },
+                            ),
                           ],
                         ),
                       ),
@@ -133,10 +138,10 @@ class TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                                 : controller.value);
                       }
                     },
-                  )
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

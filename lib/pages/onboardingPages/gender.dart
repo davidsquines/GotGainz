@@ -20,6 +20,7 @@ class Gender extends StatelessWidget {
 
   Widget gender(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -42,7 +43,7 @@ class Gender extends StatelessWidget {
                   child: FlatButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(
-                        '/second',
+                        '/third',
                       );
                     },
                     child: Text('MALE'),
