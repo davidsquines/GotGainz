@@ -20,8 +20,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  sqflite:
-  path:
+  #sqflite:
+  #path:
 
 
 flutter:
@@ -30,5 +30,5 @@ flutter:
 
   assets:
     - assets/gifs/splashScreen.gif
-    - exerciseList.json
-    - assets/Databases/exercises.db
+    - assets/exerciseList.json
+    - assets/databases/exercises.db

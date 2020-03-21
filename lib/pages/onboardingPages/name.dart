@@ -1,5 +1,7 @@
 import 'package:fitness_app/user-information.dart';
 import 'package:flutter/material.dart';
+import 'package:fitness_app/databases/user-info.dart';
+import 'package:fitness_app/databases/user-info-helper.dart';
 
 class Name extends StatefulWidget {
   @override
@@ -9,13 +11,33 @@ class Name extends StatefulWidget {
 }
 
 class NameState extends State<Name> {
+  final dbHelper = UserInfoDatabaseHelper.instance;
+
+/*  List<UserInfo> lastName = [];
+  List<UserInfo> firstName = [];*/
+
+  //controllers used in insert operation UI
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+
   String _firstName;
   String _lastName;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  void _insertName(lastName, firstName) async {
+    // row to insert
+    Map<String, dynamic> row = {
+      UserInfoDatabaseHelper.columnLastName: lastName,
+      UserInfoDatabaseHelper.columnFirstName: firstName,
+    };
+    UserInfo info = UserInfo.fromMap(row);
+    final id = await dbHelper.insert(info);
+  }
+
   Widget _buildFirstName() {
     return TextFormField(
+      controller: firstNameController,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(labelText: 'First Name'),
       validator: (value) {
@@ -33,6 +55,7 @@ class NameState extends State<Name> {
 
   Widget _buildLastName() {
     return TextFormField(
+      controller: lastNameController,
       decoration: InputDecoration(labelText: 'Last Name'),
       validator: (value) {
         if (value.isEmpty) {
@@ -81,9 +104,9 @@ class NameState extends State<Name> {
                       return;
                     }
                     _formKey.currentState.save();
-                    print(_firstName);
-                    print(_lastName);
-                    UserInformation(firstName: _firstName, lastName: _lastName);
+                    _lastName = lastNameController.text;
+                    _firstName = firstNameController.text;
+                    _insertName(_lastName, _firstName);
                     Navigator.of(context).pushNamed(
                       '/third',
                     );
