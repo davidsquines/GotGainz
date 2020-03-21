@@ -19,15 +19,15 @@ class RouteGenerator {
         );
       case '/second':
         return CupertinoPageRoute(
-          builder: (_) => Gender(),
+          builder: (_) => Name(),
         );
       case '/third':
         return CupertinoPageRoute(
-          builder: (_) => Motivation(),
+          builder: (_) => Gender(),
         );
       case '/fourth':
         return CupertinoPageRoute(
-          builder: (_) => Name(),
+          builder: (_) => Motivation(),
         );
       case '/fifth':
         return CupertinoPageRoute(
