@@ -1,3 +1,4 @@
+import 'package:fitness_app/user-information.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,6 +26,8 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
     prefs = await SharedPreferences.getInstance();
   }
 
+  UserInformation info = UserInformation();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +38,6 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
       body: Stack(
         children: <Widget>[
           plan(),
-          //backButton(context),
           nextButton(context),
         ],
       ),
@@ -44,6 +46,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
 
   Widget plan() {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
@@ -52,7 +55,12 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'Here is your workout plan',
+                  'Here is your workout plan\n' +
+                      info.getGender() +
+                      '\n' +
+                      info.getMotivation() +
+                      '\n' +
+                      info.getFirstName(),
                   style: TextStyle(
                     fontSize: 24,
                   ),

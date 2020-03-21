@@ -12,7 +12,6 @@ class ActivityLevel extends StatelessWidget {
       body: Stack(
         children: <Widget>[
           activityLevel(context),
-          //nextButton(context),
         ],
       ),
     );
@@ -20,6 +19,7 @@ class ActivityLevel extends StatelessWidget {
 
   Widget activityLevel(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white, //TODO: Pick a color
         body: SafeArea(
@@ -42,7 +42,7 @@ class ActivityLevel extends StatelessWidget {
                   child: FlatButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(
-                        '/seventh',
+                        '/eighth',
                       );
                     },
                     child: Text('NONE'),
@@ -59,7 +59,7 @@ class ActivityLevel extends StatelessWidget {
                   child: FlatButton(
                     onPressed: () {
                       Navigator.of(context).pushNamed(
-                        '/seventh',
+                        '/eighth',
                       );
                     },
                     child: Text('SOME'),

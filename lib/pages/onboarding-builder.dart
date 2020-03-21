@@ -10,14 +10,15 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding> {
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
-
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
+
+//TODO: Implement a working progress bar for onboarding
 /*Scaffold(
       body: SafeArea(
         child: Container(
