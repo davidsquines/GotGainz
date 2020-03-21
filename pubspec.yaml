@@ -18,6 +18,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  sqflite:
+  path:
+
 
 flutter:
 
@@ -26,3 +29,4 @@ flutter:
   assets:
     - assets/gifs/splashScreen.gif
     - exerciseList.json
+    - assets/Databases/exercises.db
