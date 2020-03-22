@@ -87,11 +87,10 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
             heroTag: 'nextButton',
             onPressed: () {
               SharedPreferencesHelper.setOnBoardingStatus(true, prefs);
-              Navigator.pushReplacement(
+              Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => Tabs(),
-                ),
+                MaterialPageRoute(builder: (context) => Tabs()),
+                (Route<dynamic> route) => false,
               );
             },
             shape: CircleBorder(),
