@@ -1,12 +1,17 @@
 import 'package:fitness_app/exerciseDatabase/exercises.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'dart:async';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'dart:typed_data';
+import 'package:flutter/services.dart';
 
 class exerciseDatabaseHelper{
   static final _databaseName = "exercises.db";
   static final _databaseVersion = 1;
 
-  static final table = 'exercises_table';
+  static final table = 'exerciseList';
 
   static final columnId = 'id';
   static final columnExerciseName = 'exercise_name';
@@ -15,13 +20,11 @@ class exerciseDatabaseHelper{
   static final columnHypertrophy = 'hypertrophy';
   static final columnCardio = 'cardio';
 
-
-  // make singleton class
-  exerciseDatabaseHelper._privateConstructor();
-  static final exerciseDatabaseHelper instance = exerciseDatabaseHelper._privateConstructor();
-
+  static final exerciseDatabaseHelper instance = new exerciseDatabaseHelper.internal();
+  factory exerciseDatabaseHelper() => instance;
   // only have a single app-wide reference to the database
   static Database _database;
+
   Future<Database> get database async {
     if (_database != null) return _database;
     // lazily instantiate the db the first time it is accessed
@@ -29,26 +32,33 @@ class exerciseDatabaseHelper{
     return _database;
   }
 
-
+  exerciseDatabaseHelper.internal();
   // this opens the database (and creates it if it doesn't exist)
   _initDatabase() async {
-    String path = join(await getDatabasesPath(), _databaseName);
-    return await openDatabase(path,
-        version: _databaseVersion,
-        onCreate: _onCreate);
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    String path = join(documentsDirectory.path, 'exercises.db');
+    //if (FileSystemEntity.typeSync(path) == FileSystemEntityType.notFound)
+
+    ByteData data = await rootBundle.load(join('data', 'exercises.db'));
+    List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    await new File(path).writeAsBytes(bytes);
+
+    var ourDb = await openDatabase(path);
+    return ourDb;
   }
 
   Future _onCreate(Database db, int version) async {
     await db.execute('''
           CREATE TABLE $table (
-            $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
-            $columnExerciseName TEXT NOT NULL,
-            $columnBodyPart TEXT NOT NULL
-            $columnStrength INTEGER NOT NULL,
-            $columnHypertrophy INTEGER NOT NULL,
-            $columnCardio INTEGER NOT NULL
+            columnId INTEGER PRIMARY KEY AUTOINCREMENT,
+            columnExerciseName TEXT NOT NULL,
+            columnBodyPart TEXT NOT NULL,
+            columnStrength INTEGER NOT NULL,
+            columnHypertrophy INTEGER NOT NULL,
+            columnCardio INTEGER NOT NULL
           )
           ''');
+
   }
 
   Future<int> insert(Exercises exercise) async {
@@ -59,12 +69,15 @@ class exerciseDatabaseHelper{
 
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
-  Future<List<Map<String, dynamic>>> queryAllRows() async {
-    Database db = await instance.database;
-    return await db.query(table);
+  Future<List<Exercises>> getAllExercise() async{
+    final db = await database;
+    var res = await db.query('exercise_name');
+    List<Exercises> list = res.isNotEmpty ? res.map((c) => Exercises.fromMap(c)).toList() : [];
+    return list;
   }
 
 
+/*
   // Queries rows based on the argument received
   //each query searches for the intended argument, and returns a table of all data
   // containing the desired field
@@ -102,10 +115,13 @@ class exerciseDatabaseHelper{
 
 
   //delete function
+  // will only delete based on exercise name
   Future<int> delete(String exercise_name) async {
     Database db = await instance.database;
     return await db.delete(table, where: '$columnExerciseName = ?', whereArgs: [exercise_name]);
   }
+*/
+
 
 
 
