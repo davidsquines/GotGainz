@@ -1,6 +1,6 @@
 import 'package:fitness_app/databases/exercise-database-helper.dart';
 
-class UserInfo {
+class Exercise {
   int id;
   String exercise_name;
   String body_part;
@@ -8,10 +8,10 @@ class UserInfo {
   int hypertrophy;
   int cardio;
 
-  UserInfo(this.id, this.exercise_name, this.body_part, this.strength,
+  Exercise(this.id, this.exercise_name, this.body_part, this.strength,
       this.hypertrophy, this.cardio);
 
-  UserInfo.fromMap(Map<String, dynamic> map) {
+  Exercise.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     exercise_name = map['exercise_name'];
     body_part = map['body_part'];

@@ -50,7 +50,7 @@ class ExerciseDatabaseHelper {
           ''');
   }
 
-  Future<int> insert(UserInfo exercise) async {
+  Future<int> insert(Exercise exercise) async {
     Database db = await instance.database;
     return await db.insert(table, {
       'exercise_name': exercise.exercise_name,

@@ -1,4 +1,3 @@
-import 'package:fitness_app/user-information.dart';
 import 'package:flutter/material.dart';
 
 class Weight extends StatefulWidget {

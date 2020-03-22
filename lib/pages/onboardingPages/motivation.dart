@@ -1,4 +1,3 @@
-import 'package:fitness_app/user-information.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -43,13 +42,9 @@ class Motivation extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
-                      UserInformation set = UserInformation(
-                          motivation: 1); //store as gain strength
-
                       Navigator.of(context).pushNamed(
                         '/fifth',
                       );
-                      print(set.getGender());
                     },
                     child: Text('TO GAIN STRENGTH'),
                     shape: RoundedRectangleBorder(),
@@ -65,7 +60,6 @@ class Motivation extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
-                      UserInformation(motivation: 2);
                       Navigator.of(context).pushNamed(
                         '/fifth',
                       );

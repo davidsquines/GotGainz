@@ -1,4 +1,3 @@
-import 'package:fitness_app/user-information.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,7 +43,6 @@ class Gender extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
-                      UserInformation(gender: 1); //stores gender as male
                       Navigator.of(context).pushNamed(
                         '/fourth',
                       );
@@ -63,7 +61,6 @@ class Gender extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
-                      UserInformation(gender: 2); //stores gender as female
                       Navigator.of(context).pushNamed(
                         '/fourth',
                       );

@@ -1,10 +1,11 @@
-import 'package:fitness_app/user-information.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:fitness_app/tabs/tabs.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
+import 'package:fitness_app/databases/user-info-helper.dart';
+import 'package:fitness_app/databases/user-info.dart';
 
 class WorkoutPlanOutput extends StatefulWidget {
   @override
@@ -25,8 +26,6 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   void _init() async {
     prefs = await SharedPreferences.getInstance();
   }
-
-  UserInformation info = UserInformation();
 
   @override
   Widget build(BuildContext context) {
@@ -51,24 +50,22 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Here is your workout plan\n' +
-                      info.getGender() +
-                      '\n' +
-                      info.getMotivation() +
-                      '\n' +
-                      info.getFirstName(),
-                  style: TextStyle(
-                    fontSize: 24,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Here is the best workout plan for you...',
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 100,
-                ),
-              ],
+                  SizedBox(
+                    height: 100,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

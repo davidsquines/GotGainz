@@ -73,7 +73,7 @@ class UserInfoDatabaseHelper {
   // containing the desired field
 
   //query for first name
-  Future<List<Map<String, dynamic>>> queryUserInfoNameRows(firstName) async {
+  Future<List<Map<String, dynamic>>> queryFirstNameRows(firstName) async {
     Database db = await instance.database;
     return await db.query(table, where: "$columnFirstName LIKE '%$firstName%'");
   }
@@ -114,5 +114,12 @@ class UserInfoDatabaseHelper {
     Database db = await instance.database;
     return await db
         .delete(table, where: '$columnLastName = ?', whereArgs: [lastName]);
+  }
+
+  //update function
+  Future<int> update(UserInfo info) async {
+    Database db = await database;
+    return await db.update(table, info.toMap(),
+        where: '$columnLastName = ?', whereArgs: [info.lastName]);
   }
 }

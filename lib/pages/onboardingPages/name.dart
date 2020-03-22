@@ -1,4 +1,3 @@
-import 'package:fitness_app/user-information.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/databases/user-info.dart';
 import 'package:fitness_app/databases/user-info-helper.dart';
@@ -13,10 +12,6 @@ class Name extends StatefulWidget {
 class NameState extends State<Name> {
   final dbHelper = UserInfoDatabaseHelper.instance;
 
-/*  List<UserInfo> lastName = [];
-  List<UserInfo> firstName = [];*/
-
-  //controllers used in insert operation UI
   TextEditingController lastNameController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
 
