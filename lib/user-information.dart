@@ -1,4 +1,12 @@
 class UserInformation {
+  String firstName;
+  String lastName;
+  int gender; //1 for male, //2 for female
+  int motivation; //1 for gainStrength, //2 for loseWeight
+  int height; //stored in inches
+  int weight; //stored in weight
+  int experience; //1 for none, //2 for some, //3 for experienced
+
   UserInformation(
       {this.firstName,
       this.lastName,
@@ -7,14 +15,6 @@ class UserInformation {
       this.height,
       this.weight,
       this.experience});
-
-  String firstName;
-  String lastName;
-  int gender; //1 for male, //2 for female
-  int motivation; //1 for gainStrength, //2 for loseWeight
-  int height; //stored in inches
-  int weight; //stored in weight
-  int experience; //1 for none, //2 for some, //3 for experienced
 
   String getFirstName() {
     if (firstName != null) {

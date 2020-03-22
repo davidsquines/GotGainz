@@ -19,14 +19,14 @@ class GetStarted extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.fromLTRB(20, 100, 20, 0),
                   child: Text(
-                    'A FEW QUESTIONS BEFORE WE GET STARTED',
+                    'A FEW QUESTIONS BEFORE YOU WORK OUT',
                     style: TextStyle(
                       fontSize: 18,
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 500,
+                  height: 200,
                 ),
                 ButtonTheme(
                   minWidth: 200.0,
