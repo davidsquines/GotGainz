@@ -32,4 +32,5 @@ flutter:
   assets:
     - assets/gifs/splashScreen.gif
     - exerciseList.json
-    - assets/Databases/exercises.db
+    - assets/exercises.db
+    - assets/userExercises.db

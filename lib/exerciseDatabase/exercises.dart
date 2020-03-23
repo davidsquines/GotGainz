@@ -14,28 +14,28 @@ class Exercises{
 
     //convert a exercise object into a map object
     Map<String, dynamic> toMap(){
-      var map = Map<String, dynamic>();
+      var map = <String, dynamic>{
+        exerciseDatabaseHelper.columnExerciseName: exercise_name,
+        exerciseDatabaseHelper.columnBodyPart: body_part,
+        exerciseDatabaseHelper.columnStrength: strength,
+        exerciseDatabaseHelper.columnHypertrophy: hypertrophy,
+        exerciseDatabaseHelper.columnCardio: cardio
+      };
       if(id != null){
-        map['id'] = id;
+        map[exerciseDatabaseHelper.columnId] = id;
       }
-      map['id'] = id;
-      map['exercise_name'] = exercise_name;
-      map['body_part'] = body_part;
-      map['strength'] = strength;
-      map['hypertrophy'] = hypertrophy;
-      map['cardio'] = cardio;
       return map;
     }
 
 
 
     Exercises.fromMap(Map<String, dynamic> map){
-      id = map['id'];
-      exercise_name = map['exercise_name'];
-      body_part = map['body_part'];
-      strength = map['strength'];
-      hypertrophy = map['hypertrphy'];
-      cardio = map['cardio'];
+      id = map[exerciseDatabaseHelper.columnId];
+      exercise_name = map[exerciseDatabaseHelper.columnExerciseName];
+      body_part = map[exerciseDatabaseHelper.columnBodyPart];
+      strength = map[exerciseDatabaseHelper.columnStrength] ;
+      hypertrophy = map[exerciseDatabaseHelper.columnHypertrophy];
+      cardio = map[exerciseDatabaseHelper.columnCardio];
     }
 
 

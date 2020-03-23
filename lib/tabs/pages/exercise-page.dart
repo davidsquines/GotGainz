@@ -35,11 +35,14 @@ class ExercisePage extends StatelessWidget {
   }
 
    */
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Exercise Database")),
+      /*
       body: FutureBuilder<List<Exercises>>(
         future: exerciseDatabaseHelper.instance.getAllExercise(),
+        initialData: List(),
         builder: (BuildContext context,
             AsyncSnapshot<List<Exercises>> snapshot) {
           if (snapshot.hasData) {
@@ -47,16 +50,39 @@ class ExercisePage extends StatelessWidget {
               itemCount: snapshot.data.length,
               itemBuilder: (BuildContext context, int index) {
                 Exercises item = snapshot.data[index];
-                child:
-                return ListTile(
-                    title: Text(item.exercise_name),
-                    leading: Text(item.body_part)
+                return Card(
+                    child: ListTile(
+                        title: Text(item.exercise_name),
+                        leading: Text(item.body_part)
+                    ),
                 );
               },
             );
           }
-          else {
-            return Center(child: CircularProgressIndicator());
+
+
+*/
+      body: FutureBuilder<List<Exercises>>(
+        future: exerciseDatabaseHelper.instance.getAllExercise(),
+        initialData: List(),
+        builder:
+        (BuildContext context, AsyncSnapshot<List<Exercises>> snapshot) {
+          if (snapshot.hasData) {
+            return ListView.builder(
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext context, int position) {
+              Exercises exercise = snapshot.data[position];
+              return Card(
+                child: ListTile(
+                  title: Text(exercise.exercise_name),
+                  subtitle: Text(exercise.body_part),
+                ),
+
+              );
+            },
+          );
+          } else {
+
           }
         },
       ),

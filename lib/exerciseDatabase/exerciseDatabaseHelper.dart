@@ -28,23 +28,45 @@ class exerciseDatabaseHelper{
   Future<Database> get database async {
     if (_database != null) return _database;
     // lazily instantiate the db the first time it is accessed
-    _database = await _initDatabase();
+    _database = await initDB();
     return _database;
   }
 
   exerciseDatabaseHelper.internal();
   // this opens the database (and creates it if it doesn't exist)
+  /*
   _initDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, 'exercises.db');
+    String path = join(documentsDirectory.path, "exercises.db");
     //if (FileSystemEntity.typeSync(path) == FileSystemEntityType.notFound)
 
-    ByteData data = await rootBundle.load(join('data', 'exercises.db'));
+    ByteData data = await rootBundle.load(join('assets/Databases', 'exercises.db'));
     List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
     await new File(path).writeAsBytes(bytes);
 
     var ourDb = await openDatabase(path);
     return ourDb;
+  }
+   */
+  initDB() async {
+    var databasesPath = await getDatabasesPath();
+    var path = join(databasesPath, "exercises.db");
+
+    var exists = await databaseExists(path);
+
+    if (!exists) {
+      try {
+        await Directory(dirname(path)).create(recursive: true);
+      } catch (_) {}
+
+      ByteData data = await rootBundle.load(join("assets", "userExercises.db"));
+      List<int> bytes =
+      data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
+      await File(path).writeAsBytes(bytes, flush: true);
+    } else {}
+
+    return await openDatabase(path, readOnly: false);
   }
 
   Future _onCreate(Database db, int version) async {
@@ -71,7 +93,7 @@ class exerciseDatabaseHelper{
   // a key-value list of columns.
   Future<List<Exercises>> getAllExercise() async{
     final db = await database;
-    var res = await db.query('exercise_name');
+    var res = await db.query("exercise_name");
     List<Exercises> list = res.isNotEmpty ? res.map((c) => Exercises.fromMap(c)).toList() : [];
     return list;
   }
