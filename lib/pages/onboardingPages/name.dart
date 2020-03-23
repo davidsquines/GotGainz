@@ -33,6 +33,7 @@ class NameState extends State<Name> {
 
   Widget _buildFirstName() {
     return TextFormField(
+      textCapitalization: TextCapitalization.sentences,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(labelText: 'First Name'),
       validator: (value) {
@@ -50,6 +51,7 @@ class NameState extends State<Name> {
 
   Widget _buildLastName() {
     return TextFormField(
+      textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(labelText: 'Last Name'),
       validator: (value) {
         if (value.isEmpty) {

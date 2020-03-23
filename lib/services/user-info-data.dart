@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:fitness_app/services/shared-pref-helper.dart';
 
 class UserInfo {
-  String _firstName;
+  String firstName;
   String _lastName;
   String _gender; //1 for male, //2 for female
   String _motivation; //1 for gainStrength, //2 for loseWeight
@@ -19,7 +19,7 @@ class UserInfo {
   }
 
   void updateFirstName(String firstName) {
-    this._firstName = firstName;
+    this.firstName = firstName;
   }
 
   void updateLastName(String lastName) {
@@ -34,15 +34,11 @@ class UserInfo {
     _motivation = motivation;
   }
 
-  String get getFirstName => _firstName;
+  String get getFirstName => firstName;
 
-  String getLastName() {
-    return _lastName;
-  }
+  String get getLastName => _lastName;
 
-  String getGender() {
-    return _gender;
-  }
+  String get getGender => _gender;
 
   String getMotivation() {
     /* if (_motivation == 1) {

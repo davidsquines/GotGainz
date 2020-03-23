@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:fitness_app/tabs/tabs.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
+import 'package:fitness_app/services/user-info-data.dart';
 
 class WorkoutPlanOutput extends StatefulWidget {
   @override
@@ -118,6 +119,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   }
 
   //TODO: NEED TO FIGURE OUT HOW TO EXTRACT THIS SO IT'S IN ITS OWN CLASS FOR APP-WISE ACCESS./
+  //Need to create an instance of user-info-data before running
   void updateFirstName(String firstName) {
     setState(() {
       this._firstName = firstName;
