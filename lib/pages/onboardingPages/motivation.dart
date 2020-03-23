@@ -1,3 +1,4 @@
+import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -42,6 +43,7 @@ class Motivation extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
+                      SharedPreferencesHelper.setMotivation(0);
                       Navigator.of(context).pushNamed(
                         '/fifth',
                       );
@@ -60,6 +62,7 @@ class Motivation extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
+                      SharedPreferencesHelper.setMotivation(1);
                       Navigator.of(context).pushNamed(
                         '/fifth',
                       );

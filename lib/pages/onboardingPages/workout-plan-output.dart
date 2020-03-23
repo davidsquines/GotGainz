@@ -4,8 +4,6 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:fitness_app/tabs/tabs.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
-import 'package:fitness_app/databases/user-info-helper.dart';
-import 'package:fitness_app/databases/user-info.dart';
 
 class WorkoutPlanOutput extends StatefulWidget {
   @override
@@ -16,9 +14,23 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   PageController controller;
   SharedPreferences prefs;
 
+  String _firstName;
+  String _lastName;
+  String _gender;
+  String _motivation;
+  String _height;
+  String _weight;
+  String _experience;
+
   @override
   void initState() {
-    // TODO: implement initState
+    SharedPreferencesHelper.getFirstName().then(updateFirstName);
+    SharedPreferencesHelper.getLastName().then(updateLastName);
+    SharedPreferencesHelper.getGender().then(updateGender);
+    SharedPreferencesHelper.getMotivation().then(updateMotivation);
+    SharedPreferencesHelper.getHeight().then(updateHeight);
+    SharedPreferencesHelper.getWeight().then(updateWeight);
+    SharedPreferencesHelper.getEperience().then(updateExperience);
     super.initState();
     _init();
   }
@@ -64,6 +76,13 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
                   SizedBox(
                     height: 100,
                   ),
+                  Text(_firstName),
+                  Text(_lastName),
+                  Text(_gender),
+                  Text(_motivation),
+                  Text(_height),
+                  Text(_weight),
+                  Text(_experience),
                 ],
               ),
             ),
@@ -96,5 +115,48 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
         ),
       ),
     );
+  }
+
+  //TODO: NEED TO FIGURE OUT HOW TO EXTRACT THIS SO IT'S IN ITS OWN CLASS FOR APP-WISE ACCESS./
+  void updateFirstName(String firstName) {
+    setState(() {
+      this._firstName = firstName;
+    });
+  }
+
+  void updateLastName(String lastName) {
+    setState(() {
+      this._lastName = lastName;
+    });
+  }
+
+  void updateGender(String gender) {
+    setState(() {
+      this._gender = gender;
+    });
+  }
+
+  void updateMotivation(String motivation) {
+    setState(() {
+      _motivation = motivation;
+    });
+  }
+
+  void updateHeight(String height) {
+    setState(() {
+      _height = height;
+    });
+  }
+
+  void updateWeight(String weight) {
+    setState(() {
+      _weight = weight;
+    });
+  }
+
+  void updateExperience(String experience) {
+    setState(() {
+      _experience = experience;
+    });
   }
 }

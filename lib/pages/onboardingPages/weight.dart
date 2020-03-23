@@ -1,3 +1,4 @@
+import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:flutter/material.dart';
 
 class Weight extends StatefulWidget {
@@ -69,7 +70,7 @@ class WeightState extends State<Weight> {
                       return;
                     }
                     _formKey.currentState.save();
-                    print(_pounds);
+                    SharedPreferencesHelper.setWeight(_pounds);
                     Navigator.of(context).pushNamed(
                       '/seventh',
                     );

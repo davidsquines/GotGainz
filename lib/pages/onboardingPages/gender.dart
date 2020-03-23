@@ -1,6 +1,6 @@
+import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class Gender extends StatelessWidget {
   @override
@@ -43,6 +43,7 @@ class Gender extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
+                      SharedPreferencesHelper.setGender(0);
                       Navigator.of(context).pushNamed(
                         '/fourth',
                       );
@@ -61,6 +62,7 @@ class Gender extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
+                      SharedPreferencesHelper.setGender(1);
                       Navigator.of(context).pushNamed(
                         '/fourth',
                       );

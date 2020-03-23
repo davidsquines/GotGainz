@@ -1,3 +1,4 @@
+import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -41,6 +42,7 @@ class ActivityLevel extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
+                      SharedPreferencesHelper.setExperience(0);
                       Navigator.of(context).pushNamed(
                         '/eighth',
                       );
@@ -58,6 +60,7 @@ class ActivityLevel extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
+                      SharedPreferencesHelper.setExperience(1);
                       Navigator.of(context).pushNamed(
                         '/eighth',
                       );
@@ -75,6 +78,7 @@ class ActivityLevel extends StatelessWidget {
                   height: 50.0,
                   child: FlatButton(
                     onPressed: () {
+                      SharedPreferencesHelper.setExperience(2);
                       Navigator.of(context).pushNamed(
                         '/eighth',
                       );

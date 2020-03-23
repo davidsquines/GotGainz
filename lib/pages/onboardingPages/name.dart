@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fitness_app/databases/user-info.dart';
-import 'package:fitness_app/databases/user-info-helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:fitness_app/services/shared-pref-helper.dart';
 
 class Name extends StatefulWidget {
   @override
@@ -10,29 +11,28 @@ class Name extends StatefulWidget {
 }
 
 class NameState extends State<Name> {
-  final dbHelper = UserInfoDatabaseHelper.instance;
-
   TextEditingController lastNameController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
 
   String _firstName;
   String _lastName;
 
+  SharedPreferences prefs;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void _insertName(lastName, firstName) async {
-    // row to insert
-    Map<String, dynamic> row = {
-      UserInfoDatabaseHelper.columnLastName: lastName,
-      UserInfoDatabaseHelper.columnFirstName: firstName,
-    };
-    UserInfo info = UserInfo.fromMap(row);
-    final id = await dbHelper.insert(info);
+  void validateAndSubmit() {
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+    _formKey.currentState.save();
+
+    SharedPreferencesHelper.setFirstName(_firstName);
+    SharedPreferencesHelper.setLastName(_lastName);
   }
 
   Widget _buildFirstName() {
     return TextFormField(
-      controller: firstNameController,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(labelText: 'First Name'),
       validator: (value) {
@@ -50,7 +50,6 @@ class NameState extends State<Name> {
 
   Widget _buildLastName() {
     return TextFormField(
-      controller: lastNameController,
       decoration: InputDecoration(labelText: 'Last Name'),
       validator: (value) {
         if (value.isEmpty) {
@@ -95,13 +94,7 @@ class NameState extends State<Name> {
                   shape: CircleBorder(),
                   child: Icon(Icons.arrow_forward),
                   onPressed: () {
-                    if (!_formKey.currentState.validate()) {
-                      return;
-                    }
-                    _formKey.currentState.save();
-                    _lastName = lastNameController.text;
-                    _firstName = firstNameController.text;
-                    _insertName(_lastName, _firstName);
+                    validateAndSubmit();
                     Navigator.of(context).pushNamed(
                       '/third',
                     );
