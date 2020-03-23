@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
+import 'package:font_awesome_flutter/fa_icon.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProfilePage extends StatefulWidget {
@@ -67,6 +69,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
     });
   }
 
+  Widget genderIcon() {
+    if (_gender == 'Male') {
+      return FaIcon(FontAwesomeIcons.mars);
+    } else if (_gender == 'Female') {
+      return FaIcon(FontAwesomeIcons.venus);
+    } else {
+      return FaIcon(FontAwesomeIcons.male);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -77,14 +89,23 @@ class _UserProfilePageState extends State<UserProfilePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                _firstName + ' ' + _lastName,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  letterSpacing: 1.5,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    _firstName + ' ' + _lastName,
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      letterSpacing: 1.5,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10.0,
+                  ),
+                  genderIcon(),
+                ],
               ),
               SizedBox(
                 height: 5.0,
