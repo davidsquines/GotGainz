@@ -25,8 +25,8 @@ class SharedPreferencesHelper {
     return prefs.setString(_userFirstName, firstName);
   }
 
-  static Future<String> getFirstName() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  static Future<String> getFirstName(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
     String _firstName = prefs.getString(_userFirstName);
     return _firstName;
   }
@@ -36,8 +36,8 @@ class SharedPreferencesHelper {
     return prefs.setString(_userLastName, lastName);
   }
 
-  static Future<String> getLastName() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  static Future<String> getLastName(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
     String _lastName = prefs.getString(_userLastName);
     return _lastName;
   }
@@ -47,8 +47,8 @@ class SharedPreferencesHelper {
     return prefs.setInt(_userGender, gender);
   }
 
-  static Future<String> getGender() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  static Future<String> getGender(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
     int _gender = prefs.getInt(_userGender);
     String _genderString;
     if (_gender == 0) {
@@ -66,8 +66,8 @@ class SharedPreferencesHelper {
     return prefs.setInt(_userMotivation, motivation);
   }
 
-  static Future<String> getMotivation() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  static Future<String> getMotivation(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
     int _motivation = prefs.getInt(_userMotivation);
     String _motivationString;
     if (_motivation == 0) {
@@ -85,8 +85,8 @@ class SharedPreferencesHelper {
     return prefs.setInt(_userHeight, height);
   }
 
-  static Future<String> getHeight() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  static Future<String> getHeight(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
     int _height = prefs.getInt(_userHeight);
     return _height.toString() + ' inches tall';
   }
@@ -96,8 +96,8 @@ class SharedPreferencesHelper {
     return prefs.setInt(_userWeight, weight);
   }
 
-  static Future<String> getWeight() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  static Future<String> getWeight(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
     int _weight = prefs.getInt(_userWeight);
     return _weight.toString() + ' lbs';
   }
@@ -107,18 +107,18 @@ class SharedPreferencesHelper {
     return prefs.setInt(_userExperience, experience);
   }
 
-  static Future<String> getEperience() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  static Future<String> getExperience(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
     int _experience = prefs.getInt(_userExperience);
     String _experienceString;
     if (_experience == 0) {
       _experienceString = 'I have no gym experience';
     } else if (_experience == 1) {
-      _experienceString = 'I have some experience';
+      _experienceString = 'I have some gym experience';
     } else if (_experience == 2) {
       _experienceString = 'I have gym experience';
     } else {
-      _experienceString = "EXPERIENCE ERROR";
+      _experienceString = 'EXPERIENCE ERROR';
     }
     return _experienceString;
   }

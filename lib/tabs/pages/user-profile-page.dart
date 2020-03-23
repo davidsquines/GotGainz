@@ -1,6 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:fitness_app/services/shared-pref-helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class UserProfilePage extends StatelessWidget {
+class UserProfilePage extends StatefulWidget {
+  @override
+  _UserProfilePageState createState() => _UserProfilePageState();
+}
+
+class _UserProfilePageState extends State<UserProfilePage> {
+  SharedPreferences prefs;
+
+  String _firstName;
+  String _lastName;
+  String _gender;
+  String _motivation;
+  String _height;
+  String _weight;
+  String _experience;
+
+  @override
+  void initState() {
+    super.initState();
+    _init();
+    setData();
+  }
+
+  void _init() async {
+    prefs = await SharedPreferences.getInstance();
+  }
+
+  void setData() {
+    SharedPreferencesHelper.getFirstName(prefs).then((firstName) {
+      setState(() {
+        this._firstName = firstName;
+      });
+    });
+    SharedPreferencesHelper.getLastName(prefs).then((lastName) {
+      setState(() {
+        this._lastName = lastName;
+      });
+    });
+    SharedPreferencesHelper.getGender(prefs).then((gender) {
+      setState(() {
+        this._gender = gender;
+      });
+    });
+    SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
+      setState(() {
+        _motivation = motivation;
+      });
+    });
+    SharedPreferencesHelper.getHeight(prefs).then((height) {
+      setState(() {
+        _height = height;
+      });
+    });
+    SharedPreferencesHelper.getWeight(prefs).then((weight) {
+      setState(() {
+        _weight = weight;
+      });
+    });
+    SharedPreferencesHelper.getExperience(prefs).then((experience) {
+      setState(() {
+        _experience = experience;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,7 +78,7 @@ class UserProfilePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'First Name | Last Name',
+                _firstName + ' ' + _lastName,
                 style: TextStyle(
                   fontSize: 20.0,
                   letterSpacing: 1.5,
@@ -24,7 +90,7 @@ class UserProfilePage extends StatelessWidget {
                 height: 5.0,
               ),
               Text(
-                'Gain Strength | Lose Weight',
+                _motivation,
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.white70,
@@ -41,11 +107,11 @@ class UserProfilePage extends StatelessWidget {
               Card(
                 margin: EdgeInsets.symmetric(
                   vertical: 5.0,
-                  horizontal: 25.0,
+                  horizontal: 100.0,
                 ),
                 child: ListTile(
                   title: Text(
-                    'Height',
+                    _height,
                     style: TextStyle(
                       fontSize: 17.0,
                       color: Colors.green[900],
@@ -56,11 +122,11 @@ class UserProfilePage extends StatelessWidget {
               Card(
                 margin: EdgeInsets.symmetric(
                   vertical: 5.0,
-                  horizontal: 25.0,
+                  horizontal: 100.0,
                 ),
                 child: ListTile(
                   title: Text(
-                    'Weight',
+                    _weight,
                     style: TextStyle(
                       fontSize: 17.0,
                       color: Colors.green[900],

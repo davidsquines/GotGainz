@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:fitness_app/tabs/tabs.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
-import 'package:fitness_app/services/user-info-data.dart';
 
 class WorkoutPlanOutput extends StatefulWidget {
   @override
@@ -25,19 +24,51 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
 
   @override
   void initState() {
-    SharedPreferencesHelper.getFirstName().then(updateFirstName);
-    SharedPreferencesHelper.getLastName().then(updateLastName);
-    SharedPreferencesHelper.getGender().then(updateGender);
-    SharedPreferencesHelper.getMotivation().then(updateMotivation);
-    SharedPreferencesHelper.getHeight().then(updateHeight);
-    SharedPreferencesHelper.getWeight().then(updateWeight);
-    SharedPreferencesHelper.getEperience().then(updateExperience);
     super.initState();
     _init();
+    setData();
   }
 
   void _init() async {
     prefs = await SharedPreferences.getInstance();
+  }
+
+  void setData() {
+    SharedPreferencesHelper.getFirstName(prefs).then((firstName) {
+      setState(() {
+        this._firstName = firstName;
+      });
+    });
+    SharedPreferencesHelper.getLastName(prefs).then((lastName) {
+      setState(() {
+        this._lastName = lastName;
+      });
+    });
+    SharedPreferencesHelper.getGender(prefs).then((gender) {
+      setState(() {
+        this._gender = gender;
+      });
+    });
+    SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
+      setState(() {
+        _motivation = motivation;
+      });
+    });
+    SharedPreferencesHelper.getHeight(prefs).then((height) {
+      setState(() {
+        _height = height;
+      });
+    });
+    SharedPreferencesHelper.getWeight(prefs).then((weight) {
+      setState(() {
+        _weight = weight;
+      });
+    });
+    SharedPreferencesHelper.getExperience(prefs).then((experience) {
+      setState(() {
+        _experience = experience;
+      });
+    });
   }
 
   @override
@@ -116,49 +147,5 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
         ),
       ),
     );
-  }
-
-  //TODO: NEED TO FIGURE OUT HOW TO EXTRACT THIS SO IT'S IN ITS OWN CLASS FOR APP-WISE ACCESS./
-  //Need to create an instance of user-info-data before running
-  void updateFirstName(String firstName) {
-    setState(() {
-      this._firstName = firstName;
-    });
-  }
-
-  void updateLastName(String lastName) {
-    setState(() {
-      this._lastName = lastName;
-    });
-  }
-
-  void updateGender(String gender) {
-    setState(() {
-      this._gender = gender;
-    });
-  }
-
-  void updateMotivation(String motivation) {
-    setState(() {
-      _motivation = motivation;
-    });
-  }
-
-  void updateHeight(String height) {
-    setState(() {
-      _height = height;
-    });
-  }
-
-  void updateWeight(String weight) {
-    setState(() {
-      _weight = weight;
-    });
-  }
-
-  void updateExperience(String experience) {
-    setState(() {
-      _experience = experience;
-    });
   }
 }
