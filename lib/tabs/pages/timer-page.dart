@@ -39,7 +39,7 @@ class TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
     // name = stdin.readLineSync() as int;
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 5),
+      duration: Duration(seconds: 20),
     );
 
     // ..addStatusListener((status) {
