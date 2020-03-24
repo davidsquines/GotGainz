@@ -65,7 +65,7 @@ class ExercisePage extends StatelessWidget {
         height: 0.0,
         width: 0.0,
         child: FutureBuilder<List<Exercises>>(
-          future: exerciseDatabaseHelper.instance.getAllExercise(),
+          future: ExerciseDatabaseHelper.instance.getAllExercise(),
           initialData: List(),
           builder:
               (BuildContext context, AsyncSnapshot<List<Exercises>> snapshot) {
@@ -82,7 +82,9 @@ class ExercisePage extends StatelessWidget {
                   );
                 },
               );
-            } else {}
+            } else {
+              return Center(child: Text('Still Broken'));
+            }
           },
         ),
       ),

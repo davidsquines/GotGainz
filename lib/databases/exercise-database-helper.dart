@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
-class exerciseDatabaseHelper {
+class ExerciseDatabaseHelper {
   static final _databaseName = "exercises.db";
   static final _databaseVersion = 1;
 
@@ -20,9 +20,9 @@ class exerciseDatabaseHelper {
   static final columnHypertrophy = 'hypertrophy';
   static final columnCardio = 'cardio';
 
-  static final exerciseDatabaseHelper instance =
-      new exerciseDatabaseHelper.internal();
-  factory exerciseDatabaseHelper() => instance;
+  static final ExerciseDatabaseHelper instance =
+      new ExerciseDatabaseHelper.internal();
+  factory ExerciseDatabaseHelper() => instance;
   // only have a single app-wide reference to the database
   static Database _database;
 
@@ -33,7 +33,7 @@ class exerciseDatabaseHelper {
     return _database;
   }
 
-  exerciseDatabaseHelper.internal();
+  ExerciseDatabaseHelper.internal();
   // this opens the database (and creates it if it doesn't exist)
   /*
   _initDatabase() async {
