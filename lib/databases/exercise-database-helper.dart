@@ -50,6 +50,7 @@ class ExerciseDatabaseHelper {
   }
    */
   initDB() async {
+    /*
     var databasesPath = await getDatabasesPath();
     var path = join(databasesPath, "exercises.db");
 
@@ -68,6 +69,36 @@ class ExerciseDatabaseHelper {
     } else {}
 
     return await openDatabase(path, readOnly: false);
+
+     */
+    var databasesPath = await getDatabasesPath();
+    var path = join(databasesPath, "exercises.db");
+
+// Check if the database exists
+    var exists = await databaseExists(path);
+
+    if (!exists) {
+      // Should happen only the first time you launch your application
+      print("Creating new copy from asset");
+
+      // Make sure the parent directory exists
+      try {
+        await Directory(dirname(path)).create(recursive: true);
+      } catch (_) {}
+
+      // Copy from asset
+      ByteData data = await rootBundle.load(join("assets", "userExercises.db"));
+      List<int> bytes =
+      data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+
+      // Write and flush the bytes written
+      await File(path).writeAsBytes(bytes, flush: true);
+
+    } else {
+      print("Opening existing database");
+    }
+// open the database
+    return await openDatabase(path, readOnly: true);
   }
 
   Future _onCreate(Database db, int version) async {
@@ -93,13 +124,24 @@ class ExerciseDatabaseHelper {
 
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
-  Future<List<Exercises>> getAllExercise() async {
-    final db = await database;
-    var res = await db.query("exercise_name");
+  Future<List> getAllExercise() async {
+    final Database db = await database;
+    /*
+
+    var res = await db.query("exerciseList", columns:["exercise_name", "body_part", "strength", "hypertrophy", "cardio"]);
     List<Exercises> list =
-        res.isNotEmpty ? res.map((c) => Exercises.fromMap(c)).toList() : [];
+    res.isNotEmpty ? res.map((m) => Exercises.toMap(m)).toList() : [];
     return list;
+    */
+
+      var result  = await db.query(ExerciseDatabaseHelper.table);
+      result.forEach((row) => print(row));
+      return result;
+
+
+
   }
+
 
 /*
   // Queries rows based on the argument received
@@ -147,3 +189,5 @@ class ExerciseDatabaseHelper {
 */
 
 }
+
+

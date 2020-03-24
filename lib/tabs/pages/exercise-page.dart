@@ -66,7 +66,6 @@ class ExercisePage extends StatelessWidget {
         width: 0.0,
         child: FutureBuilder<List<Exercises>>(
           future: ExerciseDatabaseHelper.instance.getAllExercise(),
-          initialData: List(),
           builder:
               (BuildContext context, AsyncSnapshot<List<Exercises>> snapshot) {
             if (snapshot.hasData) {
