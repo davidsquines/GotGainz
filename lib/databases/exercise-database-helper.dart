@@ -72,7 +72,7 @@ class ExerciseDatabaseHelper {
 
      */
     var databasesPath = await getDatabasesPath();
-    var path = join(databasesPath, "exercises.db");
+    var path = join(databasesPath, "userExercises.db");
 
 // Check if the database exists
     var exists = await databaseExists(path);
@@ -87,7 +87,7 @@ class ExerciseDatabaseHelper {
       } catch (_) {}
 
       // Copy from asset
-      ByteData data = await rootBundle.load(join("assets", "userExercises.db"));
+      ByteData data = await rootBundle.load(join("assets", "exercises.db"));
       List<int> bytes =
       data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
@@ -135,11 +135,9 @@ class ExerciseDatabaseHelper {
     */
 
       var result  = await db.query(ExerciseDatabaseHelper.table);
+      print("testing");
       result.forEach((row) => print(row));
       return result;
-
-
-
   }
 
 
