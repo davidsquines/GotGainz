@@ -29,7 +29,7 @@ class ActivityLevel extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'What is you gym experience?',
+                  'What is your current activity level?',
                   style: TextStyle(
                     fontSize: 24,
                   ),
@@ -47,7 +47,7 @@ class ActivityLevel extends StatelessWidget {
                         '/eighth',
                       );
                     },
-                    child: Text('NONE'),
+                    child: Text('Lightly Active'),
                     shape: RoundedRectangleBorder(),
                     color: Colors.lightBlueAccent, //TODO: Pick a color
                   ),
@@ -65,7 +65,7 @@ class ActivityLevel extends StatelessWidget {
                         '/eighth',
                       );
                     },
-                    child: Text('SOME'),
+                    child: Text('Moderately Active'),
                     shape: RoundedRectangleBorder(),
                     color: Colors.lightBlueAccent, //TODO: Pick a color
                   ),
@@ -83,7 +83,7 @@ class ActivityLevel extends StatelessWidget {
                         '/eighth',
                       );
                     },
-                    child: Text('EXPERIENCED'),
+                    child: Text('Very Active'),
                     shape: RoundedRectangleBorder(),
                     color: Colors.lightBlueAccent, //TODO: Pick a color
                   ),

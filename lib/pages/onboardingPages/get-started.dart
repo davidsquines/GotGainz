@@ -17,11 +17,11 @@ class GetStarted extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.fromLTRB(20, 100, 20, 0),
+                  padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
                   child: Text(
-                    'A FEW QUESTIONS BEFORE YOU WORK OUT',
+                    'A FEW QUESTIONS BEFORE WE GET STARTED',
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 22,
                     ),
                   ),
                 ),

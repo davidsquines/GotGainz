@@ -50,7 +50,7 @@ class WeightState extends State<Weight> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'What is your weight?',
+                'What is your current weight?',
                 style: TextStyle(
                   fontSize: 24,
                 ),
@@ -59,7 +59,7 @@ class WeightState extends State<Weight> {
               _buildFeet(),
               SizedBox(height: 100),
               Container(
-                margin: EdgeInsets.only(right: 16, bottom: 16),
+                margin: EdgeInsets.only(right: 16, bottom: 12),
                 child: FloatingActionButton(
                   backgroundColor: Colors.lightBlueAccent,
                   heroTag: 'nextButton',

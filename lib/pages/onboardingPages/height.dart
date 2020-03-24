@@ -81,7 +81,7 @@ class HeightState extends State<Height> {
               _buildInches(),
               SizedBox(height: 100),
               Container(
-                margin: EdgeInsets.only(right: 16, bottom: 16),
+                margin: EdgeInsets.only(right: 16, bottom: 14),
                 child: FloatingActionButton(
                   backgroundColor: Colors.lightBlueAccent,
                   heroTag: 'nextButton',
