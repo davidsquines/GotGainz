@@ -1,5 +1,7 @@
-import 'package:fitness_app/user-information.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:fitness_app/services/shared-pref-helper.dart';
 
 class Name extends StatefulWidget {
   @override
@@ -9,13 +11,29 @@ class Name extends StatefulWidget {
 }
 
 class NameState extends State<Name> {
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+
   String _firstName;
   String _lastName;
 
+  SharedPreferences prefs;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  void validateAndSubmit() {
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+    _formKey.currentState.save();
+
+    SharedPreferencesHelper.setFirstName(_firstName);
+    SharedPreferencesHelper.setLastName(_lastName);
+  }
 
   Widget _buildFirstName() {
     return TextFormField(
+      textCapitalization: TextCapitalization.sentences,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(labelText: 'First Name'),
       validator: (value) {
@@ -33,6 +51,7 @@ class NameState extends State<Name> {
 
   Widget _buildLastName() {
     return TextFormField(
+      textCapitalization: TextCapitalization.sentences,
       decoration: InputDecoration(labelText: 'Last Name'),
       validator: (value) {
         if (value.isEmpty) {
@@ -77,13 +96,7 @@ class NameState extends State<Name> {
                   shape: CircleBorder(),
                   child: Icon(Icons.arrow_forward),
                   onPressed: () {
-                    if (!_formKey.currentState.validate()) {
-                      return;
-                    }
-                    _formKey.currentState.save();
-                    print(_firstName);
-                    print(_lastName);
-                    UserInformation(firstName: _firstName, lastName: _lastName);
+                    validateAndSubmit();
                     Navigator.of(context).pushNamed(
                       '/third',
                     );

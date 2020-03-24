@@ -1,4 +1,3 @@
-import 'package:fitness_app/user-information.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,18 +14,62 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   PageController controller;
   SharedPreferences prefs;
 
+  String _firstName;
+  String _lastName;
+  String _gender;
+  String _motivation;
+  String _height;
+  String _weight;
+  String _experience;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _init();
+    setData();
   }
 
   void _init() async {
     prefs = await SharedPreferences.getInstance();
   }
 
-  UserInformation info = UserInformation();
+  void setData() {
+    SharedPreferencesHelper.getFirstName(prefs).then((firstName) {
+      setState(() {
+        this._firstName = firstName;
+      });
+    });
+    SharedPreferencesHelper.getLastName(prefs).then((lastName) {
+      setState(() {
+        this._lastName = lastName;
+      });
+    });
+    SharedPreferencesHelper.getGender(prefs).then((gender) {
+      setState(() {
+        this._gender = gender;
+      });
+    });
+    SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
+      setState(() {
+        _motivation = motivation;
+      });
+    });
+    SharedPreferencesHelper.getHeight(prefs).then((height) {
+      setState(() {
+        _height = height;
+      });
+    });
+    SharedPreferencesHelper.getWeight(prefs).then((weight) {
+      setState(() {
+        _weight = weight;
+      });
+    });
+    SharedPreferencesHelper.getExperience(prefs).then((experience) {
+      setState(() {
+        _experience = experience;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,24 +94,29 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'Here is your workout plan\n' +
-                      info.getGender() +
-                      '\n' +
-                      info.getMotivation() +
-                      '\n' +
-                      info.getFirstName(),
-                  style: TextStyle(
-                    fontSize: 24,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Here is the best workout plan for you...',
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 100,
-                ),
-              ],
+                  SizedBox(
+                    height: 100,
+                  ),
+                  Text(_firstName),
+                  Text(_lastName),
+                  Text(_gender),
+                  Text(_motivation),
+                  Text(_height),
+                  Text(_weight),
+                  Text(_experience),
+                ],
+              ),
             ),
           ),
         ),
@@ -87,11 +135,10 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
             heroTag: 'nextButton',
             onPressed: () {
               SharedPreferencesHelper.setOnBoardingStatus(true, prefs);
-              Navigator.pushReplacement(
+              Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => Tabs(),
-                ),
+                MaterialPageRoute(builder: (context) => Tabs()),
+                (Route<dynamic> route) => false,
               );
             },
             shape: CircleBorder(),

@@ -1,4 +1,4 @@
-import 'package:fitness_app/user-information.dart';
+import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:flutter/material.dart';
 
 class Height extends StatefulWidget {
@@ -93,9 +93,7 @@ class HeightState extends State<Height> {
                     }
                     _formKey.currentState.save();
                     _totalInches = _feet * 12 + _inches;
-                    print(_feet);
-                    print(_inches);
-                    print(_totalInches);
+                    SharedPreferencesHelper.setHeight(_totalInches);
                     Navigator.of(context).pushNamed(
                       '/sixth',
                     );

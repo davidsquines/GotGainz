@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
       debugShowCheckedModeBanner: false,
       home: AnimatedSplash(
         imagePath: 'assets/gifs/splashScreen.gif',
-        home: Onboarding(),
+        home: RootPage(),
         customFunction: duringSplash,
         duration: 2300, //TODO: May need to update duration
         type: AnimatedSplashType.BackgroundProcess,
