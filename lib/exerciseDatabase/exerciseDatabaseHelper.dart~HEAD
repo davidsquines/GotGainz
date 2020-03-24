@@ -50,7 +50,6 @@ class ExerciseDatabaseHelper {
   }
    */
   initDB() async {
-    /*
     var databasesPath = await getDatabasesPath();
     var path = join(databasesPath, "exercises.db");
 
@@ -61,43 +60,13 @@ class ExerciseDatabaseHelper {
         await Directory(dirname(path)).create(recursive: true);
       } catch (_) {}
 
-      ByteData data = await rootBundle.load(join("assets", "userExercises.db"));
+      ByteData data = await rootBundle.load(join("data", "exercises.db"));
       List<int> bytes =
           data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
       await File(path).writeAsBytes(bytes, flush: true);
     } else {}
 
-    return await openDatabase(path, readOnly: false);
-
-     */
-    var databasesPath = await getDatabasesPath();
-    var path = join(databasesPath, "exercises.db");
-
-// Check if the database exists
-    var exists = await databaseExists(path);
-
-    if (!exists) {
-      // Should happen only the first time you launch your application
-      print("Creating new copy from asset");
-
-      // Make sure the parent directory exists
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (_) {}
-
-      // Copy from asset
-      ByteData data = await rootBundle.load(join("assets", "userExercises.db"));
-      List<int> bytes =
-      data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-
-      // Write and flush the bytes written
-      await File(path).writeAsBytes(bytes, flush: true);
-
-    } else {
-      print("Opening existing database");
-    }
-// open the database
     return await openDatabase(path, readOnly: false);
   }
 
@@ -116,32 +85,26 @@ class ExerciseDatabaseHelper {
 
   Future<int> insert(Exercises exercise) async {
     Database db = await instance.database;
+<<<<<<< HEAD:lib/exerciseDatabase/exerciseDatabaseHelper.dart
+    return await
+    db.insert(table, {'exercise_name': exercise.exercise_name, 'body_part': exercise.body_part});
+=======
     return await db.insert(table, {
       'exercise_name': exercise.exercise_name,
       'body_part': exercise.body_part
     });
+>>>>>>> 449f2e8eb59fa98be6e24f490ef16d38d345a0d0:lib/databases/exercise-database-helper.dart
   }
 
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
-  Future<List> getAllExercise() async {
-    final Database db = await database;
-    /*
-
-    var res = await db.query("exerciseList", columns:["exercise_name", "body_part", "strength", "hypertrophy", "cardio"]);
+  Future<List<Exercises>> getAllExercise() async {
+    final db = await database;
+    var res = await db.query("exercise_name");
     List<Exercises> list =
-    res.isNotEmpty ? res.map((m) => Exercises.toMap(m)).toList() : [];
+        res.isNotEmpty ? res.map((c) => Exercises.fromMap(c)).toList() : [];
     return list;
-    */
-
-      var result  = await db.query(ExerciseDatabaseHelper.table);
-      result.forEach((row) => print(row));
-      return result;
-
-
-
   }
-
 
 /*
   // Queries rows based on the argument received
@@ -189,5 +152,3 @@ class ExerciseDatabaseHelper {
 */
 
 }
-
-
