@@ -1,4 +1,4 @@
-import 'package:fitness_app/exerciseDatabase/exercises.dart';
+import 'package:fitness_app/databases/exercises.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'dart:async';
@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
 
-class exerciseDatabaseHelper{
+class exerciseDatabaseHelper {
   static final _databaseName = "exercises.db";
   static final _databaseVersion = 1;
 
@@ -20,7 +20,8 @@ class exerciseDatabaseHelper{
   static final columnHypertrophy = 'hypertrophy';
   static final columnCardio = 'cardio';
 
-  static final exerciseDatabaseHelper instance = new exerciseDatabaseHelper.internal();
+  static final exerciseDatabaseHelper instance =
+      new exerciseDatabaseHelper.internal();
   factory exerciseDatabaseHelper() => instance;
   // only have a single app-wide reference to the database
   static Database _database;
@@ -61,7 +62,7 @@ class exerciseDatabaseHelper{
 
       ByteData data = await rootBundle.load(join("assets", "userExercises.db"));
       List<int> bytes =
-      data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
 
       await File(path).writeAsBytes(bytes, flush: true);
     } else {}
@@ -80,24 +81,25 @@ class exerciseDatabaseHelper{
             columnCardio INTEGER NOT NULL
           )
           ''');
-
   }
 
   Future<int> insert(Exercises exercise) async {
     Database db = await instance.database;
-    return await
-        db.insert(table, {'exercise_name': exercise.exercise_name, 'body_part': exercise.body_part});
+    return await db.insert(table, {
+      'exercise_name': exercise.exercise_name,
+      'body_part': exercise.body_part
+    });
   }
 
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
-  Future<List<Exercises>> getAllExercise() async{
+  Future<List<Exercises>> getAllExercise() async {
     final db = await database;
     var res = await db.query("exercise_name");
-    List<Exercises> list = res.isNotEmpty ? res.map((c) => Exercises.fromMap(c)).toList() : [];
+    List<Exercises> list =
+        res.isNotEmpty ? res.map((c) => Exercises.fromMap(c)).toList() : [];
     return list;
   }
-
 
 /*
   // Queries rows based on the argument received
@@ -143,16 +145,5 @@ class exerciseDatabaseHelper{
     return await db.delete(table, where: '$columnExerciseName = ?', whereArgs: [exercise_name]);
   }
 */
-
-
-
-
-
-
-
-
-
-
-
 
 }

@@ -8,7 +8,9 @@ class SplashScreen extends StatefulWidget {
   _SplashScreenState createState() => _SplashScreenState();
 }
 
-Map<int, Widget> op = {1: Onboarding()};
+Map<int, Widget> op = {
+  1: Onboarding()
+}; //TODO Change this back to RootPage after Testing
 
 Function duringSplash = () {
   return 1;
@@ -21,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       debugShowCheckedModeBanner: false,
       home: AnimatedSplash(
         imagePath: 'assets/gifs/splashScreen.gif',
-        home: RootPage(),
+        home: Onboarding(), //TODO Change this back to RootPage after Testing
         customFunction: duringSplash,
         duration: 2300, //TODO: May need to update duration
         type: AnimatedSplashType.BackgroundProcess,

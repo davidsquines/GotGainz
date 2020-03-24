@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:fitness_app/exerciseDatabase/exerciseDatabaseHelper.dart';
-import 'package:fitness_app/exerciseDatabase/exercises.dart';
-
+import 'package:fitness_app/databases/exercise-database-helper.dart';
+import 'package:fitness_app/databases/exercises.dart';
 
 class ExercisePage extends StatelessWidget {
   /*
@@ -66,24 +65,21 @@ class ExercisePage extends StatelessWidget {
         future: exerciseDatabaseHelper.instance.getAllExercise(),
         initialData: List(),
         builder:
-        (BuildContext context, AsyncSnapshot<List<Exercises>> snapshot) {
+            (BuildContext context, AsyncSnapshot<List<Exercises>> snapshot) {
           if (snapshot.hasData) {
             return ListView.builder(
-            itemCount: snapshot.data.length,
-            itemBuilder: (BuildContext context, int position) {
-              Exercises exercise = snapshot.data[position];
-              return Card(
-                child: ListTile(
-                  title: Text(exercise.exercise_name),
-                  subtitle: Text(exercise.body_part),
-                ),
-
-              );
-            },
-          );
-          } else {
-
-          }
+              itemCount: snapshot.data.length,
+              itemBuilder: (BuildContext context, int position) {
+                Exercises exercise = snapshot.data[position];
+                return Card(
+                  child: ListTile(
+                    title: Text(exercise.exercise_name),
+                    subtitle: Text(exercise.body_part),
+                  ),
+                );
+              },
+            );
+          } else {}
         },
       ),
     );
