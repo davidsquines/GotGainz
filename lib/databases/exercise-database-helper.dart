@@ -50,27 +50,6 @@ class ExerciseDatabaseHelper {
   }
    */
   initDB() async {
-    /*
-    var databasesPath = await getDatabasesPath();
-    var path = join(databasesPath, "exercises.db");
-
-    var exists = await databaseExists(path);
-
-    if (!exists) {
-      try {
-        await Directory(dirname(path)).create(recursive: true);
-      } catch (_) {}
-
-      ByteData data = await rootBundle.load(join("assets", "userExercises.db"));
-      List<int> bytes =
-          data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-
-      await File(path).writeAsBytes(bytes, flush: true);
-    } else {}
-
-    return await openDatabase(path, readOnly: false);
-
-     */
     var databasesPath = await getDatabasesPath();
     var path = join(databasesPath, "userExercises.db");
 
@@ -95,10 +74,12 @@ class ExerciseDatabaseHelper {
       await File(path).writeAsBytes(bytes, flush: true);
 
     } else {
+
       print("Opening existing database");
     }
 // open the database
-    return await openDatabase(path, readOnly: false);
+    _database = await openDatabase(path);
+    return _database;
   }
 
   Future _onCreate(Database db, int version) async {
@@ -124,7 +105,7 @@ class ExerciseDatabaseHelper {
 
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
-  Future<List> getAllExercise() async {
+  Future<List<Map<String,dynamic>>> getAllExercise() async {
     final Database db = await database;
     /*
 
@@ -133,11 +114,12 @@ class ExerciseDatabaseHelper {
     res.isNotEmpty ? res.map((m) => Exercises.toMap(m)).toList() : [];
     return list;
     */
-
-      var result  = await db.query(ExerciseDatabaseHelper.table);
+      var result  = await db.query(table);
       print("testing");
       result.forEach((row) => print(row));
+      result.toList();
       return result;
+
   }
 
 
