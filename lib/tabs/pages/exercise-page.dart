@@ -3,9 +3,18 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:fitness_app/databases/exercises.dart';
 
-class ExercisePage extends StatelessWidget {
+
+
+class ExercisePage extends StatefulWidget {
+  _ExercisePageState createState() => _ExercisePageState();
+}
+
+class _ExercisePageState extends State<ExercisePage> {
+  @override
 
   ExerciseDatabaseHelper db = new ExerciseDatabaseHelper();
+  List<Exercises> ex = [];
+
 
 
   @override
@@ -13,7 +22,7 @@ class ExercisePage extends StatelessWidget {
       return MaterialApp(
       home: Scaffold(
         body: FutureBuilder<List<Exercises>>(
-          future: ExerciseDatabaseHelper.instance.getAllExercise(),
+          future: db.getAllExercise(),
           builder:
               (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.hasData) {
@@ -36,5 +45,12 @@ class ExercisePage extends StatelessWidget {
         ),
       ),
       );
+  }
+
+  void _queryAll() async{
+    final allRows = await db.getAllExercise();
+    ex.clear();
+    allRows.forEach((row) => ex.add(row));
+
   }
 }

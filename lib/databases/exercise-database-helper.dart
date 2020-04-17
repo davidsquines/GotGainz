@@ -106,7 +106,7 @@ class ExerciseDatabaseHelper {
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
   Future<List<Exercises>> getAllExercise() async {
-    List<Exercises> exercises = <Exercises>[];
+    List<Exercises> exercises = new List();
     final Database db = await database;
     var result = await db.rawQuery('SELECT * FROM $table');
     for(var n in result){
