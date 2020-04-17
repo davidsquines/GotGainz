@@ -1,56 +1,61 @@
-import 'package:fitness_app/databases/exercise-database-helper.dart';
+import 'package:fitness_app/pages/workout-plan.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:fitness_app/databases/exercises.dart';
-
-
+import 'package:fitness_app/pages/workout-list.dart';
 
 class ExercisePage extends StatefulWidget {
+  @override
   _ExercisePageState createState() => _ExercisePageState();
 }
 
 class _ExercisePageState extends State<ExercisePage> {
   @override
-
-  ExerciseDatabaseHelper db = new ExerciseDatabaseHelper();
-  List<Exercises> ex = [];
-
-
-
-  @override
   Widget build(BuildContext context) {
-      return MaterialApp(
-      home: Scaffold(
-        body: FutureBuilder<List<Exercises>>(
-          future: db.getAllExercise(),
-          builder:
-              (BuildContext context, AsyncSnapshot snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int position) {
-                  Exercises exercise = snapshot.data[position];
-                  return Card(
-                    child: ListTile(
-                      title: Text(exercise.exercise_name)
-
-                    ),
+    return Container(
+      child: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ButtonTheme(
+              //male button
+              minWidth: 200.0,
+              height: 50.0,
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WorkoutPlan()),
                   );
                 },
-              );
-            } else {
-              return Center(child: Text('Still Broken'));
-            }
-          },
+                child: Text('Continue your workout plan'),
+                shape: RoundedRectangleBorder(),
+                color: Colors.lightBlueAccent, //TODO: Pick a Color
+              ),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            ButtonTheme(
+              //female button
+              minWidth: 200.0,
+              height: 50.0,
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WorkoutList()),
+                  );
+                },
+                child: Text('Show all workouts'),
+                shape: RoundedRectangleBorder(),
+                color: Colors.lightBlueAccent, //TODO: Pick a Color
+              ),
+            ),
+          ],
         ),
       ),
-      );
-  }
-
-  void _queryAll() async{
-    final allRows = await db.getAllExercise();
-    ex.clear();
-    allRows.forEach((row) => ex.add(row));
-
+    );
   }
 }
+/*
+
+*/
