@@ -105,20 +105,30 @@ class ExerciseDatabaseHelper {
 
   // All of the rows are returned as a list of maps, where each map is
   // a key-value list of columns.
-  Future<List<Map<String,dynamic>>> getAllExercise() async {
+  Future<List<Exercises>> getAllExercise() async {
+    List<Exercises> exercises = <Exercises>[];
     final Database db = await database;
+    var result = await db.rawQuery('SELECT * FROM $table');
+    for(var n in result){
+      exercises.add(Exercises.fromMap(n));
+
+
+    }
+    return exercises;
     /*
 
     var res = await db.query("exerciseList", columns:["exercise_name", "body_part", "strength", "hypertrophy", "cardio"]);
     List<Exercises> list =
     res.isNotEmpty ? res.map((m) => Exercises.toMap(m)).toList() : [];
     return list;
-    */
+
       var result  = await db.query(table);
       print("testing");
       result.forEach((row) => print(row));
       result.toList();
       return result;
+
+     */
 
   }
 

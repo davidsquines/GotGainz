@@ -8,8 +8,10 @@ class Exercises {
   int hypertrophy;
   int cardio;
 
-  Exercises(this.id, this.exercise_name, this.body_part, this.strength,
-      this.hypertrophy, this.cardio);
+  Exercises();
+
+  //Exercises(this.id, this.exercise_name, this.body_part, this.strength,
+      //this.hypertrophy, this.cardio);
 
   //convert a exercise object into a map object
   Map<String, dynamic> toMap() {
@@ -23,6 +25,18 @@ class Exercises {
       map['cardio']=  cardio;
     return map;
   }
+
+  Exercises.fromMap(Map<String,dynamic> map){
+    Exercises exercise = new Exercises();
+    exercise.id = map['id'];
+    exercise.exercise_name = map['exercise_name'];
+    exercise.body_part = map[body_part];
+    exercise.strength = map['stregnth'];
+    exercise.hypertrophy = map['hypertrohpy'];
+    exercise.cardio = map['cardio'];
+}
+
+
 
 
 }

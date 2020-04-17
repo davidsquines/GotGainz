@@ -12,7 +12,7 @@ class ExercisePage extends StatelessWidget {
   Widget build(BuildContext context) {
       return MaterialApp(
       home: Scaffold(
-        body: FutureBuilder<List>(
+        body: FutureBuilder<List<Exercises>>(
           future: ExerciseDatabaseHelper.instance.getAllExercise(),
           builder:
               (BuildContext context, AsyncSnapshot snapshot) {
