@@ -26,24 +26,28 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
   }
 
   void setData() {
-    SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
-      setState(() {
-        this.motivation = motivation;
-        if (motivation == 'I want to gain strength') {
-          _plan = 0;
-        } else if (motivation == 'I want to lose weight') {
-          _plan = 1;
-        } else {
-          _plan = 2;
-        }
-      });
-    });
+    SharedPreferencesHelper.getMotivation(prefs).then(
+      (motivation) {
+        setState(
+          () {
+            this.motivation = motivation;
+            if (motivation == 'I want to gain strength') {
+              _plan = 0;
+            } else if (motivation == 'I want to lose weight') {
+              _plan = 1;
+            } else {
+              _plan = 2;
+            }
+          },
+        );
+      },
+    );
   }
 
   Widget customPlan() {
     if (_plan == 0) {
       return Text('Put strength workouts here');
-    } else if (_plan == 0) {
+    } else if (_plan == 1) {
       return Text('Put slimming workouts here');
     } else {
       return Text('ERROR');
