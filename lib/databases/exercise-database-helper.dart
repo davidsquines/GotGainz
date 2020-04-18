@@ -108,12 +108,24 @@ class ExerciseDatabaseHelper {
   Future<List<Exercises>> getAllExercise() async {
     List<Exercises> exercises = new List();
     final Database db = await database;
-    var result = await db.rawQuery('SELECT * FROM $table');
+    final List<Map> result = await db.rawQuery('SELECT * FROM exerciseList');
+    print("testing");
+    //print(exercises);
+    result.forEach((row) => print(row));
+    /*
     for(var n in result){
+      print(n);
       exercises.add(Exercises.fromMap(n));
-
-
+      print(exercises[n]);
     }
+
+     */
+    print(result.length);
+    for(int i = 0; i < result.length;i++){
+
+      result.forEach((row) => exercises.add(Exercises.fromMap(row)));
+    }
+    print(exercises.length);
     return exercises;
     /*
 
