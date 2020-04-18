@@ -12,22 +12,24 @@ class WorkoutList extends StatefulWidget {
 
 class _WorkoutListState extends State<WorkoutList> {
   Future<List<Exercises>> _getExercises() async {
-    var data = await http
-        .get('http://www.json-generator.com/api/json/get/bTNIKaWSqa?indent=2');
+    //var data = await http.get('http://www.json-generator.com/api/json/get/bTNIKaWSqa?indent=2');
+    var data = await http.get('http://www.json-generator.com/api/json/get/bVMZUUwPAO?indent=2');
+
     var jsonData = json.decode(data.body);
 
     List<Exercises> exercises = [];
 
     for (var type in jsonData) {
       Exercises ex = Exercises(
-          type['id'],
+          type['exerciseName'],
           type[
-              'exercise_name'], //TODO: when making your new JSON, please fix this to camelCase
-          type['body_part'], //TODO: ^
-          type['strength'],
-          type['hypertrphy'],
-          type['cardio']);
-      String a = ex.bodyPart;
+          'bodyPart'],
+          //TODO: when making your new JSON, please fix this to camelCase
+          type['strength'], //TODO: ^
+          type['description'],
+          type['exerciseExample'],
+          type['muscleBody']);
+
       //if (a == ' chest') {
       exercises.add(ex);
       //} //TODO: Fix this to work with filters

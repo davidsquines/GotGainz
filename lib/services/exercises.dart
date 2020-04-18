@@ -1,11 +1,16 @@
 class Exercises {
-  int id;
   String exerciseName;
   String bodyPart;
   int strength;
-  int hypertrophy;
-  int cardio;
+  String description;
+  String exerciseExample;
+  String muscleBody;
 
-  Exercises(this.id, this.exerciseName, this.bodyPart, this.strength,
-      this.hypertrophy, this.cardio);
+  Exercises(
+    this.exerciseName,
+    this.bodyPart,
+    this.strength,
+    this.description,
+    this.exerciseExample,
+    this.muscleBody);
 }

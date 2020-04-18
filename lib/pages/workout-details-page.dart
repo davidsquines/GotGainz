@@ -39,16 +39,16 @@ class WorkoutDetailsPage extends StatelessWidget {
                 ),
                 Row(
                   children: <Widget>[
-                    Text(
-                      'ID:',
-                      style: TextStyle(fontSize: 20.0),
+                    Image.network(exercise.muscleBody, height: 200, width: 200
                     ),
-                    Text(
-                      exercise.id.toString(),
-                      style: TextStyle(
-                        fontSize: 18.0,
-                      ),
-                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                     Image.network(exercise.exerciseExample,
+                       height: 200,
+                       width: 200,
+                     )
                   ],
                 ),
                 SizedBox(
@@ -61,7 +61,7 @@ class WorkoutDetailsPage extends StatelessWidget {
                       style: TextStyle(fontSize: 20.0),
                     ),
                     Text(
-                      exercise.bodyPart
+                      exercise.description
                           .toUpperCase(), //TODO: Change this when description is implemented
                       style: TextStyle(
                         fontSize: 18.0,
