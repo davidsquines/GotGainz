@@ -25,9 +25,8 @@ class WorkoutDetailsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Body part worked:',
+                      'Exercise image:',
                       style: TextStyle(fontSize: 16.0),
-                      textAlign: TextAlign.start,
                     ),
                     Image.network(
                       exercise.exerciseExample,
@@ -80,27 +79,39 @@ class WorkoutDetailsPage extends StatelessWidget {
               ],
             ),
           ),
+          ButtonTheme(
+            minWidth: double.infinity,
+            height: 50.0,
+            child: FlatButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('I\'m Finished'),
+              color: Colors.lightBlue,
+            ),
+          ),
+
           /*Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ButtonTheme(
-                    //male button
-                    minWidth: double.infinity,
-                    height: double.infinity,
-                    child: RaisedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text('I\'m Finished'),
-                      shape: RoundedRectangleBorder(),
-                      color: Colors.blue, //TODO: Pick a Color
-                    ),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: ButtonTheme(
+                  //male button
+                  minWidth: double.infinity,
+                  height: 50.0,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('I\'m Finished'),
+                    shape: RoundedRectangleBorder(),
+                    color: Colors.blue, //TODO: Pick a Color
                   ),
                 ),
               ),
-            ),*/
+            ),
+          ),*/
         ],
       ),
     );
