@@ -13,7 +13,7 @@ class WorkoutList extends StatefulWidget {
 class _WorkoutListState extends State<WorkoutList> {
   Future<List<Exercises>> _getExercises() async {
     //var data = await http.get('http://www.json-generator.com/api/json/get/bTNIKaWSqa?indent=2');
-    var data = await http.get('http://www.json-generator.com/api/json/get/bVMZUUwPAO?indent=2');
+    var data = await http.get('http://www.json-generator.com/api/json/get/bVJKimbkzm?indent=2');
 
     var jsonData = json.decode(data.body);
 
