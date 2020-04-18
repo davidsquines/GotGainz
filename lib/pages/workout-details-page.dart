@@ -9,78 +9,79 @@ class WorkoutDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(exercise.exerciseName),
-      ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(exercise.exerciseName),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            Row(
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Body part worked:',
+                        style: TextStyle(fontSize: 16.0),
+                        textAlign: TextAlign.start,
+                      ),
+                      Image.network(
+                        exercise.exerciseExample,
+                        height: 100.0,
+                        width: 100.0,
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Body part worked:',
+                        style: TextStyle(fontSize: 16.0),
+                      ),
+                      Image.network(
+                        exercise.muscleBody,
+                        height: 150.0,
+                        width: 150.0,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          'Body part:',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        Text(
-                          exercise.bodyPart.toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
-                        ),
-                      ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: Text(
+                      'Description:',
+                      style: TextStyle(fontSize: 20.0),
                     ),
                   ),
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        Image.network(exercise.muscleBody,
-                            height: 200, width: 200),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        Image.network(
-                          exercise.exerciseExample,
-                          height: 200,
-                          width: 200,
-                        )
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        Text(
-                          'Description:',
-                          style: TextStyle(fontSize: 20.0),
-                        ),
-                        new Flexible(
-                            child:
-                          Text(
-                            exercise.description
-                                .toUpperCase(), //TODO: Change this when description is implemented
-                            style: TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                        ),
-                      ],
+                  Flexible(
+                    child: Text(
+                      exercise.description
+                          .toUpperCase(), //TODO: Change this when description is implemented
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-            /*
-            Expanded(
+            /*Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: Align(
@@ -88,7 +89,7 @@ class WorkoutDetailsPage extends StatelessWidget {
                   child: ButtonTheme(
                     //male button
                     minWidth: double.infinity,
-                    height: 10.0,
+                    height: double.infinity,
                     child: RaisedButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -100,9 +101,7 @@ class WorkoutDetailsPage extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-
-             */
+            ),*/
           ],
         ),
       ),
