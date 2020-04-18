@@ -19,7 +19,10 @@ class _WorkoutListState extends State<WorkoutList> {
     for(var u in jsonData){
       Exercises ex = Exercises(u["id"],u["exercise_name"],u["body_part"],u["strength"],u["hypertrphy"]
       ,u["cardio"]);
-      exercises.add(ex);
+      String a = ex.body_part;
+      if(a == " chest") {
+        exercises.add(ex);
+      }
     }
     print(exercises.length);
     return exercises;
