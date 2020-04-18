@@ -13,7 +13,8 @@ class WorkoutList extends StatefulWidget {
 class _WorkoutListState extends State<WorkoutList> {
   Future<List<Exercises>> _getExercises() async {
     //var data = await http.get('http://www.json-generator.com/api/json/get/bTNIKaWSqa?indent=2');
-    var data = await http.get('http://www.json-generator.com/api/json/get/bVJKimbkzm?indent=2');
+    var data = await http
+        .get('http://www.json-generator.com/api/json/get/bVJKimbkzm?indent=2');
 
     var jsonData = json.decode(data.body);
 
@@ -22,9 +23,8 @@ class _WorkoutListState extends State<WorkoutList> {
     for (var type in jsonData) {
       Exercises ex = Exercises(
           type['exerciseName'],
-          type[
-          'bodyPart'],
-          //TODO: when making your new JSON, please fix this to camelCase
+          type['bodyPart'],
+          //TODO: when making your =JSON, please fix this to camelCase
           type['strength'], //TODO: ^
           type['description'],
           type['exerciseExample'],
@@ -63,7 +63,7 @@ class _WorkoutListState extends State<WorkoutList> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        new MaterialPageRoute(
+                        MaterialPageRoute(
                           builder: (context) =>
                               WorkoutDetailsPage(snapshot.data[index]),
                         ),
