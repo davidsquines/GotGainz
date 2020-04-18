@@ -1,3 +1,4 @@
+import 'package:fitness_app/pages/workout-details-page.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
@@ -17,9 +18,15 @@ class _WorkoutListState extends State<WorkoutList> {
 
     List<Exercises> exercises = [];
 
-    for (var u in jsonData) {
-      Exercises ex = Exercises(u['id'], u['exercise_name'], u['body_part'],
-          u['strength'], u['hypertrphy'], u['cardio']);
+    for (var type in jsonData) {
+      Exercises ex = Exercises(
+          type['id'],
+          type[
+              'exercise_name'], //TODO: when making your new JSON, please fix this to camelCase
+          type['body_part'], //TODO: ^
+          type['strength'],
+          type['hypertrphy'],
+          type['cardio']);
       String a = ex.bodyPart;
       //if (a == ' chest') {
       exercises.add(ex);
@@ -56,7 +63,7 @@ class _WorkoutListState extends State<WorkoutList> {
                         context,
                         new MaterialPageRoute(
                           builder: (context) =>
-                              DetailsPage(snapshot.data[index]),
+                              WorkoutDetailsPage(snapshot.data[index]),
                         ),
                       );
                     },
@@ -66,20 +73,6 @@ class _WorkoutListState extends State<WorkoutList> {
             }
           },
         ),
-      ),
-    );
-  }
-}
-
-class DetailsPage extends StatelessWidget {
-  final Exercises exercise;
-  DetailsPage(this.exercise);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(exercise.exerciseName),
       ),
     );
   }

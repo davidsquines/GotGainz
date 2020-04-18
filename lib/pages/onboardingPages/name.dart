@@ -21,16 +21,6 @@ class NameState extends State<Name> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  void validateAndSubmit() {
-    if (!_formKey.currentState.validate()) {
-      return;
-    }
-    _formKey.currentState.save();
-
-    SharedPreferencesHelper.setFirstName(_firstName);
-    SharedPreferencesHelper.setLastName(_lastName);
-  }
-
   Widget _buildFirstName() {
     return TextFormField(
       textCapitalization: TextCapitalization.sentences,
@@ -96,7 +86,13 @@ class NameState extends State<Name> {
                   shape: CircleBorder(),
                   child: Icon(Icons.arrow_forward),
                   onPressed: () {
-                    validateAndSubmit();
+                    if (!_formKey.currentState.validate()) {
+                      return;
+                    }
+                    _formKey.currentState.save();
+
+                    SharedPreferencesHelper.setFirstName(_firstName);
+                    SharedPreferencesHelper.setLastName(_lastName);
                     Navigator.of(context).pushNamed(
                       '/third',
                     );
