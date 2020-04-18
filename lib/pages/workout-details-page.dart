@@ -20,54 +20,57 @@ class WorkoutDetailsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Body part:',
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    Text(
-                      exercise.bodyPart.toUpperCase(),
-                      style: TextStyle(
-                        fontSize: 18.0,
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        'Body part:',
+                        style: TextStyle(fontSize: 20.0),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Row(
-                  children: <Widget>[
-                    Image.network(exercise.muscleBody, height: 200, width: 200
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                     Image.network(exercise.exerciseExample,
-                       height: 200,
-                       width: 200,
-                     )
-                  ],
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                Row(
-                  children: <Widget>[
-                    Text(
-                      'Description:',
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                    Text(
-                      exercise.description
-                          .toUpperCase(), //TODO: Change this when description is implemented
-                      style: TextStyle(
-                        fontSize: 18.0,
+                      Text(
+                        exercise.bodyPart.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Image.network(exercise.muscleBody,
+                          height: 200, width: 200),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Image.network(
+                        exercise.exerciseExample,
+                        height: 200,
+                        width: 200,
+                      )
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Row(
+                    children: <Widget>[
+                      Text(
+                        'Description:',
+                        style: TextStyle(fontSize: 20.0),
+                      ),
+                      Text(
+                        exercise.description
+                            .toUpperCase(), //TODO: Change this when description is implemented
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
