@@ -11,7 +11,7 @@ class WorkoutPlan extends StatefulWidget {
 class _WorkoutPlanState extends State<WorkoutPlan> {
   SharedPreferences prefs;
 
-  String _motivation;
+  String motivation;
   int _plan;
 
   @override
@@ -28,7 +28,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
   void setData() {
     SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
       setState(() {
-        this._motivation = motivation;
+        this.motivation = motivation;
         if (motivation == 'I want to gain strength') {
           _plan = 0;
         } else if (motivation == 'I want to lose weight') {

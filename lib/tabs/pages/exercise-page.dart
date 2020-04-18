@@ -23,7 +23,9 @@ class _ExercisePageState extends State<ExercisePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => WorkoutPlan()),
+                    MaterialPageRoute(
+                      builder: (context) => WorkoutPlan(),
+                    ),
                   );
                 },
                 child: Text('Continue your workout plan'),
@@ -42,7 +44,9 @@ class _ExercisePageState extends State<ExercisePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => WorkoutList()),
+                    MaterialPageRoute(
+                      builder: (context) => WorkoutList(),
+                    ),
                   );
                 },
                 child: Text('Show all workouts'),
@@ -56,6 +60,3 @@ class _ExercisePageState extends State<ExercisePage> {
     );
   }
 }
-/*
-
-*/

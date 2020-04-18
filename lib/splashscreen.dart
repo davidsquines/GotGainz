@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash/animated_splash.dart';
-import 'package:fitness_app/pages/onboarding-builder.dart'; //TODO: Remove this after switching back to RootPage
 import 'package:fitness_app/pages/root-page.dart';
 
 class SplashScreen extends StatefulWidget {

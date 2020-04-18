@@ -18,7 +18,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
   String _motivation;
   String _height;
   String _weight;
-  String _experience;
+  //String _experience;
 
   @override
   void initState() {
@@ -62,11 +62,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
         _weight = weight;
       });
     });
-    SharedPreferencesHelper.getExperience(prefs).then((experience) {
+    /*SharedPreferencesHelper.getExperience(prefs).then((experience) {
       setState(() {
         _experience = experience;
       });
-    });
+    });*/
   }
 
   Widget genderIcon() {

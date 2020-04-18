@@ -33,6 +33,3 @@ flutter:
 
   assets:
     - assets/gifs/splashScreen.gif
-    - exerciseList.json
-    - assets/exercises.db
-    - assets/userExercises.db
