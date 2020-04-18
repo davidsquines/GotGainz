@@ -11,7 +11,6 @@ class WorkoutPlanOutput extends StatefulWidget {
 }
 
 class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
-  PageController controller;
   SharedPreferences prefs;
 
   String _firstName;
@@ -21,6 +20,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   String _height;
   String _weight;
   String _experience;
+  String _plan;
 
   @override
   void initState() {
@@ -51,22 +51,29 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
     });
     SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
       setState(() {
-        _motivation = motivation;
+        this._motivation = motivation;
+        if (motivation == 'I want to gain strength') {
+          _plan = 'swole';
+        } else if (motivation == 'I want to lose weight') {
+          _plan = 'slim';
+        } else {
+          _plan = 'ERROR';
+        }
       });
     });
     SharedPreferencesHelper.getHeight(prefs).then((height) {
       setState(() {
-        _height = height;
+        this._height = height;
       });
     });
     SharedPreferencesHelper.getWeight(prefs).then((weight) {
       setState(() {
-        _weight = weight;
+        this._weight = weight;
       });
     });
     SharedPreferencesHelper.getExperience(prefs).then((experience) {
       setState(() {
-        _experience = experience;
+        this._experience = experience;
       });
     });
   }
@@ -93,30 +100,50 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
       home: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Here is the best workout plan for you...',
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        'Here is the information you entered:',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.lightBlue,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(_firstName),
+                            Text(_lastName),
+                            Text(_gender),
+                            Text(_motivation),
+                            Text(_height),
+                            Text(_weight),
+                            Text(_experience),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    'Based on your entered data, you have been assigned the $_plan plan. ',
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 30,
+                      color: Colors.green,
                     ),
+                    textAlign: TextAlign.right,
                   ),
-                  SizedBox(
-                    height: 100,
-                  ),
-                  Text(_firstName),
-                  Text(_lastName),
-                  Text(_gender),
-                  Text(_motivation),
-                  Text(_height),
-                  Text(_weight),
-                  Text(_experience),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
