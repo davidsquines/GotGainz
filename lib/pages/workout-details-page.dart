@@ -85,16 +85,17 @@ class WorkoutDetailsPage extends StatelessWidget {
               ],
             ),
           ),
-          ButtonTheme(
+          MaterialButton(
             minWidth: double.infinity,
             height: 50.0,
-            child: FlatButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('I\'m Finished'),
-              color: Colors.lightBlue,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text(
+              'I\'m Done'.toUpperCase(),
             ),
+            color: Colors.lightBlue,
+            textColor: Colors.white,
           ),
         ],
       ),

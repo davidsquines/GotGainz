@@ -43,13 +43,13 @@ class GetStarted extends StatelessWidget {
               height: 30.0,
             ),
             MaterialButton(
+              minWidth: double.infinity,
+              height: 50.0,
               onPressed: () {
                 Navigator.of(context).pushNamed(
                   '/second',
                 );
               },
-              minWidth: double.infinity,
-              height: 50.0,
               child: Text(
                 'Get Started'.toUpperCase(),
               ),

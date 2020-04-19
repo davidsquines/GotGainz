@@ -27,15 +27,16 @@ class Gender extends StatelessWidget {
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
                   'What is your gender?',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 24.0,
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 50.0,
                 ),
                 ButtonTheme(
                   //male button

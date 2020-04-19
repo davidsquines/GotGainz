@@ -71,33 +71,43 @@ class HeightState extends State<Height> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'What is your height?',
-                style: TextStyle(
-                  fontSize: 24,
-                ),
-              ),
-              _buildFeet(),
-              _buildInches(),
-              SizedBox(height: 100),
-              Container(
-                margin: EdgeInsets.only(right: 16, bottom: 14),
-                child: FloatingActionButton(
-                  backgroundColor: Colors.lightBlueAccent,
-                  heroTag: 'nextButton',
-                  shape: CircleBorder(),
-                  child: Icon(Icons.arrow_forward),
-                  onPressed: () {
-                    if (!_formKey.currentState.validate()) {
-                      return;
-                    }
-                    _formKey.currentState.save();
-                    _totalInches = _feet * 12 + _inches;
-                    SharedPreferencesHelper.setHeight(_totalInches);
-                    Navigator.of(context).pushNamed(
-                      '/sixth',
-                    );
-                  },
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'What is your height?',
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    _buildFeet(),
+                    _buildInches(),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 16, bottom: 14),
+                      child: FloatingActionButton(
+                        backgroundColor: Colors.lightBlueAccent,
+                        heroTag: 'nextButton',
+                        shape: CircleBorder(),
+                        child: Icon(Icons.arrow_forward),
+                        onPressed: () {
+                          if (!_formKey.currentState.validate()) {
+                            return;
+                          }
+                          _formKey.currentState.save();
+                          _totalInches = _feet * 12 + _inches;
+                          SharedPreferencesHelper.setHeight(_totalInches);
+                          Navigator.of(context).pushNamed(
+                            '/sixth',
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

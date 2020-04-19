@@ -13,7 +13,7 @@ class WeightState extends State<Weight> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  Widget _buildFeet() {
+  Widget _buildWeight() {
     return TextFormField(
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
@@ -49,34 +49,42 @@ class WeightState extends State<Weight> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'What is your current weight?',
-                style: TextStyle(
-                  fontSize: 24,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'What is your current weight?',
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    _buildWeight(),
+                    SizedBox(height: 12.0),
+                    Container(
+                      margin: EdgeInsets.only(right: 16, bottom: 12),
+                      child: FloatingActionButton(
+                        backgroundColor: Colors.lightBlueAccent,
+                        heroTag: 'nextButton',
+                        shape: CircleBorder(),
+                        child: Icon(Icons.arrow_forward),
+                        onPressed: () {
+                          if (!_formKey.currentState.validate()) {
+                            return;
+                          }
+                          _formKey.currentState.save();
+                          SharedPreferencesHelper.setWeight(_pounds);
+                          Navigator.of(context).pushNamed(
+                            '/seventh',
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
               //Row(children: <Widget>[],),
-              _buildFeet(),
-              SizedBox(height: 100),
-              Container(
-                margin: EdgeInsets.only(right: 16, bottom: 12),
-                child: FloatingActionButton(
-                  backgroundColor: Colors.lightBlueAccent,
-                  heroTag: 'nextButton',
-                  shape: CircleBorder(),
-                  child: Icon(Icons.arrow_forward),
-                  onPressed: () {
-                    if (!_formKey.currentState.validate()) {
-                      return;
-                    }
-                    _formKey.currentState.save();
-                    SharedPreferencesHelper.setWeight(_pounds);
-                    Navigator.of(context).pushNamed(
-                      '/seventh',
-                    );
-                  },
-                ),
-              ),
             ],
           ),
         ),

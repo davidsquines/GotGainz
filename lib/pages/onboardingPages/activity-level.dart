@@ -31,11 +31,11 @@ class ActivityLevel extends StatelessWidget {
                 Text(
                   'What is your current activity level?',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 24.0,
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 50.0,
                 ),
                 ButtonTheme(
                   minWidth: 200.0,

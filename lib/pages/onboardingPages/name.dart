@@ -69,36 +69,48 @@ class NameState extends State<Name> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'What is your name?',
-                style: TextStyle(
-                  fontSize: 24,
-                ),
-              ),
-              _buildFirstName(),
-              _buildLastName(),
-              SizedBox(height: 100),
-              Container(
-                margin: EdgeInsets.only(right: 16, bottom: 14),
-                child: FloatingActionButton(
-                  backgroundColor: Colors.lightBlueAccent,
-                  heroTag: 'nextButton',
-                  shape: CircleBorder(),
-                  child: Icon(Icons.arrow_forward),
-                  onPressed: () {
-                    if (!_formKey.currentState.validate()) {
-                      return;
-                    }
-                    _formKey.currentState.save();
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'What is your name?',
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
+                    _buildFirstName(),
+                    _buildLastName(),
+                    SizedBox(
+                      height: 12.0,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 16, bottom: 14),
+                      child: FloatingActionButton(
+                        backgroundColor: Colors.lightBlueAccent,
+                        heroTag: 'nextButton',
+                        shape: CircleBorder(),
+                        child: Icon(Icons.arrow_forward),
+                        onPressed: () {
+                          if (!_formKey.currentState.validate()) {
+                            return;
+                          }
+                          _formKey.currentState.save();
 
-                    SharedPreferencesHelper.setFirstName(_firstName);
-                    SharedPreferencesHelper.setLastName(_lastName);
-                    Navigator.of(context).pushNamed(
-                      '/third',
-                    );
-                  },
+                          SharedPreferencesHelper.setFirstName(_firstName);
+                          SharedPreferencesHelper.setLastName(_lastName);
+                          Navigator.of(context).pushNamed(
+                            '/third',
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
+
+              //SizedBox(height: 100),
             ],
           ),
         ),

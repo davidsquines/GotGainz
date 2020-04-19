@@ -6,11 +6,6 @@ class Exercises {
   String exerciseExample;
   String muscleBody;
 
-  Exercises(
-    this.exerciseName,
-    this.bodyPart,
-    this.strength,
-    this.description,
-    this.exerciseExample,
-    this.muscleBody);
+  Exercises(this.exerciseName, this.bodyPart, this.strength, this.description,
+      this.exerciseExample, this.muscleBody);
 }

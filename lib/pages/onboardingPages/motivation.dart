@@ -31,11 +31,11 @@ class Motivation extends StatelessWidget {
                 Text(
                   'What is your motivation?',
                   style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 24.0,
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 25.0,
                 ),
                 ButtonTheme(
                   //gain strength button
