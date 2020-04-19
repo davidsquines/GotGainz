@@ -63,18 +63,20 @@ class WorkoutDetailsPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: Text(
-                    'Description:',
+                    'How to:',
                     style: TextStyle(fontSize: 20.0),
                   ),
                 ),
                 Flexible(
                   child: Scrollbar(
                     child: SingleChildScrollView(
-                      child: Text(
-                        exercise.description
-                            .toUpperCase(), //TODO: Change this when description is implemented
-                        style: TextStyle(
-                          fontSize: 18.0,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          exercise.description,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
                         ),
                       ),
                     ),

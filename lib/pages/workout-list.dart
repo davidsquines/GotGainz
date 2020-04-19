@@ -1,9 +1,11 @@
-import 'package:fitness_app/pages/workout-details-page.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+
 import 'package:fitness_app/services/exercises.dart';
+import 'package:fitness_app/pages/workout-details-page.dart';
+import 'package:fitness_app/services/drop-down-builder.dart';
 
 class WorkoutList extends StatefulWidget {
   @override
@@ -11,10 +13,11 @@ class WorkoutList extends StatefulWidget {
 }
 
 class _WorkoutListState extends State<WorkoutList> {
-  Future<List<Exercises>> _getExercises() async {
-    //var data = await http.get('http://www.json-generator.com/api/json/get/bTNIKaWSqa?indent=2');
+  String _bodyChoice = 'All';
+
+  Future<List<Exercises>> _getExercises(String choice) async {
     var data = await http
-        .get('http://www.json-generator.com/api/json/get/bVJKimbkzm?indent=2');
+        .get('http://www.json-generator.com/api/json/get/cfuDwJmdFe?indent=2');
 
     var jsonData = json.decode(data.body);
 
@@ -30,12 +33,26 @@ class _WorkoutListState extends State<WorkoutList> {
           type['exerciseExample'],
           type['muscleBody']);
 
-      //if (a == ' chest') {
-      exercises.add(ex);
-      //} //TODO: Fix this to work with filters
+      String _bodyPart = ex.bodyPart;
+      if (_bodyChoice != 'All') {
+        if (_bodyPart == _bodyChoice) {
+          exercises.add(ex);
+        }
+      } else {
+        exercises.add(ex);
+      }
     }
+
     print(exercises.length);
     return exercises;
+  }
+
+  void choiceAction(String choice) async {
+    setState(
+      () {
+        _bodyChoice = choice;
+      },
+    );
   }
 
   @override
@@ -43,10 +60,25 @@ class _WorkoutListState extends State<WorkoutList> {
     return new Scaffold(
       appBar: new AppBar(
         title: Text('Exercise List'),
+        actions: <Widget>[
+          PopupMenuButton<String>(
+            onSelected: choiceAction,
+            itemBuilder: (BuildContext context) {
+              return DropDownBuilder.choices.map(
+                (String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                },
+              ).toList();
+            },
+          ),
+        ],
       ),
       body: Container(
         child: FutureBuilder(
-          future: _getExercises(),
+          future: _getExercises(_bodyChoice),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return Container(
@@ -61,13 +93,15 @@ class _WorkoutListState extends State<WorkoutList> {
                   return ListTile(
                     title: Text(snapshot.data[index].exerciseName),
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              WorkoutDetailsPage(snapshot.data[index]),
-                        ),
-                      );
+                      setState(() {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                WorkoutDetailsPage(snapshot.data[index]),
+                          ),
+                        );
+                      });
                     },
                   );
                 },
