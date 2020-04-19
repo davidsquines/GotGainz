@@ -13,7 +13,7 @@ class WorkoutList extends StatefulWidget {
 }
 
 class _WorkoutListState extends State<WorkoutList> {
-  String _bodyChoice = 'All';
+  String _filterChoice = 'All';
 
   Future<List<Exercises>> _getExercises(String choice) async {
     var data = await http.get(
@@ -33,9 +33,16 @@ class _WorkoutListState extends State<WorkoutList> {
           type['muscleBody']);
 
       String _bodyPart = ex.bodyPart;
-      if (_bodyChoice != 'All') {
-        if (_bodyPart == _bodyChoice) {
-          exercises.add(ex);
+      int _workoutType = ex.strength;
+      if (_filterChoice != 'All') {
+        if (_filterChoice == '1' || _filterChoice == '0') {
+          if (_workoutType == int.parse(_filterChoice)) {
+            exercises.add(ex);
+          }
+        } else {
+          if (_bodyPart == _filterChoice) {
+            exercises.add(ex);
+          }
         }
       } else {
         exercises.add(ex);
@@ -49,7 +56,13 @@ class _WorkoutListState extends State<WorkoutList> {
   void choiceAction(String choice) async {
     setState(
       () {
-        _bodyChoice = choice;
+        if (choice == 'Strength') {
+          _filterChoice = 1.toString();
+        } else if (choice == 'Calories') {
+          _filterChoice = 0.toString();
+        } else {
+          _filterChoice = choice;
+        }
       },
     );
   }
@@ -78,7 +91,7 @@ class _WorkoutListState extends State<WorkoutList> {
       ),
       body: Container(
         child: FutureBuilder(
-          future: _getExercises(_bodyChoice),
+          future: _getExercises(_filterChoice),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (snapshot.data == null) {
               return Container(
@@ -97,8 +110,9 @@ class _WorkoutListState extends State<WorkoutList> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                WorkoutDetailsPage(snapshot.data[index]),
+                            builder: (context) => WorkoutDetailsPage(
+                              snapshot.data[index],
+                            ),
                           ),
                         );
                       });
