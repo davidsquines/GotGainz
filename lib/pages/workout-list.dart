@@ -62,6 +62,7 @@ class _WorkoutListState extends State<WorkoutList> {
         title: Text('Exercise List'),
         actions: <Widget>[
           PopupMenuButton<String>(
+            icon: Icon(Icons.filter_list),
             onSelected: choiceAction,
             itemBuilder: (BuildContext context) {
               return DropDownBuilder.choices.map(
