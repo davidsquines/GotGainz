@@ -36,7 +36,7 @@ class Gender extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 50.0,
+                  height: 25.0,
                 ),
                 ButtonTheme(
                   //male button

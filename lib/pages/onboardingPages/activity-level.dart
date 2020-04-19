@@ -35,7 +35,7 @@ class ActivityLevel extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 50.0,
+                  height: 25.0,
                 ),
                 ButtonTheme(
                   minWidth: 200.0,
