@@ -16,8 +16,8 @@ class _WorkoutListState extends State<WorkoutList> {
   String _bodyChoice = 'All';
 
   Future<List<Exercises>> _getExercises(String choice) async {
-    var data = await http
-        .get('http://www.json-generator.com/api/json/get/cfuDwJmdFe?indent=2');
+    var data = await http.get(
+        'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json');
 
     var jsonData = json.decode(data.body);
 
