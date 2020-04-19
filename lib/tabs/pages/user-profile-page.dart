@@ -81,84 +81,94 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.blue,
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    _firstName + ' ' + _lastName,
-                    style: TextStyle(
-                      fontSize: 30.0,
-                      letterSpacing: 1.5,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+    try {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          backgroundColor: Colors.blue,
+          body: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      '$_firstName $_lastName',
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        letterSpacing: 1.5,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  genderIcon(),
-                ],
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              Text(
-                _motivation,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.white70,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
-                width: 150.0,
-                child: Divider(
-                  color: Colors.teal[900],
-                ),
-              ),
-              Card(
-                margin: EdgeInsets.symmetric(
-                  vertical: 5.0,
-                  horizontal: 100.0,
-                ),
-                child: ListTile(
-                  title: Text(
-                    _height,
-                    style: TextStyle(
-                      fontSize: 17.0,
-                      color: Colors.green[900],
+                    SizedBox(
+                      width: 10.0,
                     ),
+                    genderIcon(),
+                  ],
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Text(
+                  _motivation,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.white70,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              Card(
-                margin: EdgeInsets.symmetric(
-                  vertical: 5.0,
-                  horizontal: 100.0,
+                SizedBox(
+                  height: 20.0,
+                  width: 150.0,
+                  child: Divider(
+                    color: Colors.teal[900],
+                  ),
                 ),
-                child: ListTile(
-                  title: Text(
-                    _weight,
-                    style: TextStyle(
-                      fontSize: 17.0,
-                      color: Colors.green[900],
+                Card(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 5.0,
+                    horizontal: 100.0,
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      _height,
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        color: Colors.green[900],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
+                Card(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 5.0,
+                    horizontal: 100.0,
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      _weight,
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        color: Colors.green[900],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      if (e != null) {
+        return Container(
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      }
+    }
   }
 }

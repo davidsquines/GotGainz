@@ -586,7 +586,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
           labelStyle: TextStyle(
             fontSize: 18.0,
           ),
-          unselectedLabelColor: Colors.amber,
+          unselectedLabelColor: Colors.grey[300],
           controller: tb,
         ),
       ),
