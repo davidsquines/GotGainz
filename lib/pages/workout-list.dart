@@ -27,8 +27,7 @@ class _WorkoutListState extends State<WorkoutList> {
       Exercises ex = Exercises(
           type['exerciseName'],
           type['bodyPart'],
-          //TODO: when making your =JSON, please fix this to camelCase
-          type['strength'], //TODO: ^
+          type['strength'],
           type['description'],
           type['exerciseExample'],
           type['muscleBody']);
