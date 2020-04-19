@@ -14,6 +14,7 @@ class WorkoutList extends StatefulWidget {
 
 class _WorkoutListState extends State<WorkoutList> {
   String _filterChoice = 'All';
+  String _filterLocation = 'All';
 
   Future<List<Exercises>> _getExercises(String choice) async {
     var data = await http.get(
@@ -54,6 +55,7 @@ class _WorkoutListState extends State<WorkoutList> {
   }
 
   void choiceAction(String choice) async {
+    _filterLocation = choice;
     setState(
       () {
         if (choice == 'Strength') {
@@ -73,6 +75,11 @@ class _WorkoutListState extends State<WorkoutList> {
       appBar: new AppBar(
         title: Text('Exercise List'),
         actions: <Widget>[
+          Center(
+            child: Text(
+              _filterLocation,
+            ),
+          ),
           PopupMenuButton<String>(
             icon: Icon(Icons.filter_list),
             onSelected: choiceAction,
