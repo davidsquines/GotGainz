@@ -105,7 +105,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     AlertDialog alert = AlertDialog(
       title: Text('WARNING'),
       content: Text(
-          'You have not completed this workout, do you still want to exit?'),
+          'You have not completed this workout, do you still want to exit? Your data will be saved.'),
       actions: [
         cancelButton,
         continueButton,

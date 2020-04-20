@@ -161,45 +161,45 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
           Duration(
             seconds: 1,
           ), (Timer sw) {
-        setState(() {
-          if (checkTimerSW == false) {
-            sw.cancel();
-            checkTimerSW = true;
+        //setState(() {
+        if (checkTimerSW == false) {
+          sw.cancel();
+          checkTimerSW = true;
 
-            /// stay at current point when stopped
-            timeToDisplaySW = '0';
+          /// stay at current point when stopped
+          timeToDisplaySW = '0';
 
 //            Navigator.pushReplacement(context, MaterialPageRoute(
 //              builder: (context) => TimerPage(),
 //            ));
-            //timeToDisplay = timeForTimer.toString();
-            //timeToDisplay = '';
-          }
+          //timeToDisplay = timeForTimer.toString();
+          //timeToDisplay = '';
+        }
 
-          ///adjust time formatting
-          else if (timeForTimerSW > 60) {
-            timeToDisplaySW = timeForTimerSW.toString();
-            timeForTimerSW += 1;
-          } else if (timeForTimerSW > 3600) {
-            int min = timeForTimerSW ~/ 60;
-            int sec = timeForTimer - (60 * min);
-            timeToDisplaySW = min.toString() + ':' + sec.toString();
-            timeForTimerSW += 1;
-          } else {
-            int h = timeForTimerSW ~/ 3600;
-            int t = timeForTimerSW - (3600 * h);
-            int min = t ~/ 60;
-            int sec = t - (60 * min);
-            timeToDisplaySW =
-                h.toString() + ':' + min.toString() + ':' + sec.toString();
-            timeForTimerSW += 1;
-          }
+        ///adjust time formatting
+        else if (timeForTimerSW > 60) {
+          timeToDisplaySW = timeForTimerSW.toString();
+          timeForTimerSW += 1;
+        } else if (timeForTimerSW > 3600) {
+          int min = timeForTimerSW ~/ 60;
+          int sec = timeForTimer - (60 * min);
+          timeToDisplaySW = min.toString() + ':' + sec.toString();
+          timeForTimerSW += 1;
+        } else {
+          int h = timeForTimerSW ~/ 3600;
+          int t = timeForTimerSW - (3600 * h);
+          int min = t ~/ 60;
+          int sec = t - (60 * min);
+          timeToDisplaySW =
+              h.toString() + ':' + min.toString() + ':' + sec.toString();
+          timeForTimerSW += 1;
+        }
 
 //      else{
 //          timeForTimer -= 1;
 //        }
 //        timeToDisplay = timeForTimer.toString();
-        });
+        //});
       });
     });
   }
