@@ -31,7 +31,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
     prefs = await SharedPreferences.getInstance();
   }
 
-  void setData() {
+  void setData() async {
     SharedPreferencesHelper.getFirstName(prefs).then((firstName) {
       setState(() {
         this._firstName = firstName;

@@ -36,13 +36,12 @@ class _ProgressPageState extends State<ProgressPage> {
     prefs = await SharedPreferences.getInstance();
   }
 
-  void setData() {
+  void setData() async {
     SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
       setState(() {
         _motivation = motivation;
       });
     });
-
     SharedPreferencesHelper.getUserLevel(prefs).then((level) {
       setState(() {
         this._level = level;
@@ -98,29 +97,41 @@ class _ProgressPageState extends State<ProgressPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.green[300],
-        body: Center(
-          child: Text(
-            'User\'s Workout Goal: $_motivation'
-            '\nCurrent Level: $_level '
-            '\nCurrent Progress: $_currentProgress '
-            '\nCurrent Progress to Level Up: $_progressToLevelUp '
-            '\nChest Level: $_chestLevel '
-            '\nBack Level: $_backLevel '
-            '\nArms Level: $_armsLevel '
-            '\nShoulders  Level: $_shouldersLevel '
-            '\nLegs Level: $_legsLevel '
-            '\nStrength Level: $_strengthLevel '
-            '\nCalorie Level: $_calorieLevel',
-            style: TextStyle(
-              fontSize: 24.0,
+    try {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          backgroundColor: Colors.green[300],
+          body: Center(
+            child: Text(
+              'User\'s Workout Goal: $_motivation'
+              '\nCurrent Level: $_level '
+              '\nCurrent Progress: $_currentProgress '
+              '\nCurrent Progress to Level Up: $_progressToLevelUp '
+              '\nChest Level: $_chestLevel '
+              '\nBack Level: $_backLevel '
+              '\nArms Level: $_armsLevel '
+              '\nShoulders  Level: $_shouldersLevel '
+              '\nLegs Level: $_legsLevel '
+              '\nStrength Level: $_strengthLevel '
+              '\nCalorie Level: $_calorieLevel',
+              style: TextStyle(
+                fontSize: 24.0,
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      if (e != null) {
+        return Container(
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      } else {
+        return null;
+      }
+    }
   }
 }

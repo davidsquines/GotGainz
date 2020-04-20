@@ -37,7 +37,7 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
     prefs = await SharedPreferences.getInstance();
   }
 
-  void setData() {
+  void setData() async {
     SharedPreferencesHelper.getChestLevel(prefs).then((chestLevel) {
       setState(() {
         this._chestLevel = chestLevel;

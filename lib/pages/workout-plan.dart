@@ -16,7 +16,8 @@ class WorkoutPlan extends StatefulWidget {
 class _WorkoutPlanState extends State<WorkoutPlan> {
   SharedPreferences prefs;
 
-  String _motivation;
+  String
+      _motivation; //DO NOT REMOVE THIS, IT IS BEING USED NOT BE REPORTED CORRECTLY
   String _apiLink = '';
   int _planLength;
 
@@ -35,7 +36,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     prefs = await SharedPreferences.getInstance();
   }
 
-  void setData() {
+  void setData() async {
     SharedPreferencesHelper.getUserLevel(prefs).then((level) {
       setState(() {
         this._userLevel = level;
