@@ -1,3 +1,4 @@
+import 'package:fitness_app/pages/onboarding-builder.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:font_awesome_flutter/fa_icon.dart';
@@ -18,7 +19,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
   String _motivation;
   String _height;
   String _weight;
-  //String _experience;
 
   @override
   void initState() {
@@ -62,11 +62,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
         _weight = weight;
       });
     });
-    /*SharedPreferencesHelper.getExperience(prefs).then((experience) {
-      setState(() {
-        _experience = experience;
-      });
-    });*/
   }
 
   Widget genderIcon() {
@@ -79,12 +74,61 @@ class _UserProfilePageState extends State<UserProfilePage> {
     }
   }
 
+  void showAlertDialog(BuildContext context) {
+    Widget cancelButton = FlatButton(
+      child: Text('Cancel'),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text('Continue'),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => Onboarding()),
+          (Route<dynamic> route) => false,
+        );
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text('WARNING'),
+      content:
+          Text('YOU WILL LOSE ALL DATA. THERE IS NO GOING BACK FROM THIS.'),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     try {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          appBar: AppBar(
+            elevation: 0.0,
+            actions: <Widget>[
+              MaterialButton(
+                onPressed: () {
+                  showAlertDialog(context);
+                },
+                child: Text('Erase All Data'),
+                textColor: Colors.white,
+              ),
+            ],
+          ),
           backgroundColor: Colors.blue,
           body: SafeArea(
             child: Column(
