@@ -9,6 +9,9 @@ class SharedPreferencesHelper {
   static final String _userHeight = 'height';
   static final String _userWeight = 'weight';
   static final String _userExperience = 'experience';
+  static final String _userLevel = 'level';
+  static final String _currentProgress = 'currentProgress';
+  static final String _progressToLevelUp = 'progressToLevelUp';
 
   static Future<bool> setOnBoardingStatus(bool value, SharedPreferences prefs) {
     return prefs.setBool(_currentOnBoardingStatus, value);
@@ -121,5 +124,38 @@ class SharedPreferencesHelper {
       _experienceString = 'EXPERIENCE ERROR';
     }
     return _experienceString;
+  }
+
+  static Future<bool> setUserLevel(int level) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_userLevel, level);
+  }
+
+  static Future<int> getUserLevel(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _level = prefs.getInt(_userLevel);
+    return _level;
+  }
+
+  static Future<bool> setCurrentProgress(int progress) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_currentProgress, progress);
+  }
+
+  static Future<int> getCurrentProgress(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _progress = prefs.getInt(_currentProgress);
+    return _progress;
+  }
+
+  static Future<bool> setProgressToLevelUp(int levelUp) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_progressToLevelUp, levelUp);
+  }
+
+  static Future<int> getProgressToLevelUp(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _progress = prefs.getInt(_progressToLevelUp);
+    return _progress;
   }
 }

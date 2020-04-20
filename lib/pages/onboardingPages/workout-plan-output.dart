@@ -162,6 +162,9 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
             heroTag: 'nextButton',
             onPressed: () {
               SharedPreferencesHelper.setOnBoardingStatus(true, prefs);
+              SharedPreferencesHelper.setUserLevel(1);
+              SharedPreferencesHelper.setCurrentProgress(0);
+              SharedPreferencesHelper.setProgressToLevelUp(0);
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => Tabs()),

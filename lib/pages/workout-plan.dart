@@ -16,12 +16,13 @@ class WorkoutPlan extends StatefulWidget {
 class _WorkoutPlanState extends State<WorkoutPlan> {
   SharedPreferences prefs;
 
-  String motivation;
+  String _motivation;
   String _apiLink = '';
   int _planLength;
 
-  int currentLevelProgress = 1;
-  int userLevel = 1;
+  int _currentProgress;
+  int _userLevel;
+  int _progressToLevelUp;
 
   @override
   void initState() {
@@ -35,44 +36,58 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
   }
 
   void setData() {
-    SharedPreferencesHelper.getMotivation(prefs).then(
-      (motivation) {
-        setState(
-          () {
-            this.motivation = motivation;
-            if (motivation == 'I want to gain strength') {
-              if (userLevel == 1) {
-                _apiLink =
-                    'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 1
-              } else if (userLevel == 2) {
-                _apiLink =
-                    'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 2
-              } else {
-                _apiLink =
-                    'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json'; //default
-              }
-            } else if (motivation == 'I want to lose weight') {
-              if (userLevel == 1) {
-                _apiLink =
-                    'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 1
-              } else if (userLevel == 2) {
-                _apiLink =
-                    'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 2
-              } else {
-                _apiLink =
-                    'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json';
-              } //default
-            } else {
-              _apiLink =
-                  'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json'; //default list
-            }
-          },
-        );
-      },
-    );
+    SharedPreferencesHelper.getUserLevel(prefs).then((level) {
+      setState(() {
+        this._userLevel = level;
+      });
+    });
+    SharedPreferencesHelper.getCurrentProgress(prefs).then((progress) {
+      setState(() {
+        this._currentProgress = progress;
+      });
+    });
+    SharedPreferencesHelper.getProgressToLevelUp(prefs)
+        .then((progressToLevelUp) {
+      setState(() {
+        this._progressToLevelUp = progressToLevelUp;
+      });
+    });
+    levelPicker();
   }
 
-  showAlertDialog(BuildContext context) {
+  void levelPicker() async {
+    SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
+      this._motivation = motivation;
+      if (motivation == 'I want to gain strength') {
+        if (_userLevel == 1) {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 1
+        } else if (_userLevel == 2) {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 2
+        } else {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json'; //default
+        }
+      } else if (motivation == 'I want to lose weight') {
+        if (_userLevel == 1) {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 1
+        } else if (_userLevel == 2) {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 2
+        } else {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json';
+        } //default
+      } else {
+        _apiLink =
+            'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json'; //default list
+      }
+    });
+  }
+
+  void showAlertDialog(BuildContext context) {
     Widget cancelButton = FlatButton(
       child: Text('Cancel'),
       onPressed: () {
@@ -82,7 +97,6 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     Widget continueButton = FlatButton(
       child: Text('Continue'),
       onPressed: () {
-        currentLevelProgress = 0;
         Navigator.of(context, rootNavigator: true).pop();
         Navigator.pop(context);
       },
@@ -158,7 +172,9 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
                                   WorkoutDetailsPage(snapshot.data[index]),
                             ),
                           );
-                          currentLevelProgress++;
+                          _currentProgress++;
+                          SharedPreferencesHelper.setCurrentProgress(
+                              _currentProgress);
                         },
                       );
                     },
@@ -171,11 +187,24 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
             minWidth: double.infinity,
             height: 50.0,
             onPressed: () {
-              if (currentLevelProgress <= _planLength) {
+              if (_currentProgress < _planLength) {
                 showAlertDialog(context);
               } else {
                 Navigator.pop(context);
-                currentLevelProgress = 0;
+                _currentProgress = 0;
+                SharedPreferencesHelper.setCurrentProgress(_currentProgress);
+                _progressToLevelUp++;
+                SharedPreferencesHelper.setProgressToLevelUp(
+                    _progressToLevelUp);
+              }
+              if (_progressToLevelUp == 3) {
+                _userLevel++;
+                SharedPreferencesHelper.setUserLevel(_userLevel);
+                _progressToLevelUp = 0;
+                SharedPreferencesHelper.setProgressToLevelUp(
+                    _progressToLevelUp);
+              } else {
+                print(_progressToLevelUp);
               }
             },
             child: Text(
