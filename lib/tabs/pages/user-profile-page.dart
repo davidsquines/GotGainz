@@ -90,6 +90,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           MaterialPageRoute(builder: (context) => Onboarding()),
           (Route<dynamic> route) => false,
         );
+        SharedPreferencesHelper.setOnBoardingStatus(false, prefs);
       },
     );
 
