@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class GetStarted extends StatelessWidget {
   @override
@@ -11,28 +12,35 @@ class GetStarted extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Image(
+              image:AssetImage('assets/getStartedImage.png'),
+              width: 380.0,
+              height: 360.0,
+              fit: BoxFit.fill,
+            ),
             Text(
-              'Your Personal',
-              style: TextStyle(
+              'Welcome to Got Gainz',
+                textAlign: TextAlign.left,
+                style: TextStyle(
                 color: Colors.lightBlue,
-                fontSize: 18.0,
+                fontSize: 30.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'Fitness Trainer'.toUpperCase(),
+              'Your personal fitness trainer is waiting for you.',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 48.0,
-                color: Colors.blue,
+                fontSize: 16.0,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(
-              height: 20.0,
+              height: 30.0,
             ),
             Text(
-              'A few thing before you start working out.',
+              'A few things before you start working out.',
               style: TextStyle(
                 color: Colors.grey,
                 fontSize: 16.0,
@@ -43,7 +51,7 @@ class GetStarted extends StatelessWidget {
               height: 30.0,
             ),
             MaterialButton(
-              minWidth: double.infinity,
+              minWidth: 30.0,
               height: 50.0,
               onPressed: () {
                 Navigator.of(context).pushNamed(
@@ -53,7 +61,7 @@ class GetStarted extends StatelessWidget {
               child: Text(
                 'Get Started'.toUpperCase(),
               ),
-              color: Colors.lightBlue,
+              color: Colors.lightBlueAccent,
               textColor: Colors.white,
             ),
           ],
