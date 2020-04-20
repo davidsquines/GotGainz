@@ -151,6 +151,46 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
     );
   }
 
+  void setBaseStrengthLevel() {
+    int beginner = 0;
+    int normal = 10;
+    int pro = 20;
+    int error = 9999;
+    if (_experience == 'I have no gym experience') {
+      SharedPreferencesHelper.setChestLevel(beginner);
+      SharedPreferencesHelper.setBackLevel(beginner);
+      SharedPreferencesHelper.setArmsLevel(beginner);
+      SharedPreferencesHelper.setShouldersLevel(beginner);
+      SharedPreferencesHelper.setLegsLevel(beginner);
+      SharedPreferencesHelper.setStrengthLevel(beginner);
+      SharedPreferencesHelper.setCalorieLevel(beginner);
+    } else if (_experience == 'I have some gym experience') {
+      SharedPreferencesHelper.setChestLevel(normal);
+      SharedPreferencesHelper.setBackLevel(normal);
+      SharedPreferencesHelper.setArmsLevel(normal);
+      SharedPreferencesHelper.setShouldersLevel(normal);
+      SharedPreferencesHelper.setLegsLevel(normal);
+      SharedPreferencesHelper.setStrengthLevel(normal);
+      SharedPreferencesHelper.setCalorieLevel(normal);
+    } else if (_experience == 'I have gym experience') {
+      SharedPreferencesHelper.setChestLevel(pro);
+      SharedPreferencesHelper.setBackLevel(pro);
+      SharedPreferencesHelper.setArmsLevel(pro);
+      SharedPreferencesHelper.setShouldersLevel(pro);
+      SharedPreferencesHelper.setLegsLevel(pro);
+      SharedPreferencesHelper.setStrengthLevel(pro);
+      SharedPreferencesHelper.setCalorieLevel(pro);
+    } else {
+      SharedPreferencesHelper.setChestLevel(error);
+      SharedPreferencesHelper.setBackLevel(error);
+      SharedPreferencesHelper.setArmsLevel(error);
+      SharedPreferencesHelper.setShouldersLevel(error);
+      SharedPreferencesHelper.setLegsLevel(error);
+      SharedPreferencesHelper.setStrengthLevel(error);
+      SharedPreferencesHelper.setCalorieLevel(error);
+    }
+  }
+
   Widget nextButton(BuildContext context) {
     return SafeArea(
       child: Align(
@@ -165,6 +205,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
               SharedPreferencesHelper.setUserLevel(1);
               SharedPreferencesHelper.setCurrentProgress(0);
               SharedPreferencesHelper.setProgressToLevelUp(0);
+              setBaseStrengthLevel();
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => Tabs()),

@@ -1,4 +1,3 @@
-import 'package:fitness_app/pages/onboarding-builder.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_splash/animated_splash.dart';
 import 'package:fitness_app/pages/root-page.dart';

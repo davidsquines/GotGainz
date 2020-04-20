@@ -12,6 +12,14 @@ class SharedPreferencesHelper {
   static final String _userLevel = 'level';
   static final String _currentProgress = 'currentProgress';
   static final String _progressToLevelUp = 'progressToLevelUp';
+  static final String _chestLevel = 'chestLevel';
+  static final String _backLevel = 'backLevel';
+  static final String _armsLevel = 'armsLevel';
+  static final String _shouldersLevel = 'shouldersLevel';
+  static final String _legsLevel = 'legsLevel';
+  static final String _strengthLevel = 'strengthLevel';
+  static final String _calorieLevel =
+      'calorieLevel'; //TODO: need to find a better name for this
 
   static Future<bool> setOnBoardingStatus(bool value, SharedPreferences prefs) {
     return prefs.setBool(_currentOnBoardingStatus, value);
@@ -157,5 +165,82 @@ class SharedPreferencesHelper {
     prefs = await SharedPreferences.getInstance();
     int _progress = prefs.getInt(_progressToLevelUp);
     return _progress;
+  }
+
+  static Future<bool> setChestLevel(int chest) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_chestLevel, chest);
+  }
+
+  static Future<int> getChestLevel(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _chest = prefs.getInt(_chestLevel);
+    return _chest;
+  }
+
+  static Future<bool> setBackLevel(int back) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_backLevel, back);
+  }
+
+  static Future<int> getBackLevel(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _back = prefs.getInt(_backLevel);
+    return _back;
+  }
+
+  static Future<bool> setArmsLevel(int arms) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_armsLevel, arms);
+  }
+
+  static Future<int> getArmsLevel(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _arms = prefs.getInt(_armsLevel);
+    return _arms;
+  }
+
+  static Future<bool> setShouldersLevel(int shoulders) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_shouldersLevel, shoulders);
+  }
+
+  static Future<int> getShouldersLevel(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _shoulders = prefs.getInt(_shouldersLevel);
+    return _shoulders;
+  }
+
+  static Future<bool> setLegsLevel(int legs) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_legsLevel, legs);
+  }
+
+  static Future<int> getLegsLevel(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _legs = prefs.getInt(_legsLevel);
+    return _legs;
+  }
+
+  static Future<bool> setStrengthLevel(int strength) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_strengthLevel, strength);
+  }
+
+  static Future<int> getStrengthLevel(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _strength = prefs.getInt(_strengthLevel);
+    return _strength;
+  }
+
+  static Future<bool> setCalorieLevel(int calorie) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setInt(_calorieLevel, calorie);
+  }
+
+  static Future<int> getCalorieLevel(SharedPreferences prefs) async {
+    prefs = await SharedPreferences.getInstance();
+    int _calorie = prefs.getInt(_calorieLevel);
+    return _calorie;
   }
 }

@@ -11,9 +11,19 @@ class ProgressPage extends StatefulWidget {
 class _ProgressPageState extends State<ProgressPage> {
   SharedPreferences prefs;
 
+  String _motivation;
+
   int _level;
   int _currentProgress;
   int _progressToLevelUp;
+
+  int _chestLevel;
+  int _backLevel;
+  int _armsLevel;
+  int _shouldersLevel;
+  int _legsLevel;
+  int _strengthLevel;
+  int _calorieLevel;
 
   @override
   void initState() {
@@ -27,6 +37,12 @@ class _ProgressPageState extends State<ProgressPage> {
   }
 
   void setData() {
+    SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
+      setState(() {
+        _motivation = motivation;
+      });
+    });
+
     SharedPreferencesHelper.getUserLevel(prefs).then((level) {
       setState(() {
         this._level = level;
@@ -43,6 +59,41 @@ class _ProgressPageState extends State<ProgressPage> {
         this._progressToLevelUp = progressToLevelUp;
       });
     });
+    SharedPreferencesHelper.getChestLevel(prefs).then((chestLevel) {
+      setState(() {
+        this._chestLevel = chestLevel;
+      });
+    });
+    SharedPreferencesHelper.getBackLevel(prefs).then((backLevel) {
+      setState(() {
+        this._backLevel = backLevel;
+      });
+    });
+    SharedPreferencesHelper.getArmsLevel(prefs).then((armsLevel) {
+      setState(() {
+        this._armsLevel = armsLevel;
+      });
+    });
+    SharedPreferencesHelper.getShouldersLevel(prefs).then((shouldersLevel) {
+      setState(() {
+        this._shouldersLevel = shouldersLevel;
+      });
+    });
+    SharedPreferencesHelper.getLegsLevel(prefs).then((legsLevel) {
+      setState(() {
+        this._legsLevel = legsLevel;
+      });
+    });
+    SharedPreferencesHelper.getStrengthLevel(prefs).then((strengthLevel) {
+      setState(() {
+        this._strengthLevel = strengthLevel;
+      });
+    });
+    SharedPreferencesHelper.getCalorieLevel(prefs).then((calorieLevel) {
+      setState(() {
+        this._calorieLevel = calorieLevel;
+      });
+    });
   }
 
   @override
@@ -53,7 +104,17 @@ class _ProgressPageState extends State<ProgressPage> {
         backgroundColor: Colors.green[300],
         body: Center(
           child: Text(
-            'User\'s Current Level: $_level \nCurrent Progress: $_currentProgress \nCurrent Progress to Level Up: $_progressToLevelUp',
+            'User\'s Workout Goal: $_motivation'
+            '\nCurrent Level: $_level '
+            '\nCurrent Progress: $_currentProgress '
+            '\nCurrent Progress to Level Up: $_progressToLevelUp '
+            '\nChest Level: $_chestLevel '
+            '\nBack Level: $_backLevel '
+            '\nArms Level: $_armsLevel '
+            '\nShoulders  Level: $_shouldersLevel '
+            '\nLegs Level: $_legsLevel '
+            '\nStrength Level: $_strengthLevel '
+            '\nCalorie Level: $_calorieLevel',
             style: TextStyle(
               fontSize: 24.0,
             ),

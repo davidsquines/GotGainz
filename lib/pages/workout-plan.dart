@@ -145,6 +145,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     return new Scaffold(
       appBar: new AppBar(
         title: Text('Exercise List'),
+        automaticallyImplyLeading: false,
       ),
       body: Column(
         children: <Widget>[

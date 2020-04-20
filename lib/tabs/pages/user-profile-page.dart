@@ -168,6 +168,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
             child: CircularProgressIndicator(),
           ),
         );
+      } else {
+        return null;
       }
     }
   }

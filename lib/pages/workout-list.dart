@@ -25,7 +25,7 @@ class _WorkoutListState extends State<WorkoutList> {
     List<Exercises> exercises = [];
 
     for (var type in jsonData) {
-      Exercises ex = Exercises(
+      Exercises exercise = Exercises(
           type['exerciseName'],
           type['bodyPart'],
           type['strength'],
@@ -33,20 +33,20 @@ class _WorkoutListState extends State<WorkoutList> {
           type['exerciseExample'],
           type['muscleBody']);
 
-      String _bodyPart = ex.bodyPart;
-      int _workoutType = ex.strength;
+      String _bodyPart = exercise.bodyPart;
+      int _workoutType = exercise.strength;
       if (_filterChoice != 'All') {
         if (_filterChoice == '1' || _filterChoice == '0') {
           if (_workoutType == int.parse(_filterChoice)) {
-            exercises.add(ex);
+            exercises.add(exercise);
           }
         } else {
           if (_bodyPart == _filterChoice) {
-            exercises.add(ex);
+            exercises.add(exercise);
           }
         }
       } else {
-        exercises.add(ex);
+        exercises.add(exercise);
       }
     }
 
