@@ -46,46 +46,44 @@ class WeightState extends State<Weight> {
         margin: EdgeInsets.all(24),
         child: Form(
           key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'What is your current weight?',
-                      style: TextStyle(
-                        fontSize: 24,
-                      ),
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'What is your current weight?',
+                    style: TextStyle(
+                      fontSize: 24,
                     ),
-                    _buildWeight(),
-                    SizedBox(height: 12.0),
-                    Container(
-                      margin: EdgeInsets.only(right: 16, bottom: 12),
-                      child: FloatingActionButton(
-                        backgroundColor: Colors.lightBlueAccent,
-                        heroTag: 'nextButton',
-                        shape: CircleBorder(),
-                        child: Icon(Icons.arrow_forward),
-                        onPressed: () {
-                          if (!_formKey.currentState.validate()) {
-                            return;
-                          }
-                          _formKey.currentState.save();
-                          SharedPreferencesHelper.setWeight(_pounds);
-                          Navigator.of(context).pushNamed(
-                            '/seventh',
-                          );
-                        },
+                  ),
+                  _buildWeight(),
+                  SizedBox(height: 12.0),
+                  Container(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16.0),
                       ),
+                      minWidth: 30.0,
+                      height: 50.0,
+                      color: Colors.lightBlueAccent,
+                      textColor: Colors.white,
+                      child: Icon(Icons.arrow_forward),
+                      onPressed: () {
+                        if (!_formKey.currentState.validate()) {
+                          return;
+                        }
+                        _formKey.currentState.save();
+                        SharedPreferencesHelper.setWeight(_pounds);
+                        Navigator.of(context).pushNamed(
+                          '/seventh',
+                        );
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              //Row(children: <Widget>[],),
-            ],
+            ),
           ),
         ),
       ),

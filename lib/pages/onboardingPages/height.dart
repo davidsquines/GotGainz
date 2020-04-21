@@ -68,49 +68,48 @@ class HeightState extends State<Height> {
         margin: EdgeInsets.all(24),
         child: Form(
           key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'What is your height?',
-                      style: TextStyle(
-                        fontSize: 24,
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'What is your height?',
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
+                  ),
+                  _buildFeet(),
+                  _buildInches(),
+                  SizedBox(
+                    height: 12.0,
+                  ),
+                  Container(
+                    alignment: AlignmentDirectional.bottomEnd,
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16.0),
                       ),
+                      minWidth: 30.0,
+                      height: 50.0,
+                      color: Colors.lightBlueAccent,
+                      textColor: Colors.white,
+                      child: Icon(Icons.arrow_forward),
+                      onPressed: () {
+                        if (!_formKey.currentState.validate()) {
+                          return;
+                        }
+                        _formKey.currentState.save();
+                        _totalInches = _feet * 12 + _inches;
+                        SharedPreferencesHelper.setHeight(_totalInches);
+                        Navigator.of(context).pushNamed(
+                          '/sixth',
+                        );
+                      },
                     ),
-                    _buildFeet(),
-                    _buildInches(),
-                    SizedBox(
-                      height: 12.0,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(right: 16, bottom: 14),
-                      child: FloatingActionButton(
-                        backgroundColor: Colors.lightBlueAccent,
-                        heroTag: 'nextButton',
-                        shape: CircleBorder(),
-                        child: Icon(Icons.arrow_forward),
-                        onPressed: () {
-                          if (!_formKey.currentState.validate()) {
-                            return;
-                          }
-                          _formKey.currentState.save();
-                          _totalInches = _feet * 12 + _inches;
-                          SharedPreferencesHelper.setHeight(_totalInches);
-                          Navigator.of(context).pushNamed(
-                            '/sixth',
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

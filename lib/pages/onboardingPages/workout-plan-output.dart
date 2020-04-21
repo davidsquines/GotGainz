@@ -82,26 +82,14 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.lightBlueAccent,
         elevation: 0.0,
       ),
-      body: Stack(
-        children: <Widget>[
-          plan(),
-          nextButton(context),
-        ],
-      ),
-    );
-  }
-
-  Widget plan() {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      body: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
+          child: Container(
+            margin: EdgeInsets.all(24.0),
             child: Column(
               children: <Widget>[
                 Expanded(
@@ -134,13 +122,47 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
                   ),
                 ),
                 Expanded(
-                  child: Text(
-                    'Based on your entered data, you have been assigned the $_plan plan. ',
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.green,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Based on your entered data, you have been assigned the $_plan plan. ',
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.green,
+                      ),
+                      textAlign: TextAlign.right,
                     ),
-                    textAlign: TextAlign.right,
+                  ),
+                ),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Container(
+                      alignment: AlignmentDirectional.bottomEnd,
+                      child: MaterialButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        minWidth: 30.0,
+                        height: 50.0,
+                        color: Colors.lightBlueAccent,
+                        textColor: Colors.white,
+                        child: Icon(Icons.arrow_forward),
+                        onPressed: () {
+                          SharedPreferencesHelper.setOnBoardingStatus(
+                              true, prefs);
+                          SharedPreferencesHelper.setUserLevel(1);
+                          SharedPreferencesHelper.setCurrentProgress(0);
+                          SharedPreferencesHelper.setProgressToLevelUp(0);
+                          setBaseStrengthLevel();
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => Tabs()),
+                            (Route<dynamic> route) => false,
+                          );
+                        },
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -189,34 +211,5 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
       SharedPreferencesHelper.setStrengthLevel(error);
       SharedPreferencesHelper.setCalorieLevel(error);
     }
-  }
-
-  Widget nextButton(BuildContext context) {
-    return SafeArea(
-      child: Align(
-        alignment: AlignmentDirectional.bottomEnd,
-        child: Container(
-          margin: EdgeInsets.only(right: 16, bottom: 16),
-          child: FloatingActionButton(
-            backgroundColor: Colors.lightBlueAccent,
-            heroTag: 'nextButton',
-            onPressed: () {
-              SharedPreferencesHelper.setOnBoardingStatus(true, prefs);
-              SharedPreferencesHelper.setUserLevel(1);
-              SharedPreferencesHelper.setCurrentProgress(0);
-              SharedPreferencesHelper.setProgressToLevelUp(0);
-              setBaseStrengthLevel();
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => Tabs()),
-                (Route<dynamic> route) => false,
-              );
-            },
-            shape: CircleBorder(),
-            child: Icon(Icons.arrow_forward),
-          ),
-        ),
-      ),
-    );
   }
 }

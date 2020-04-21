@@ -25,55 +25,55 @@ class Gender extends StatelessWidget {
         backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Text(
-                  'What is your gender?',
-                  style: TextStyle(
-                    fontSize: 24.0,
+            child: SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'What is your gender?',
+                    style: TextStyle(
+                      fontSize: 24.0,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 25.0,
-                ),
-                ButtonTheme(
-                  //male button
-                  minWidth: 200.0,
-                  height: 50.0,
-                  child: FlatButton(
-                    onPressed: () {
-                      SharedPreferencesHelper.setGender(0);
-                      Navigator.of(context).pushNamed(
-                        '/fourth',
-                      );
-                    },
-                    child: Text('MALE'),
-                    shape: RoundedRectangleBorder(),
-                    color: Colors.lightBlueAccent, //TODO: Pick a Color
+                  SizedBox(
+                    height: 25.0,
                   ),
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-                ButtonTheme(
-                  //female button
-                  minWidth: 200.0,
-                  height: 50.0,
-                  child: FlatButton(
-                    onPressed: () {
-                      SharedPreferencesHelper.setGender(1);
-                      Navigator.of(context).pushNamed(
-                        '/fourth',
-                      );
-                    },
-                    child: Text('FEMALE'),
-                    shape: RoundedRectangleBorder(),
-                    color: Colors.lightBlueAccent, //TODO: Pick a Color
+                  ButtonTheme(
+                    //male button
+                    minWidth: 200.0,
+                    height: 50.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        SharedPreferencesHelper.setGender(0);
+                        Navigator.of(context).pushNamed(
+                          '/fourth',
+                        );
+                      },
+                      child: Text('MALE'),
+                      shape: RoundedRectangleBorder(),
+                      color: Colors.lightBlueAccent, //TODO: Pick a Color
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  ButtonTheme(
+                    //female button
+                    minWidth: 200.0,
+                    height: 50.0,
+                    child: FlatButton(
+                      onPressed: () {
+                        SharedPreferencesHelper.setGender(1);
+                        Navigator.of(context).pushNamed(
+                          '/fourth',
+                        );
+                      },
+                      child: Text('FEMALE'),
+                      shape: RoundedRectangleBorder(),
+                      color: Colors.lightBlueAccent, //TODO: Pick a Color
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
