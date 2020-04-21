@@ -6,17 +6,16 @@ class GetStarted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Container(
-          padding: EdgeInsets.fromLTRB(25, 100, 25, 25),
+      body: SafeArea(
+        child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image(
                 image: AssetImage('assets/getStartedImage.png'),
-                width: 380.0,
-                height: 360.0,
+                width: 330.0,
+                height: 330.0,
                 fit: BoxFit.fill,
               ),
               Text(

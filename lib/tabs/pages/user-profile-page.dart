@@ -154,7 +154,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   ],
                 ),
                 SizedBox(
-                  height: 5.0,
+                  height: 10.0,
                 ),
                 Text(
                   _motivation,
