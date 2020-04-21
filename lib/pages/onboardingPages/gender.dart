@@ -32,16 +32,17 @@ class Gender extends StatelessWidget {
                     'What is your gender?',
                     style: TextStyle(
                       fontSize: 24.0,
+                      fontStyle: FontStyle.italic,
                     ),
                   ),
                   SizedBox(
-                    height: 25.0,
+                    height: 20.0,
                   ),
                   ButtonTheme(
                     //male button
                     minWidth: 200.0,
                     height: 50.0,
-                    child: FlatButton(
+                    child: RaisedButton(
                       onPressed: () {
                         SharedPreferencesHelper.setGender(0);
                         Navigator.of(context).pushNamed(
@@ -49,8 +50,11 @@ class Gender extends StatelessWidget {
                         );
                       },
                       child: Text('MALE'),
-                      shape: RoundedRectangleBorder(),
-                      color: Colors.lightBlueAccent, //TODO: Pick a Color
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(18.0),
+                          side: BorderSide(color: Colors.deepOrange)
+                      ),
+                      color: Colors.lightBlueAccent,
                     ),
                   ),
                   SizedBox(
@@ -60,7 +64,7 @@ class Gender extends StatelessWidget {
                     //female button
                     minWidth: 200.0,
                     height: 50.0,
-                    child: FlatButton(
+                    child: RaisedButton(
                       onPressed: () {
                         SharedPreferencesHelper.setGender(1);
                         Navigator.of(context).pushNamed(
@@ -68,8 +72,11 @@ class Gender extends StatelessWidget {
                         );
                       },
                       child: Text('FEMALE'),
-                      shape: RoundedRectangleBorder(),
-                      color: Colors.lightBlueAccent, //TODO: Pick a Color
+                      shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(18.0),
+                        side: BorderSide(color: Colors.deepOrange)
+                      ),
+                      color: Colors.lightBlueAccent,
                     ),
                   ),
                 ],

@@ -57,15 +57,15 @@ class WeightState extends State<Weight> {
                     ),
                   ),
                   _buildWeight(),
-                  SizedBox(height: 12.0),
+                  SizedBox(height: 10.0),
                   Container(
                     alignment: AlignmentDirectional.bottomEnd,
                     child: MaterialButton(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.0),
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
                       minWidth: 30.0,
-                      height: 50.0,
+                      height: 48.0,
                       color: Colors.lightBlueAccent,
                       textColor: Colors.white,
                       child: Icon(Icons.arrow_forward),
