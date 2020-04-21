@@ -1,4 +1,7 @@
 import 'package:fitness_app/services/shared-pref-helper.dart';
+import 'package:fitness_app/ui/next-button.dart';
+import 'package:fitness_app/ui/user-input-form.dart';
+import 'package:fitness_app/ui/info-text-input.dart';
 import 'package:flutter/material.dart';
 
 class Weight extends StatefulWidget {
@@ -14,10 +17,10 @@ class WeightState extends State<Weight> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildWeight() {
-    return TextFormField(
+    return InfoTextInput(
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
-      decoration: InputDecoration(labelText: 'Pounds'),
+      labelText: 'Pounds',
       validator: (value) {
         if (value.isEmpty) {
           return 'Weight is Required';
@@ -31,61 +34,31 @@ class WeightState extends State<Weight> {
       onSaved: (value) {
         _pounds = int.parse(value);
       },
-      onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+      onFieldSubmitted: (_) => _saveAndSubmit(),
+    );
+  }
+
+  void _saveAndSubmit() {
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+    _formKey.currentState.save();
+    SharedPreferencesHelper.setWeight(_pounds);
+    Navigator.of(context).pushNamed(
+      '/seventh',
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent, //TODO: Pick a color
-        elevation: 0.0,
-      ),
-      body: Container(
-        margin: EdgeInsets.all(24),
-        child: Form(
-          key: _formKey,
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    'What is your current weight?',
-                    style: TextStyle(
-                      fontSize: 24,
-                    ),
-                  ),
-                  _buildWeight(),
-                  SizedBox(height: 10.0),
-                  Container(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      minWidth: 30.0,
-                      height: 48.0,
-                      color: Colors.lightBlueAccent,
-                      textColor: Colors.white,
-                      child: Icon(Icons.arrow_forward),
-                      onPressed: () {
-                        if (!_formKey.currentState.validate()) {
-                          return;
-                        }
-                        _formKey.currentState.save();
-                        SharedPreferencesHelper.setWeight(_pounds);
-                        Navigator.of(context).pushNamed(
-                          '/seventh',
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+    return UserInputFormPage(
+      formKey: _formKey,
+      text: 'What is your current weight?',
+      firstUserInput: _buildWeight(),
+      nextButton: NextButton(
+        onPressed: () {
+          _saveAndSubmit();
+        },
       ),
     );
   }

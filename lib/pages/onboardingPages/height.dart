@@ -1,4 +1,8 @@
 import 'package:fitness_app/services/shared-pref-helper.dart';
+import 'package:fitness_app/ui/next-button.dart';
+import 'package:fitness_app/ui/user-input-form.dart';
+import 'package:fitness_app/ui/info-text-input.dart';
+
 import 'package:flutter/material.dart';
 
 class Height extends StatefulWidget {
@@ -16,10 +20,10 @@ class HeightState extends State<Height> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildFeet() {
-    return TextFormField(
+    return InfoTextInput(
       keyboardType: TextInputType.number,
       textInputAction: TextInputAction.next,
-      decoration: InputDecoration(labelText: 'Feet'),
+      labelText: 'Feet',
       validator: (value) {
         if (value.isEmpty) {
           return 'Feet is Required';
@@ -38,9 +42,10 @@ class HeightState extends State<Height> {
   }
 
   Widget _buildInches() {
-    return TextFormField(
+    return InfoTextInput(
       keyboardType: TextInputType.number,
-      decoration: InputDecoration(labelText: 'Inches'),
+      labelText: 'Inches',
+      textInputAction: TextInputAction.done,
       validator: (value) {
         if (value.isEmpty) {
           return 'Inches is Required';
@@ -54,64 +59,35 @@ class HeightState extends State<Height> {
       onSaved: (value) {
         _inches = int.parse(value);
       },
+      onFieldSubmitted: (_) {
+        _saveAndSubmit();
+      },
+    );
+  }
+
+  void _saveAndSubmit() {
+    if (!_formKey.currentState.validate()) {
+      return;
+    }
+    _formKey.currentState.save();
+    _totalInches = _feet * 12 + _inches;
+    SharedPreferencesHelper.setHeight(_totalInches);
+    Navigator.of(context).pushNamed(
+      '/sixth',
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.lightBlueAccent, //TODO: Pick a color
-        elevation: 0.0,
-      ),
-      body: Container(
-        margin: EdgeInsets.all(24),
-        child: Form(
-          key: _formKey,
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    'What is your height?',
-                    style: TextStyle(
-                      fontSize: 24,
-                    ),
-                  ),
-                  _buildFeet(),
-                  _buildInches(),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  Container(
-                    alignment: AlignmentDirectional.bottomEnd,
-                    child: MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      minWidth: 30.0,
-                      height: 48.0,
-                      color: Colors.lightBlueAccent,
-                      textColor: Colors.white,
-                      child: Icon(Icons.arrow_forward),
-                      onPressed: () {
-                        if (!_formKey.currentState.validate()) {
-                          return;
-                        }
-                        _formKey.currentState.save();
-                        _totalInches = _feet * 12 + _inches;
-                        SharedPreferencesHelper.setHeight(_totalInches);
-                        Navigator.of(context).pushNamed(
-                          '/sixth',
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+    return UserInputFormPage(
+      formKey: _formKey,
+      text: 'What is your height?',
+      firstUserInput: _buildFeet(),
+      secondUserInput: _buildInches(),
+      nextButton: NextButton(
+        onPressed: () {
+          _saveAndSubmit();
+        },
       ),
     );
   }
