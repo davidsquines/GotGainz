@@ -45,6 +45,9 @@ class UserInputFormPage extends StatelessWidget {
                       height: 10.0,
                     ),
                     nextButton,
+                    SizedBox(
+                      height: 10.0,
+                    ),
                   ],
                 ),
               ),

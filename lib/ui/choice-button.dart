@@ -8,20 +8,18 @@ class ChoiceButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonTheme(
+    return MaterialButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18.0),
+        side: BorderSide(color: Colors.deepOrange),
+      ),
       minWidth: 200.0,
       height: 50.0,
-      child: RaisedButton(
-        child: Text(
-          text,
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(18.0),
-          side: BorderSide(color: Colors.deepOrange),
-        ),
-        color: Colors.lightBlueAccent,
-        textColor: Colors.black,
-        onPressed: onPressed,
+      color: Colors.lightBlueAccent,
+      textColor: Colors.black,
+      onPressed: onPressed,
+      child: Text(
+        text,
       ),
     );
   }

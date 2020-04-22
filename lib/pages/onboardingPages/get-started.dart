@@ -56,20 +56,25 @@ class GetStarted extends StatelessWidget {
                     height: 15.0,
                   ),
                   MaterialButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: Colors.deepOrange),
+                    ),
                     minWidth: 30.0,
                     height: 50.0,
+                    color: Colors.orange[700],
+                    textColor: Colors.white,
+                    child: Text(
+                      'Get Started'.toUpperCase(),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pushNamed(
                         '/second',
                       );
                     },
-                    child: Text('Get Started'.toUpperCase(),
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.deepOrange)),
-                    color: Colors.orange[700],
-                    textColor: Colors.white,
                   ),
                 ],
               ),

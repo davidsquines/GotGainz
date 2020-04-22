@@ -50,6 +50,9 @@ class UserButtonFormPage extends StatelessWidget {
                       height: 20.0,
                     ),
                   if (thirdChoiceButton != null) thirdChoiceButton,
+                  SizedBox(
+                    height: 20.0,
+                  ),
                 ],
               ),
             ),
