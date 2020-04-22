@@ -7,9 +7,9 @@ class GetStarted extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlue[50],
-      body: SafeArea(
-        child: Scrollbar(
-          child: Center(
+      body: Center(
+        child: SafeArea(
+          child: Scrollbar(
             child: Container(
               padding: EdgeInsets.fromLTRB(25, 100, 25, 25),
               child: SingleChildScrollView(
