@@ -10,9 +10,9 @@ class GetStarted extends StatelessWidget {
       body: Center(
         child: SafeArea(
           child: Scrollbar(
-            child: Container(
-              padding: EdgeInsets.fromLTRB(25, 100, 25, 25),
-              child: SingleChildScrollView(
+            child: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.fromLTRB(25, 100, 25, 25),
                 child: Column(
                   children: <Widget>[
                     Image(

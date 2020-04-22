@@ -23,13 +23,13 @@ class UserInputFormPage extends StatelessWidget {
         backgroundColor: Colors.lightBlueAccent, //TODO: Pick a color
         elevation: 0.0,
       ),
-      body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.all(24.0),
-          child: Form(
-            key: formKey,
-            child: Center(
-              child: SingleChildScrollView(
+      body: Center(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.all(24.0),
+              child: Form(
+                key: formKey,
                 child: Column(
                   children: <Widget>[
                     Text(

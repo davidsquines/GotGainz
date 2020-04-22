@@ -23,37 +23,39 @@ class UserButtonFormPage extends StatelessWidget {
         backgroundColor: Colors.lightBlueAccent, //TODO: Pick a color
         elevation: 0.0,
       ),
-      body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.all(24.0),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    text,
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontStyle: FontStyle.italic,
+      body: Center(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.all(24.0),
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                      text,
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  firstChoiceButton,
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  secondChoiceButton,
-                  if (thirdChoiceButton != null)
                     SizedBox(
                       height: 20.0,
                     ),
-                  if (thirdChoiceButton != null) thirdChoiceButton,
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                ],
+                    firstChoiceButton,
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    secondChoiceButton,
+                    if (thirdChoiceButton != null)
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                    if (thirdChoiceButton != null) thirdChoiceButton,
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
