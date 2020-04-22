@@ -51,7 +51,7 @@ class WeightState extends State<Weight> {
 
   @override
   Widget build(BuildContext context) {
-    return UserInputFormPage(
+    return UserInputForm(
       formKey: _formKey,
       text: 'What is your current weight?',
       firstUserInput: _buildWeight(),

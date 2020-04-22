@@ -1,8 +1,8 @@
 import 'package:fitness_app/ui/next-button.dart';
 import 'package:flutter/material.dart';
 
-class UserInputFormPage extends StatelessWidget {
-  UserInputFormPage({
+class UserInputForm extends StatelessWidget {
+  UserInputForm({
     @required this.formKey,
     @required this.text,
     @required this.firstUserInput,

@@ -572,7 +572,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
         title: Text(
           'Timer/StopWatch',
         ),
-        centerTitle: true,
         bottom: TabBar(
           tabs: <Widget>[
             Text(

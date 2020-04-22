@@ -72,7 +72,7 @@ class NameState extends State<Name> {
 
   @override
   Widget build(BuildContext context) {
-    return UserInputFormPage(
+    return UserInputForm(
       formKey: _formKey,
       text: 'What is your name?',
       firstUserInput: _buildFirstName(),

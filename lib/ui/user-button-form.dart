@@ -3,8 +3,8 @@ import 'package:fitness_app/ui/choice-button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class UserButtonFormPage extends StatelessWidget {
-  UserButtonFormPage({
+class UserButtonForm extends StatelessWidget {
+  UserButtonForm({
     @required this.text,
     @required this.firstChoiceButton,
     @required this.secondChoiceButton,

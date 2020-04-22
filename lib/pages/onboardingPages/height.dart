@@ -79,7 +79,7 @@ class HeightState extends State<Height> {
 
   @override
   Widget build(BuildContext context) {
-    return UserInputFormPage(
+    return UserInputForm(
       formKey: _formKey,
       text: 'What is your height?',
       firstUserInput: _buildFeet(),

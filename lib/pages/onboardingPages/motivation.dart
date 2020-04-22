@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 class Motivation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return UserButtonFormPage(
+    return UserButtonForm(
       text: 'What is your motivation?',
       firstChoiceButton: ChoiceButton(
         text: 'TO GAIN STRENGTH',

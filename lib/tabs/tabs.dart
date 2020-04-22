@@ -10,7 +10,7 @@ class Tabs extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white, //TODO: Pick a Color
         body: TabBarView(
           children: <Widget>[
             ExercisePage(),
@@ -46,9 +46,9 @@ class Tabs extends StatelessWidget {
             )),
           ],
           labelPadding: EdgeInsets.all(5.0),
-          labelColor: Colors.blue,
-          unselectedLabelColor: Colors.black12,
-          indicatorWeight: 0.01,
+          labelColor: Colors.blue, //TODO: Pick a Color
+          unselectedLabelColor: Colors.black12, //TODO: Pick a Color
+          indicatorWeight: 0.00001,
         ),
       ),
     );

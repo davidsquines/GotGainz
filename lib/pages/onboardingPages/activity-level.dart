@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 class ActivityLevel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return UserButtonFormPage(
+    return UserButtonForm(
       text: 'What is your current activity level?',
       firstChoiceButton: ChoiceButton(
         text: 'Lightly Active',

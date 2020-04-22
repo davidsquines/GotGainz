@@ -40,7 +40,7 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(), //TODO: Give this some design maybe
+        child: CircularProgressIndicator(),
       ),
     );
   }

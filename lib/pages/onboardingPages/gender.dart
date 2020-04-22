@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 class Gender extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return UserButtonFormPage(
+    return UserButtonForm(
       text: 'What is your gender?',
       firstChoiceButton: ChoiceButton(
         text: 'MALE',
