@@ -13,8 +13,6 @@ class GetStarted extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(25, 100, 25, 25),
             child: SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Image(
                     image: AssetImage('assets/getStartedImage.png'),
