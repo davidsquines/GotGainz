@@ -123,7 +123,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         title: Text(widget.exercise.exerciseName),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Row(

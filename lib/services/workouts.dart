@@ -6,17 +6,18 @@ String workoutsToJson(List<Workouts> data) => json.encode(List<dynamic>.from(dat
 
 class Workouts {
   String workoutName;
+  String description;
   List<ExerciseInfo> exerciseInfo;
-  int reps;
-  int sets;
   Workouts({
     this.workoutName,
+    this.description,
     this.exerciseInfo,
 
   });
 
   factory Workouts.fromJson(Map<String, dynamic> json) => Workouts(
     workoutName: json["workoutName"],
+    description: json['description'],
       exerciseInfo: parseExerciseInfo(json),
   );
 

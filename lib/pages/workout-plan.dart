@@ -64,28 +64,28 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
       if (motivation == 'I want to gain strength') {
         if (_userLevel == 1) {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //level 1
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 1
         } else if (_userLevel == 2) {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //level 2
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 2
         } else {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //default
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default
         }
       } else if (motivation == 'I want to lose weight') {
         if (_userLevel == 1) {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //level 1
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 1
         } else if (_userLevel == 2) {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //level 2
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 2
         } else {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json';
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json';
         } //default
       } else {
         _apiLink =
-            'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //default list
+            'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default list
       }
     });
   }
