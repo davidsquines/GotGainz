@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fitness_app/pages/workout-details-page.dart';
 
 import 'package:fitness_app/services/exercises.dart';
-import 'package:fitness_app/pages/workout-details-page.dart';
+import 'package:fitness_app/pages/exercise-details-page.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
+import 'package:fitness_app/services/workouts.dart';
 
 class WorkoutPlan extends StatefulWidget {
   @override
@@ -62,28 +64,28 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
       if (motivation == 'I want to gain strength') {
         if (_userLevel == 1) {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 1
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //level 1
         } else if (_userLevel == 2) {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 2
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //level 2
         } else {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json'; //default
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //default
         }
       } else if (motivation == 'I want to lose weight') {
         if (_userLevel == 1) {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 1
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //level 1
         } else if (_userLevel == 2) {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/test.json'; //level 2
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //level 2
         } else {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json';
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json';
         } //default
       } else {
         _apiLink =
-            'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json'; //default list
+            'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/updatedTest.json'; //default list
       }
     });
   }
@@ -121,38 +123,35 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     );
   }
 
-  Future<List<Exercises>> _getExercises() async {
+  Future<List<Workouts>> _getWorkouts() async {
     var data = await http.get(_apiLink);
     var jsonData = json.decode(data.body);
+    List<Workouts> workouts;
 
-    List<Exercises> exercises = [];
+    workouts=(json.decode(data.body) as List).map((i) =>
+        Workouts.fromJson(i)).toList();
 
-    for (var type in jsonData) {
-      Exercises ex = Exercises(
-          type['exerciseName'],
-          type['bodyPart'],
-          type['strength'],
-          type['description'],
-          type['exerciseExample'],
-          type['muscleBody']);
-      exercises.add(ex);
+    for(var type in workouts){
+      print('info: ${type.exerciseInfo}.');
     }
-    _planLength = exercises.length;
-    return exercises;
+
+
+    return workouts;
   }
+
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text('Exercise List'),
+        title: Text('Workout List'),
         automaticallyImplyLeading: false,
       ),
       body: Column(
         children: <Widget>[
           Expanded(
             child: FutureBuilder(
-              future: _getExercises(),
+              future: _getWorkouts(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                   return Container(
@@ -165,7 +164,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
-                        title: Text(snapshot.data[index].exerciseName),
+                        title: Text(snapshot.data[index].workoutName),
                         onTap: () {
                           Navigator.push(
                             context,

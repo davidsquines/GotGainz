@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 
 import 'package:fitness_app/services/exercises.dart';
-import 'package:fitness_app/pages/workout-details-page.dart';
+import 'package:fitness_app/pages/exercise-details-page.dart';
 import 'package:fitness_app/services/drop-down-builder.dart';
 
 class WorkoutList extends StatefulWidget {
@@ -117,7 +117,7 @@ class _WorkoutListState extends State<WorkoutList> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => WorkoutDetailsPage(
+                            builder: (context) => ExerciseDetailsPage(
                               snapshot.data[index],
                             ),
                           ),
