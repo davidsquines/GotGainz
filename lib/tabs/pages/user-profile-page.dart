@@ -77,10 +77,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   void alert(BuildContext context) {
     return ShowAlertDialog(
-            secondaryButtonText: 'Cancel',
-            secondaryButtonOnPressed: () {
-              Navigator.of(context, rootNavigator: true).pop();
-            },
+            cancelButtonToggle: true,
             mainButtonText: 'Continue',
             mainButtonOnPressed: () {
               Navigator.of(context, rootNavigator: true).pop();
