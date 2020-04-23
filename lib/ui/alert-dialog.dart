@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 class ShowAlertDialog {
   ShowAlertDialog({
-    /*this.secondaryButtonText,
-    this.secondaryButtonOnPressed,*/
     @required this.cancelButtonToggle,
     @required this.mainButtonText,
     @required this.mainButtonOnPressed,
@@ -11,8 +9,6 @@ class ShowAlertDialog {
     @required this.alertContent,
   });
 
-  /*final String secondaryButtonText;
-  final Function secondaryButtonOnPressed;*/
   final bool cancelButtonToggle;
   final String mainButtonText;
   final Function mainButtonOnPressed;
@@ -31,19 +27,17 @@ class ShowAlertDialog {
       onPressed: mainButtonOnPressed,
     );
 
-    AlertDialog alert = AlertDialog(
-      title: Text(alertTitle),
-      content: Text(alertContent),
-      actions: [
-        if (cancelButtonToggle == true) cancelButton,
-        mainButton,
-      ],
-    );
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return alert;
+        return AlertDialog(
+          title: Text(alertTitle),
+          content: Text(alertContent),
+          actions: [
+            if (cancelButtonToggle == true) cancelButton,
+            mainButton,
+          ],
+        );
       },
     );
   }
