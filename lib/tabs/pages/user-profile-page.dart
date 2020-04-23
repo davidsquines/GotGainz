@@ -1,4 +1,5 @@
 import 'package:fitness_app/pages/onboarding-builder.dart';
+import 'package:fitness_app/ui/alert-dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:font_awesome_flutter/fa_icon.dart';
@@ -74,42 +75,26 @@ class _UserProfilePageState extends State<UserProfilePage> {
     }
   }
 
-  void showAlertDialog(BuildContext context) {
-    Widget cancelButton = FlatButton(
-      child: Text('Cancel'),
-      onPressed: () {
-        Navigator.of(context, rootNavigator: true).pop();
-      },
-    );
-    Widget continueButton = FlatButton(
-      child: Text('Continue'),
-      onPressed: () {
-        Navigator.of(context, rootNavigator: true).pop();
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => Onboarding()),
-          (Route<dynamic> route) => false,
-        );
-        SharedPreferencesHelper.setOnBoardingStatus(false, prefs);
-      },
-    );
-
-    AlertDialog alert = AlertDialog(
-      title: Text('WARNING'),
-      content:
-          Text('YOU WILL LOSE ALL DATA. THERE IS NO GOING BACK FROM THIS.'),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+  void alert(BuildContext context) {
+    return ShowAlertDialog(
+            secondaryButtonText: 'Cancel',
+            secondaryButtonOnPressed: () {
+              Navigator.of(context, rootNavigator: true).pop();
+            },
+            mainButtonText: 'Continue',
+            mainButtonOnPressed: () {
+              Navigator.of(context, rootNavigator: true).pop();
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Onboarding()),
+                (Route<dynamic> route) => false,
+              );
+              SharedPreferencesHelper.setOnBoardingStatus(false, prefs);
+            },
+            alertTitle: 'WARNING',
+            alertContent:
+                'YOU WILL LOSE ALL DATA. THERE IS NO GOING BACK FROM THIS.')
+        .showAlertDialog(context);
   }
 
   @override
@@ -123,7 +108,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             actions: <Widget>[
               MaterialButton(
                 onPressed: () {
-                  showAlertDialog(context);
+                  alert(context);
                 },
                 child: Text('Erase All Data'),
                 textColor: Colors.white,
