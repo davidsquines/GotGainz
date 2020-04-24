@@ -10,16 +10,20 @@ class Workouts {
   String workoutName;
   String description;
   List<WorkoutInfo> exerciseInfo;
-  Workouts({
-    this.workoutName,
-    this.description,
-    this.exerciseInfo,
-  });
+  bool isChecked;
+
+  Workouts(
+      {this.workoutName,
+      this.description,
+      this.exerciseInfo,
+      this.isChecked = false,
+      i});
 
   factory Workouts.fromJson(Map<String, dynamic> json) => Workouts(
-        workoutName: json["workoutName"],
+        workoutName: json['workoutName'],
         description: json['description'],
         exerciseInfo: parseExerciseInfo(json),
+        isChecked: false,
       );
 
   static List<WorkoutInfo> parseExerciseInfo(workoutJson) {
@@ -30,8 +34,8 @@ class Workouts {
   }
 
   Map<String, dynamic> toJson() => {
-        "workoutName": workoutName,
-        "exerciseInfo": List<dynamic>.from(exerciseInfo.map((x) => x.toJson())),
+        'workoutName': workoutName,
+        'exerciseInfo': List<dynamic>.from(exerciseInfo.map((x) => x.toJson())),
       };
 }
 
@@ -40,21 +44,23 @@ class WorkoutInfo {
   int reps;
   int sets;
   int get getReps => reps;
+  bool isChecked;
   WorkoutInfo({
     this.exerciseName,
     this.reps,
     this.sets,
+    this.isChecked = false,
   });
 
   factory WorkoutInfo.fromJson(Map<String, dynamic> json) => WorkoutInfo(
-        exerciseName: json["exerciseName"],
-        reps: json["reps"],
-        sets: json["sets"],
+        exerciseName: json['exerciseName'],
+        reps: json['reps'],
+        sets: json['sets'],
       );
 
   Map<String, dynamic> toJson() => {
-        "exerciseName": exerciseName,
-        "reps": reps,
-        "sets": sets,
+        'exerciseName': exerciseName,
+        'reps': reps,
+        'sets': sets,
       };
 }

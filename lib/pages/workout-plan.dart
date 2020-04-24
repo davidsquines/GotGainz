@@ -17,10 +17,9 @@ class WorkoutPlan extends StatefulWidget {
 }
 
 class _WorkoutPlanState extends State<WorkoutPlan> {
+  Future<List<Workouts>> futureWorkouts;
   SharedPreferences prefs;
 
-  String
-      _motivation; //DO NOT REMOVE THIS, IT IS BEING USED NOT BE REPORTED CORRECTLY
   String _apiLink = '';
   int _planLength;
 
@@ -40,6 +39,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
   }
 
   void setData() async {
+    futureWorkouts = _getWorkouts();
     SharedPreferencesHelper.getUserLevel(prefs).then((level) {
       setState(() {
         this._userLevel = level;
@@ -61,37 +61,39 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
 
   void levelPicker() async {
     SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
-      this._motivation = motivation;
-      if (motivation == 'I want to gain strength') {
-        if (_userLevel == 1) {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 1
-        } else if (_userLevel == 2) {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 2
+      setState(() {
+        if (motivation == 'I want to gain strength') {
+          if (_userLevel == 1) {
+            _apiLink =
+                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 1
+          } else if (_userLevel == 2) {
+            print(_userLevel);
+            _apiLink =
+                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 2
+          } else {
+            _apiLink =
+                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default
+          }
+        } else if (motivation == 'I want to lose weight') {
+          if (_userLevel == 1) {
+            _apiLink =
+                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 1
+          } else if (_userLevel == 2) {
+            _apiLink =
+                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 2
+          } else {
+            _apiLink =
+                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json';
+          } //default
         } else {
           _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default list
         }
-      } else if (motivation == 'I want to lose weight') {
-        if (_userLevel == 1) {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 1
-        } else if (_userLevel == 2) {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 2
-        } else {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json';
-        } //default
-      } else {
-        _apiLink =
-            'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default list
-      }
+      });
     });
   }
 
-  void alert(BuildContext context) {
+  void _alert(BuildContext context) {
     return ShowAlertDialog(
             cancelButtonToggle: true,
             mainButtonText: 'Continue',
@@ -105,8 +107,8 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
   }
 
   Future<List<Workouts>> _getWorkouts() async {
-    var data = await http.get(_apiLink);
-    var jsonData = json.decode(data.body);
+    var data = await http.get(
+        'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json');
     List<Workouts> workouts;
 
     workouts = (json.decode(data.body) as List)
@@ -114,7 +116,6 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
         .toList();
 
     _planLength = workouts.length;
-
     return workouts;
   }
 
@@ -129,7 +130,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
         children: <Widget>[
           Expanded(
             child: FutureBuilder(
-              future: _getWorkouts(),
+              future: futureWorkouts,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.data == null) {
                   return Container(
@@ -143,7 +144,11 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
                         title: Text(snapshot.data[index].workoutName),
+                        //value: snapshot.data[index].isChecked,
                         onTap: () {
+                          /*setState(() {
+                            snapshot.data[index].isChecked = ;
+                          });*/
                           Navigator.push(
                             context,
                             new MaterialPageRoute(
@@ -167,7 +172,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
             height: 50.0,
             onPressed: () {
               if (_currentProgress < _planLength) {
-                alert(context);
+                _alert(context);
               } else {
                 Navigator.pop(context);
                 _currentProgress = 0;
