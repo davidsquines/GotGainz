@@ -58,7 +58,6 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                 ),
                 Flexible(
                   child: Scrollbar(
-                    isAlwaysShown: true,
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),

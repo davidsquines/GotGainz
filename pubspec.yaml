@@ -25,3 +25,4 @@ flutter:
   assets:
     - assets/gifs/splashScreen.gif
     - assets/getStartedImage.png
+    - assets/workoutplan.png

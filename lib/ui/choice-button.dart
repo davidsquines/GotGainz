@@ -11,7 +11,7 @@ class ChoiceButton extends StatelessWidget {
     return MaterialButton(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(18.0),
-        side: BorderSide(color: Colors.deepOrange),
+        side: BorderSide(color: Colors.orange[800]),
       ),
       minWidth: 200.0,
       height: 50.0,

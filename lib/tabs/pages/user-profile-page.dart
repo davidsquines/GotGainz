@@ -113,7 +113,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             ],
           ),
           backgroundColor: Colors.blue,
-          body: SafeArea(
+          body: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -163,7 +163,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       _height,
                       style: TextStyle(
                         fontSize: 17.0,
-                        color: Colors.green[900],
+                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -178,7 +178,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       _weight,
                       style: TextStyle(
                         fontSize: 17.0,
-                        color: Colors.green[900],
+                        color: Colors.black,
                       ),
                     ),
                   ),
