@@ -18,8 +18,8 @@ class SharedPreferencesHelper {
   static final String _shouldersLevel = 'shouldersLevel';
   static final String _legsLevel = 'legsLevel';
   static final String _strengthLevel = 'strengthLevel';
-  static final String _calorieLevel =
-      'calorieLevel'; //TODO: need to find a better name for this
+  static final String _weightLossLevel =
+      'weightLossLevel'; //TODO: need to find a better name for this
 
   static Future<bool> setOnBoardingStatus(bool value, SharedPreferences prefs) {
     return prefs.setBool(_currentOnBoardingStatus, value);
@@ -235,12 +235,12 @@ class SharedPreferencesHelper {
 
   static Future<bool> setCalorieLevel(int calorie) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.setInt(_calorieLevel, calorie);
+    return prefs.setInt(_weightLossLevel, calorie);
   }
 
   static Future<int> getCalorieLevel(SharedPreferences prefs) async {
     prefs = await SharedPreferences.getInstance();
-    int _calorie = prefs.getInt(_calorieLevel);
+    int _calorie = prefs.getInt(_weightLossLevel);
     return _calorie;
   }
 }

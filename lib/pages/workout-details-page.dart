@@ -58,6 +58,7 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                 ),
                 Flexible(
                   child: Scrollbar(
+                    isAlwaysShown: true,
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -113,7 +114,8 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
             onPressed: () {
               _planLength = widget.workout.exerciseInfo.length - 1;
               if (_currentProgress < _planLength) {
-                _alert(context);
+                //_alert(context);
+                Navigator.pop(context);
               } else {
                 Navigator.pop(context);
                 _currentProgress = 0;

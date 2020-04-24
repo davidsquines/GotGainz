@@ -7,7 +7,7 @@ class DropDownBuilder {
   static const String Legs = 'Legs';
   static const String FullBody = 'Full Body';
   static const String Strength = 'Strength';
-  static const String Calories = 'Calories';
+  static const String WeightLoss = 'Weight Loss';
 
   static const List<String> choices = <String>[
     All,
@@ -18,6 +18,6 @@ class DropDownBuilder {
     Legs,
     FullBody,
     Strength,
-    Calories,
+    WeightLoss,
   ];
 }

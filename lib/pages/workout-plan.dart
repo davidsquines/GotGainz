@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fitness_app/ui/alert-dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
@@ -25,7 +27,8 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
 
   int _currentProgress;
   int _userLevel;
-  int _progressToLevelUp;
+  int progressToLevelUp;
+  String _motivation;
 
   @override
   void initState() {
@@ -39,12 +42,6 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
   }
 
   void setData() async {
-    futureWorkouts = _getWorkouts();
-    SharedPreferencesHelper.getUserLevel(prefs).then((level) {
-      setState(() {
-        this._userLevel = level;
-      });
-    });
     SharedPreferencesHelper.getCurrentProgress(prefs).then((progress) {
       setState(() {
         this._currentProgress = progress;
@@ -53,44 +50,20 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     SharedPreferencesHelper.getProgressToLevelUp(prefs)
         .then((progressToLevelUp) {
       setState(() {
-        this._progressToLevelUp = progressToLevelUp;
+        this.progressToLevelUp = progressToLevelUp;
       });
     });
-    levelPicker();
-  }
-
-  void levelPicker() async {
     SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
       setState(() {
-        if (motivation == 'I want to gain strength') {
-          if (_userLevel == 1) {
-            _apiLink =
-                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 1
-          } else if (_userLevel == 2) {
-            print(_userLevel);
-            _apiLink =
-                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 2
-          } else {
-            _apiLink =
-                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default
-          }
-        } else if (motivation == 'I want to lose weight') {
-          if (_userLevel == 1) {
-            _apiLink =
-                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 1
-          } else if (_userLevel == 2) {
-            _apiLink =
-                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //level 2
-          } else {
-            _apiLink =
-                'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json';
-          } //default
-        } else {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default list
-        }
+        this._motivation = motivation;
       });
     });
+    SharedPreferencesHelper.getUserLevel(prefs).then((level) {
+      setState(() {
+        this._userLevel = level;
+      });
+    });
+    futureWorkouts = _getWorkouts();
   }
 
   void _alert(BuildContext context) {
@@ -107,8 +80,38 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
   }
 
   Future<List<Workouts>> _getWorkouts() async {
-    var data = await http.get(
-        'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json');
+    await SharedPreferencesHelper.getUserLevel(prefs).then((level) {
+      if (_motivation == 'I want to gain strength') {
+        if (level == 1) {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/strengthLevel1.json'; //level 1
+        } else if (level == 2) {
+          print(_userLevel);
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/strengthLevel2.json'; //level 2
+        } else if (level >= 3) {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default
+        }
+      } else if (_motivation == 'I want to lose weight') {
+        if (level == 1) {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/weightLossLevel1.json'; //level 1
+        } else if (level == 2) {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/weightLossLevel2.json'; //level 2
+        } else if (level >= 3) {
+          _apiLink =
+              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json';
+        } //default
+      } else {
+        print('ERROR'); //default list
+      }
+    });
+
+    sleep(Duration(microseconds: 30));
+
+    var data = await http.get(_apiLink);
     List<Workouts> workouts;
 
     workouts = (json.decode(data.body) as List)
@@ -172,23 +175,22 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
             height: 50.0,
             onPressed: () {
               if (_currentProgress < _planLength) {
-                _alert(context);
+                //_alert(context);
+                Navigator.pop(context);
               } else {
                 Navigator.pop(context);
                 _currentProgress = 0;
                 SharedPreferencesHelper.setCurrentProgress(_currentProgress);
-                _progressToLevelUp++;
-                SharedPreferencesHelper.setProgressToLevelUp(
-                    _progressToLevelUp);
+                progressToLevelUp++;
+                SharedPreferencesHelper.setProgressToLevelUp(progressToLevelUp);
               }
-              if (_progressToLevelUp == 3) {
+              if (progressToLevelUp == 3) {
                 _userLevel++;
                 SharedPreferencesHelper.setUserLevel(_userLevel);
-                _progressToLevelUp = 0;
-                SharedPreferencesHelper.setProgressToLevelUp(
-                    _progressToLevelUp);
+                progressToLevelUp = 0;
+                SharedPreferencesHelper.setProgressToLevelUp(progressToLevelUp);
               } else {
-                print(_progressToLevelUp);
+                print(progressToLevelUp);
               }
             },
             child: Text(

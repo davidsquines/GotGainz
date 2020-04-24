@@ -24,7 +24,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
   int _shouldersLevel;
   int _legsLevel;
   int _strengthLevel;
-  int _calorieLevel;
+  int _weightLossLevel;
 
   @override
   void initState() {
@@ -68,9 +68,9 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         this._strengthLevel = strengthLevel;
       });
     });
-    SharedPreferencesHelper.getCalorieLevel(prefs).then((calorieLevel) {
+    SharedPreferencesHelper.getCalorieLevel(prefs).then((weightLossLevel) {
       setState(() {
-        this._calorieLevel = calorieLevel;
+        this._weightLossLevel = weightLossLevel;
       });
     });
   }
@@ -109,8 +109,8 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
       _strengthLevel++;
       SharedPreferencesHelper.setStrengthLevel(_strengthLevel);
     } else if (widget.exercise.strength == 0) {
-      _calorieLevel++;
-      SharedPreferencesHelper.setCalorieLevel(_calorieLevel);
+      _weightLossLevel++;
+      SharedPreferencesHelper.setCalorieLevel(_weightLossLevel);
     } else {
       print('ERROR');
     }
