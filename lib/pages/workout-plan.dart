@@ -1,3 +1,4 @@
+import 'package:fitness_app/ui/alert-dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
@@ -90,37 +91,17 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     });
   }
 
-  void showAlertDialog(BuildContext context) {
-    Widget cancelButton = FlatButton(
-      child: Text('Cancel'),
-      onPressed: () {
-        Navigator.of(context, rootNavigator: true).pop();
-      },
-    );
-    Widget continueButton = FlatButton(
-      child: Text('Continue'),
-      onPressed: () {
-        Navigator.of(context, rootNavigator: true).pop();
-        Navigator.pop(context);
-      },
-    );
-
-    AlertDialog alert = AlertDialog(
-      title: Text('WARNING'),
-      content: Text(
-          'You have not completed this workout, do you still want to exit? Your data will be saved.'),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
-    );
+  void alert(BuildContext context) {
+    return ShowAlertDialog(
+            cancelButtonToggle: true,
+            mainButtonText: 'Continue',
+            mainButtonOnPressed: () {
+              Navigator.of(context, rootNavigator: true).pop();
+              Navigator.pop(context);
+            },
+            alertTitle: 'Are you done for the day?',
+            alertContent: 'Your data will be saved.')
+        .showAlertDialog(context);
   }
 
   Future<List<Workouts>> _getWorkouts() async {
@@ -128,17 +109,14 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     var jsonData = json.decode(data.body);
     List<Workouts> workouts;
 
-    workouts=(json.decode(data.body) as List).map((i) =>
-        Workouts.fromJson(i)).toList();
+    workouts = (json.decode(data.body) as List)
+        .map((i) => Workouts.fromJson(i))
+        .toList();
 
-    for(var type in workouts){
-      print('info: ${type.exerciseInfo}.');
-    }
-
+    _planLength = workouts.length;
 
     return workouts;
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -189,7 +167,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
             height: 50.0,
             onPressed: () {
               if (_currentProgress < _planLength) {
-                showAlertDialog(context);
+                alert(context);
               } else {
                 Navigator.pop(context);
                 _currentProgress = 0;

@@ -1,7 +1,7 @@
 import 'package:fitness_app/ui/choice-button.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fitness_app/pages/workout-list.dart';
+import 'package:fitness_app/pages/exercise-list.dart';
 import 'package:fitness_app/pages/workout-plan.dart';
 
 class ExercisePage extends StatefulWidget {
