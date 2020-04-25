@@ -132,7 +132,7 @@ class _ProgressPageState extends State<ProgressPage> {
                     Text('\nStrength Level: $_strengthLevel ',
                         style: TextStyle(color: Colors.blue, fontSize: 15.0)),
                     Text(
-                      '\nCalorie Level: $_calorieLevel',
+                      '\nWeight-Loss Level: $_calorieLevel',
                       style: TextStyle(color: Colors.blue, fontSize: 15.0),
                     ),
                   ],
