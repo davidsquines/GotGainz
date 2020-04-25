@@ -102,69 +102,41 @@ class _ProgressPageState extends State<ProgressPage> {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           backgroundColor: Colors.white,
-          body: Center(
-            child: Column(
-              children: <Widget>[
-                Image(
-                  image: AssetImage('assets/progresspage.png'),
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  children: <Widget>[
+                    Image(
+                      image: AssetImage('assets/progresspage.png'),
+                    ),
+                    Text('Workout Goal: $_motivation',
+                        style: TextStyle(color: Colors.black, fontSize: 18.0)),
+                    Text('\nCurrent Level: $_level ',
+                        style: TextStyle(color: Colors.blue, fontSize: 16.0)),
+                    Text('\nCurrent Progress: $_currentProgress ',
+                        style: TextStyle(color: Colors.blue, fontSize: 16.0)),
+                    Text('\nCurrent Progress to Level Up: $_progressToLevelUp ',
+                        style: TextStyle(color: Colors.blue, fontSize: 16.0)),
+                    Text('\nChest Level: $_chestLevel ',
+                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
+                    Text('\nBack Level: $_backLevel ',
+                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
+                    Text('\nArms Level: $_armsLevel ',
+                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
+                    Text('\nShoulders  Level: $_shouldersLevel ',
+                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
+                    Text('\nLegs Level: $_legsLevel ',
+                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
+                    Text('\nStrength Level: $_strengthLevel ',
+                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
+                    Text(
+                      '\nCalorie Level: $_calorieLevel',
+                      style: TextStyle(color: Colors.blue, fontSize: 15.0),
+                    ),
+                  ],
                 ),
-                Text('Workout Goal: $_motivation',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18.0
-                  )),
-                Text('\nCurrent Level: $_level ',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 16.0
-                  )),
-                Text('\nCurrent Progress: $_currentProgress ',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 16.0
-                  )),
-                Text('\nCurrent Progress to Level Up: $_progressToLevelUp ',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 16.0
-                  )),
-                Text('\nChest Level: $_chestLevel ',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 15.0
-                  )),
-                Text('\nBack Level: $_backLevel ',
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 15.0
-                    )),
-                  Text('\nArms Level: $_armsLevel ',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 15.0
-                  )),
-                  Text('\nShoulders  Level: $_shouldersLevel ',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 15.0
-                  )),
-                  Text('\nLegs Level: $_legsLevel ',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 15.0
-                  )),
-                  Text('\nStrength Level: $_strengthLevel ',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 15.0
-                  )),
-                  Text('\nCalorie Level: $_calorieLevel',
-                      style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 15.0
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         ),
