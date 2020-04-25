@@ -19,6 +19,57 @@ class _ExercisePageState extends State<ExercisePage> {
             child: SafeArea(
               child: Column(
                 children: <Widget>[
+                  Text(
+                    'Stay',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 60.0
+              ),
+                  ),
+                  Text(
+                    'Positive,',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 30.0
+                    ),
+                  ),
+                  Text(
+                    'Work',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 60.0
+                    ),
+                  ),
+                  Text(
+                    'Hard,',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 30.0
+                    ),
+                  ),
+                  Text(
+                    'Make It',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 60.0
+                    ),
+                  ),
+                  Text(
+                    'Happen.',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontSize: 30.0
+                    ),
+                  ),
+                  SizedBox(
+                    height: 130.0
+                  ),
                   ChoiceButton(
                     text: 'Continue your workout plan',
                     onPressed: () {
