@@ -296,7 +296,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                     NumberPicker.integer(
                         initialValue: second,
                         minValue: 0,
-
                         /// change to 0 + prevent call on 0
                         maxValue: 59,
                         listViewWidth: 60.0,

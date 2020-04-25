@@ -120,6 +120,10 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    CircleAvatar(
+                      backgroundColor: Colors.brown.shade800,
+                      child: Text('JC'),
+                    ),
                     Text(
                       '$_firstName $_lastName',
                       style: TextStyle(
