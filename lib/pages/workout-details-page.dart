@@ -56,22 +56,20 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                     style: TextStyle(fontSize: 20.0),
                   ),
                 ),
-                Flexible(
-                  child: Scrollbar(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.workout.description,
-                          style: TextStyle(
-                            fontSize: 18.0,
-                          ),
+                Scrollbar(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.workout.description,
+                        style: TextStyle(
+                          fontSize: 18.0,
                         ),
                       ),
                     ),
                   ),
                 ),
-                Flexible(
+                Expanded(
                   child: ListView.builder(
                     itemCount: widget.workout.exerciseInfo == null
                         ? 0
