@@ -122,7 +122,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     new InitialNameAvatar(
-                      'Jane Doe',
+                      '${_firstName[0]} ${_lastName[0]}',
                       circleAvatar: true,
                       borderColor: Colors.white,
                       borderSize: 4.0,
@@ -131,6 +131,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       padding: 20.0,
                       textSize: 30.0,
                     ),
+                    SizedBox(width: 15.0),
                     Text(
                       '$_firstName $_lastName',
                       style: TextStyle(
