@@ -568,16 +568,21 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Timer/StopWatch',
-        ),
         bottom: TabBar(
           tabs: <Widget>[
             Text(
               'Timer',
+              style: TextStyle(
+                color: Colors.deepOrange,
+                fontWeight: FontWeight.bold
+              )
             ),
             Text(
               'StopWatch',
+              style: TextStyle(
+                color: Colors.deepOrange,
+                fontWeight: FontWeight.bold
+              )
             ),
           ],
           labelPadding: EdgeInsets.only(

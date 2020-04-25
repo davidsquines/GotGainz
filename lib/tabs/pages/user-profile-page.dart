@@ -5,6 +5,7 @@ import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:font_awesome_flutter/fa_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:auro_avatar/auro_avatar.dart';
 
 class UserProfilePage extends StatefulWidget {
   @override
@@ -120,9 +121,15 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    CircleAvatar(
-                      backgroundColor: Colors.brown.shade800,
-                      child: Text('JC'),
+                    new InitialNameAvatar(
+                      'Jane Doe',
+                      circleAvatar: true,
+                      borderColor: Colors.white,
+                      borderSize: 4.0,
+                      backgroundColor: Colors.deepOrange,
+                      foregroundColor: Colors.blue,
+                      padding: 20.0,
+                      textSize: 30.0,
                     ),
                     Text(
                       '$_firstName $_lastName',
