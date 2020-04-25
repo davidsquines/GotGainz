@@ -133,116 +133,95 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
       body: Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
-          child: Container(
-            margin: EdgeInsets.all(24.0),
-            child: Column(
-                children: <Widget>[
-                  SizedBox(
-                      height: 14.0
-                  ),
-                  Image(
-                    image: AssetImage('assets/workoutplan.png'),
-                    width: 300.0,
-                    height: 200.0,
-                  ),
-                  SizedBox(
-                    height: 14.0
-                  ),
-                  Column(
-                    children: <Widget>[
-                      Text(
-                        'About You',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.orange[700],
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(
-                          height: 10.0
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text('• $_firstName $_lastName',
-                                style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w400
-                            )),
-                            Text('• $_gender',
-                                style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w400
-                            )),
-                            Text('• $_motivation',
-                                style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w400
-                            )),
-                            Text('• $_height',
-                                style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w400
-                            )),
-                            Text('• $_weight',
-                                style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w400
-                            )),
-                            Text('• $_experience',
-                                style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.w400
-                            )),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                      height: 70.0
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Based on your entered data, you have been assigned the $_plan plan. ',
+          child: SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.all(24.0),
+              child: Column(children: <Widget>[
+                SizedBox(height: 14.0),
+                Image(
+                  image: AssetImage('assets/workoutplan.png'),
+                  width: 300.0,
+                  height: 200.0,
+                ),
+                SizedBox(height: 14.0),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      'About You',
                       style: TextStyle(
-                        fontSize: 22,
-                        color: Colors.black,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.orange[700],
                       ),
                       textAlign: TextAlign.center,
                     ),
-                  ),
-                  SizedBox(
-                    height:40.0
-                  ),
-                  MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.deepOrange),
+                    SizedBox(height: 10.0),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text('• $_firstName $_lastName',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
+                          Text('• $_gender',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
+                          Text('• $_motivation',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
+                          Text('• $_height',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
+                          Text('• $_weight',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
+                          Text('• $_experience',
+                              style: TextStyle(
+                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
+                        ],
                       ),
-                      minWidth: 30.0,
-                      height: 50.0,
-                      color: Colors.orange[700],
-                      textColor: Colors.white,
-                      child:
-                      Text(
-                        'Start Workout',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 70.0),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Based on your entered data, you have been assigned the $_plan plan. ',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 40.0),
+                MaterialButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                      side: BorderSide(color: Colors.deepOrange),
+                    ),
+                    minWidth: 30.0,
+                    height: 50.0,
+                    color: Colors.orange[700],
+                    textColor: Colors.white,
+                    child: Text(
+                      'Start Workout',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
                       ),
-                      onPressed: () {
-                        setInitValues();
-                        Navigator.pushAndRemoveUntil(
-                          context,
-                          MaterialPageRoute(builder: (context) => Tabs()),
-                              (Route<dynamic> route) => false,);
-                      }),
-                ]),
+                    ),
+                    onPressed: () {
+                      setInitValues();
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => Tabs()),
+                        (Route<dynamic> route) => false,
+                      );
+                    }),
+              ]),
+            ),
           ),
         ),
       ),
