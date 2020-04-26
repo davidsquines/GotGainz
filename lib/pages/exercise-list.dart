@@ -101,11 +101,12 @@ class _WorkoutListState extends State<WorkoutList> {
                 ),
               );
             } else {
-              return ListView.builder(
+              return ListView.separated(
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
                     title: Text(snapshot.data[index].exerciseName),
+                    trailing: Icon(Icons.keyboard_arrow_right),
                     onTap: () {
                       setState(() {
                         Navigator.push(
@@ -119,6 +120,9 @@ class _WorkoutListState extends State<WorkoutList> {
                       });
                     },
                   );
+                },
+                separatorBuilder: (BuildContext context, int index) {
+                  return Divider();
                 },
               );
             }

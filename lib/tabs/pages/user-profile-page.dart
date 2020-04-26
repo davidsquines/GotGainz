@@ -2,7 +2,7 @@ import 'package:fitness_app/pages/onboarding-builder.dart';
 import 'package:fitness_app/ui/alert-dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
-import 'package:font_awesome_flutter/fa_icon.dart';
+//import 'package:font_awesome_flutter/fa_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:auro_avatar/auro_avatar.dart';
@@ -134,7 +134,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     SizedBox(width: 15.0),
                     Text(
                       '$_firstName $_lastName',
-                      style: TextStyle(
+                        style: TextStyle(
                         fontSize: 30.0,
                         letterSpacing: 1.5,
                         color: Colors.white,
