@@ -117,7 +117,7 @@ class _ProgressPageState extends State<ProgressPage> {
                     Text('\nCurrent Week Progress: $_currentProgress ',
                         style: TextStyle(color: Colors.blue, fontSize: 16.0)),
                     Text(
-                        '\nWeeks Left Until Level Up: ${3 - _progressToLevelUp} ',
+                        '\nWeeks Left Until Level Up: ${2 - _progressToLevelUp} ',
                         style: TextStyle(color: Colors.blue, fontSize: 16.0)),
                     Text('\nChest Level: $_chestLevel ',
                         style: TextStyle(color: Colors.blue, fontSize: 15.0)),

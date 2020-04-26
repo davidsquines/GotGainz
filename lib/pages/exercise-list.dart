@@ -27,7 +27,6 @@ class _WorkoutListState extends State<WorkoutList> {
     List<Exercises> finalExerciseList = [];
 
     for (var type in exercises) {
-
       String _bodyPart = type.bodyPart;
       int _workoutType = type.strength;
       if (_filterChoice != 'All') {

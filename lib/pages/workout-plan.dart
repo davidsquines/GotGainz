@@ -1,15 +1,12 @@
 import 'dart:io';
-
-import 'package:fitness_app/ui/alert-dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fitness_app/pages/workout-details-page.dart';
 
-import 'package:fitness_app/services/exercises.dart';
-import 'package:fitness_app/pages/exercise-details-page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:fitness_app/pages/workout-details-page.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:fitness_app/services/workouts.dart';
 
@@ -64,19 +61,6 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
       });
     });
     futureWorkouts = _getWorkouts();
-  }
-
-  void _alert(BuildContext context) {
-    return ShowAlertDialog(
-            cancelButtonToggle: true,
-            mainButtonText: 'Continue',
-            mainButtonOnPressed: () {
-              Navigator.of(context, rootNavigator: true).pop();
-              Navigator.pop(context);
-            },
-            alertTitle: 'Are you done for the day?',
-            alertContent: 'Your data will be saved.')
-        .showAlertDialog(context);
   }
 
   Future<List<Workouts>> _getWorkouts() async {
@@ -184,7 +168,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
                 progressToLevelUp++;
                 SharedPreferencesHelper.setProgressToLevelUp(progressToLevelUp);
               }
-              if (progressToLevelUp == 3) {
+              if (progressToLevelUp == 2) {
                 _userLevel++;
                 SharedPreferencesHelper.setUserLevel(_userLevel);
                 progressToLevelUp = 0;

@@ -159,7 +159,6 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    String url = widget.exercise.muscleBody;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.exercise.exerciseName),

@@ -1,4 +1,3 @@
-import 'package:fitness_app/ui/next-button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';

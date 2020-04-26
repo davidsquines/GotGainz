@@ -296,6 +296,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                     NumberPicker.integer(
                         initialValue: second,
                         minValue: 0,
+
                         /// change to 0 + prevent call on 0
                         maxValue: 59,
                         listViewWidth: 60.0,
@@ -570,20 +571,12 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
       appBar: AppBar(
         bottom: TabBar(
           tabs: <Widget>[
-            Text(
-              'Timer',
-              style: TextStyle(
-                color: Colors.deepOrange,
-                fontWeight: FontWeight.bold
-              )
-            ),
-            Text(
-              'StopWatch',
-              style: TextStyle(
-                color: Colors.deepOrange,
-                fontWeight: FontWeight.bold
-              )
-            ),
+            Text('Timer',
+                style: TextStyle(
+                    color: Colors.deepOrange, fontWeight: FontWeight.bold)),
+            Text('StopWatch',
+                style: TextStyle(
+                    color: Colors.deepOrange, fontWeight: FontWeight.bold)),
           ],
           labelPadding: EdgeInsets.only(
             bottom: 10.0,

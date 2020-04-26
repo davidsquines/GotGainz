@@ -6,7 +6,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:fitness_app/services/exercises.dart';
-import 'package:fitness_app/services/shared-pref-helper.dart';
 
 class WorkoutDetailsPage extends StatefulWidget {
   final Workouts workout;
