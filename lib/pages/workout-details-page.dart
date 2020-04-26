@@ -1,6 +1,11 @@
+import 'package:fitness_app/pages/exercise-details-page.dart';
 import 'package:fitness_app/ui/alert-dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/services/workouts.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:fitness_app/services/exercises.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
 
 class WorkoutDetailsPage extends StatefulWidget {
@@ -17,6 +22,14 @@ class WorkoutDetailsPage extends StatefulWidget {
 class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
   int _currentProgress = 0;
   int _planLength;
+  List<Exercises> exercises = [];
+  String exerciseName;
+
+  @override
+  void initState() {
+    super.initState();
+    _getExercises();
+  }
 
   void _alert(BuildContext context) {
     return ShowAlertDialog(
@@ -31,6 +44,20 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
             alertContent:
                 'You have not finished for today. Your data will NOT be saved.')
         .showAlertDialog(context);
+  }
+
+  Future<List<Exercises>> _getExercises() async {
+    var data = await http.get(
+        'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json');
+
+    exercises = (json.decode(data.body) as List)
+        .map((i) => Exercises.fromJson(i))
+        .toList();
+
+    for (var type in exercises) {
+      exercises.add(type);
+    }
+    return exercises;
   }
 
   @override
@@ -96,6 +123,21 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                           setState(() {
                             widget.workout.exerciseInfo.elementAt(i).isChecked =
                                 true;
+                            exercises.forEach((element) {
+                              if (widget.workout.exerciseInfo
+                                      .elementAt(i)
+                                      .exerciseName ==
+                                  element.exerciseName) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ExerciseDetailsPage(
+                                      element,
+                                    ),
+                                  ),
+                                );
+                              }
+                            });
                           });
                         },
                       );
