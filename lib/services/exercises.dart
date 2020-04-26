@@ -30,7 +30,7 @@ class Exercises {
     bodyPart: json["bodyPart"],
     strength: json["strength"],
     description: json["description"],
-    exerciseExample: json["exerciseExample"],
+    exerciseExample: json["exerciseExample"] == null ? null: json['exerciseExample'],
     muscleBody: json["muscleBody"] == null ? null : json["muscleBody"],
   );
 

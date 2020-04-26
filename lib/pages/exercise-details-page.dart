@@ -31,6 +31,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     super.initState();
     _init();
     setData();
+
   }
 
   void _init() async {
@@ -38,6 +39,14 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
   }
 
   void setData() async {
+    if(widget.exercise.muscleBody == null) {
+      widget.exercise.muscleBody =
+      'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/appicon.png';
+    }
+    if(widget.exercise.exerciseExample == null) {
+      widget.exercise.exerciseExample =
+      'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/appicon.png';
+    }
     SharedPreferencesHelper.getChestLevel(prefs).then((chestLevel) {
       setState(() {
         this._chestLevel = chestLevel;
@@ -116,8 +125,10 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+    String url = widget.exercise.muscleBody;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.exercise.exerciseName),
@@ -128,6 +139,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         children: <Widget>[
           Row(
             children: <Widget>[
+
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -159,9 +171,11 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
                       height: 150.0,
                       width: 150.0,
                     ),
+
                   ],
                 ),
               ),
+
             ],
           ),
           Expanded(
