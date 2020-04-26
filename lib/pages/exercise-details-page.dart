@@ -31,7 +31,6 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     super.initState();
     _init();
     setData();
-
   }
 
   void _init() async {
@@ -39,14 +38,6 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
   }
 
   void setData() async {
-    if(widget.exercise.muscleBody == null) {
-      widget.exercise.muscleBody =
-      'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/appicon.png';
-    }
-    if(widget.exercise.exerciseExample == null) {
-      widget.exercise.exerciseExample =
-      'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/appicon.png';
-    }
     SharedPreferencesHelper.getChestLevel(prefs).then((chestLevel) {
       setState(() {
         this._chestLevel = chestLevel;
@@ -125,6 +116,46 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     }
   }
 
+  Row imageGetter() {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Exercise image:',
+                style: TextStyle(fontSize: 16.0),
+              ),
+              Image.network(
+                widget.exercise.exerciseExample,
+                height: 150.0,
+                width: 150.0,
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Body part worked:',
+                style: TextStyle(fontSize: 16.0),
+              ),
+              Image.network(
+                widget.exercise.muscleBody,
+                height: 150.0,
+                width: 150.0,
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,47 +168,9 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Row(
-            children: <Widget>[
-
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Exercise image:',
-                      style: TextStyle(fontSize: 16.0),
-                    ),
-                    Image.network(
-                      widget.exercise.exerciseExample,
-                      height: 150.0,
-                      width: 150.0,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Body part worked:',
-                      style: TextStyle(fontSize: 16.0),
-                    ),
-                    Image.network(
-                      widget.exercise.muscleBody,
-                      height: 150.0,
-                      width: 150.0,
-                    ),
-
-                  ],
-                ),
-              ),
-
-            ],
-          ),
+          if (widget.exercise.muscleBody != null ||
+              widget.exercise.exerciseExample != null)
+            imageGetter(),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
