@@ -20,38 +20,33 @@ class _WorkoutListState extends State<WorkoutList> {
     var data = await http.get(
         'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json');
 
-    var jsonData = json.decode(data.body);
+    List<Exercises> exercises;
+    exercises = (json.decode(data.body) as List)
+        .map((i) => Exercises.fromJson(i))
+        .toList();
+    List<Exercises> finalExerciseList = [];
 
-    List<Exercises> exercises = [];
+    for (var type in exercises) {
 
-    for (var type in jsonData) {
-      Exercises exercise = Exercises(
-          type['exerciseName'],
-          type['bodyPart'],
-          type['strength'],
-          type['description'],
-          type['exerciseExample'],
-          type['muscleBody']);
-
-      String _bodyPart = exercise.bodyPart;
-      int _workoutType = exercise.strength;
+      String _bodyPart = type.bodyPart;
+      int _workoutType = type.strength;
       if (_filterChoice != 'All') {
         if (_filterChoice == '1' || _filterChoice == '0') {
           if (_workoutType == int.parse(_filterChoice)) {
-            exercises.add(exercise);
+            finalExerciseList.add(type);
           }
         } else {
           if (_bodyPart == _filterChoice) {
-            exercises.add(exercise);
+            finalExerciseList.add(type);
           }
         }
       } else {
-        exercises.add(exercise);
+        finalExerciseList.add(type);
       }
     }
 
-    print(exercises.length);
-    return exercises;
+    print(finalExerciseList.length);
+    return finalExerciseList;
   }
 
   void choiceAction(String choice) async {
