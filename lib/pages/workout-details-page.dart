@@ -68,7 +68,7 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
           ? 0
           : widget.workout.exerciseInfo.length,
       itemBuilder: (BuildContext context, int index) {
-        return CheckboxListTile(
+        return ListTile(
           title: Text(
             widget.workout.exerciseInfo.elementAt(index).exerciseName,
           ),
@@ -78,12 +78,17 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                 ' x Reps = ' +
                 widget.workout.exerciseInfo.elementAt(index).reps.toString(),
           ),
-          value: widget.workout.exerciseInfo.elementAt(index).isChecked,
-          onChanged: (value) {
+          leading: Icon(
+            widget.workout.exerciseInfo.elementAt(index).isChecked
+                ? Icons.check_box
+                : Icons.check_box_outline_blank,
+          ),
+          onLongPress: () {
             _currentProgress++;
             setState(
               () {
                 widget.workout.exerciseInfo.elementAt(index).isChecked = true;
+
                 _exercises.forEach(
                   (element) {
                     if (widget.workout.exerciseInfo
@@ -103,6 +108,12 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                 );
               },
             );
+          },
+          onTap: () {
+            _currentProgress++;
+            setState(() {
+              widget.workout.exerciseInfo.elementAt(index).isChecked = true;
+            });
           },
         );
       },
