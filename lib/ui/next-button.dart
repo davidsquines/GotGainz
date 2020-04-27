@@ -4,6 +4,7 @@ class NextButton extends StatelessWidget {
   NextButton({@required this.onPressed});
 
   final Function onPressed;
+
   @override
   Widget build(BuildContext context) {
     return Container(

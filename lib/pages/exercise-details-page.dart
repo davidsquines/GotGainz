@@ -1,7 +1,8 @@
 import 'package:fitness_app/services/shared-pref-helper.dart';
-import 'package:flutter/material.dart';
-
+import 'package:fitness_app/ui/done-button.dart';
 import 'package:fitness_app/services/exercises.dart';
+
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ExerciseDetailsPage extends StatefulWidget {
@@ -16,7 +17,7 @@ class ExerciseDetailsPage extends StatefulWidget {
 }
 
 class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
-  SharedPreferences prefs;
+  SharedPreferences _prefs;
 
   int _chestLevel;
   int _backLevel;
@@ -29,53 +30,49 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
   @override
   void initState() {
     super.initState();
-    _init();
-    setData();
+    _initData();
   }
 
-  void _init() async {
-    prefs = await SharedPreferences.getInstance();
-  }
-
-  void setData() async {
-    SharedPreferencesHelper.getChestLevel(prefs).then((chestLevel) {
+  void _initData() async {
+    _prefs = await SharedPreferences.getInstance();
+    SharedPreferencesHelper.getChestLevel(_prefs).then((chestLevel) {
       setState(() {
         this._chestLevel = chestLevel;
       });
     });
-    SharedPreferencesHelper.getBackLevel(prefs).then((backLevel) {
+    SharedPreferencesHelper.getBackLevel(_prefs).then((backLevel) {
       setState(() {
         this._backLevel = backLevel;
       });
     });
-    SharedPreferencesHelper.getArmsLevel(prefs).then((armsLevel) {
+    SharedPreferencesHelper.getArmsLevel(_prefs).then((armsLevel) {
       setState(() {
         this._armsLevel = armsLevel;
       });
     });
-    SharedPreferencesHelper.getShouldersLevel(prefs).then((shouldersLevel) {
+    SharedPreferencesHelper.getShouldersLevel(_prefs).then((shouldersLevel) {
       setState(() {
         this._shouldersLevel = shouldersLevel;
       });
     });
-    SharedPreferencesHelper.getLegsLevel(prefs).then((legsLevel) {
+    SharedPreferencesHelper.getLegsLevel(_prefs).then((legsLevel) {
       setState(() {
         this._legsLevel = legsLevel;
       });
     });
-    SharedPreferencesHelper.getStrengthLevel(prefs).then((strengthLevel) {
+    SharedPreferencesHelper.getStrengthLevel(_prefs).then((strengthLevel) {
       setState(() {
         this._strengthLevel = strengthLevel;
       });
     });
-    SharedPreferencesHelper.getCalorieLevel(prefs).then((weightLossLevel) {
+    SharedPreferencesHelper.getCalorieLevel(_prefs).then((weightLossLevel) {
       setState(() {
         this._weightLossLevel = weightLossLevel;
       });
     });
   }
 
-  void updateBodyStrengthLevel() {
+  void _updateBodyStrengthLevel() {
     if (widget.exercise.bodyPart == 'Chest') {
       _chestLevel++;
       SharedPreferencesHelper.setChestLevel(_chestLevel);
@@ -105,6 +102,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     } else {
       print('ERROR');
     }
+
     if (widget.exercise.strength == 1) {
       _strengthLevel++;
       SharedPreferencesHelper.setStrengthLevel(_strengthLevel);
@@ -116,43 +114,33 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     }
   }
 
-  Row imageGetter() {
+  Column _imageStyle(String _text, String _location) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          _text,
+          style: TextStyle(fontSize: 16.0),
+        ),
+        Image.network(
+          _location,
+          height: 150.0,
+          width: 150.0,
+        ),
+      ],
+    );
+  }
+
+  Row _imageBuilder() {
     return Row(
       children: <Widget>[
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                'Exercise image:',
-                style: TextStyle(fontSize: 16.0),
-              ),
-              Image.network(
-                widget.exercise.exerciseExample,
-                height: 150.0,
-                width: 150.0,
-              ),
-            ],
-          ),
-        ),
+            child: _imageStyle(
+                'Exercise Image:', widget.exercise.exerciseExample)),
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                'Body part worked:',
-                style: TextStyle(fontSize: 16.0),
-              ),
-              Image.network(
-                widget.exercise.muscleBody,
-                height: 150.0,
-                width: 150.0,
-              ),
-            ],
-          ),
-        ),
+            child:
+                _imageStyle('Body Part Worked:', widget.exercise.muscleBody)),
       ],
     );
   }
@@ -163,57 +151,52 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
       appBar: AppBar(
         title: Text(widget.exercise.exerciseName),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          if (widget.exercise.muscleBody != null ||
-              widget.exercise.exerciseExample != null)
-            imageGetter(),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: Text(
-                    'How to:',
-                    style: TextStyle(fontSize: 20.0),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            if (widget.exercise.muscleBody != null ||
+                widget.exercise.exerciseExample != null)
+              _imageBuilder(),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: Text(
+                      'Instructions:',
+                      style: TextStyle(fontSize: 20.0),
+                    ),
                   ),
-                ),
-                Flexible(
-                  child: Scrollbar(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          widget.exercise.description,
-                          style: TextStyle(
-                            fontSize: 18.0,
+                  Flexible(
+                    child: Scrollbar(
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            widget.exercise.description,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          MaterialButton(
-            minWidth: double.infinity,
-            height: 50.0,
-            onPressed: () {
-              updateBodyStrengthLevel();
-              Navigator.pop(context);
-            },
-            child: Text(
-              'I\'m Done'.toUpperCase(),
+            DoneButton(
+              onPressed: () {
+                _updateBodyStrengthLevel();
+                Navigator.pop(context);
+              },
             ),
-            color: Colors.lightBlue,
-            textColor: Colors.white,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

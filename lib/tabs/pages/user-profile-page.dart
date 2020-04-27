@@ -134,7 +134,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     SizedBox(width: 15.0),
                     Text(
                       '$_firstName $_lastName',
-                        style: TextStyle(
+                      style: TextStyle(
                         fontSize: 30.0,
                         letterSpacing: 1.5,
                         color: Colors.white,

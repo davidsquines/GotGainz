@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:fitness_app/ui/next-button.dart';
 import 'package:fitness_app/ui/user-input-form.dart';
 import 'package:fitness_app/ui/info-text-input.dart';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class Name extends StatefulWidget {
   @override

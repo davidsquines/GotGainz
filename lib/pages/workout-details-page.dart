@@ -1,11 +1,12 @@
+import 'package:fitness_app/services/exercises.dart';
 import 'package:fitness_app/pages/exercise-details-page.dart';
 import 'package:fitness_app/ui/alert-dialog.dart';
-import 'package:flutter/material.dart';
+import 'package:fitness_app/ui/done-button.dart';
 import 'package:fitness_app/services/workouts.dart';
+
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'package:fitness_app/services/exercises.dart';
 
 class WorkoutDetailsPage extends StatefulWidget {
   final Workouts workout;
@@ -21,8 +22,10 @@ class WorkoutDetailsPage extends StatefulWidget {
 class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
   int _currentProgress = 0;
   int _planLength;
-  List<Exercises> exercises = [];
+
   String exerciseName;
+
+  List<Exercises> _exercises = [];
 
   @override
   void initState() {
@@ -46,17 +49,54 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
   }
 
   Future<List<Exercises>> _getExercises() async {
-    var data = await http.get(
+    var _data = await http.get(
         'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/excerciseList.json');
 
-    exercises = (json.decode(data.body) as List)
+    _exercises = (json.decode(_data.body) as List)
         .map((i) => Exercises.fromJson(i))
         .toList();
 
-    for (var type in exercises) {
-      exercises.add(type);
+    for (var type in _exercises) {
+      _exercises.add(type);
     }
-    return exercises;
+    return _exercises;
+  }
+
+  ListView _listViewBuilder() {
+    return ListView.builder(
+      itemCount: widget.workout.exerciseInfo == null
+          ? 0
+          : widget.workout.exerciseInfo.length,
+      itemBuilder: (BuildContext context, int i) {
+        return CheckboxListTile(
+          title: Text(widget.workout.exerciseInfo.elementAt(i).exerciseName),
+          subtitle: Text('Sets = ' +
+              widget.workout.exerciseInfo.elementAt(i).sets.toString() +
+              ' x Reps = ' +
+              widget.workout.exerciseInfo.elementAt(i).reps.toString()),
+          value: widget.workout.exerciseInfo.elementAt(i).isChecked,
+          onChanged: (value) {
+            _currentProgress++;
+            setState(() {
+              widget.workout.exerciseInfo.elementAt(i).isChecked = true;
+              _exercises.forEach((element) {
+                if (widget.workout.exerciseInfo.elementAt(i).exerciseName ==
+                    element.exerciseName) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ExerciseDetailsPage(
+                        element,
+                      ),
+                    ),
+                  );
+                }
+              });
+            });
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -72,8 +112,8 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
         children: <Widget>[
           Expanded(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -96,59 +136,12 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                   ),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: widget.workout.exerciseInfo == null
-                        ? 0
-                        : widget.workout.exerciseInfo.length,
-                    itemBuilder: (BuildContext context, int i) {
-                      return CheckboxListTile(
-                        title: Text(widget.workout.exerciseInfo
-                            .elementAt(i)
-                            .exerciseName),
-                        subtitle: Text('Sets = ' +
-                            widget.workout.exerciseInfo
-                                .elementAt(i)
-                                .sets
-                                .toString() +
-                            ' x Reps = ' +
-                            widget.workout.exerciseInfo
-                                .elementAt(i)
-                                .reps
-                                .toString()),
-                        value:
-                            widget.workout.exerciseInfo.elementAt(i).isChecked,
-                        onChanged: (value) {
-                          _currentProgress++;
-                          setState(() {
-                            widget.workout.exerciseInfo.elementAt(i).isChecked =
-                                true;
-                            exercises.forEach((element) {
-                              if (widget.workout.exerciseInfo
-                                      .elementAt(i)
-                                      .exerciseName ==
-                                  element.exerciseName) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ExerciseDetailsPage(
-                                      element,
-                                    ),
-                                  ),
-                                );
-                              }
-                            });
-                          });
-                        },
-                      );
-                    },
-                  ),
+                  child: _listViewBuilder(),
                 ),
               ],
             ),
           ),
-          MaterialButton(
-            minWidth: double.infinity,
-            height: 50.0,
+          DoneButton(
             onPressed: () {
               _planLength = widget.workout.exerciseInfo.length - 1;
               if (_currentProgress < _planLength) {
@@ -159,11 +152,6 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                 _currentProgress = 0;
               }
             },
-            child: Text(
-              'I\'m Done'.toUpperCase(),
-            ),
-            color: Colors.lightBlue,
-            textColor: Colors.white,
           ),
         ],
       ),
