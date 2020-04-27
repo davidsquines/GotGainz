@@ -1,14 +1,14 @@
+import 'package:fitness_app/pages/workout-details-page.dart';
+import 'package:fitness_app/services/shared-pref-helper.dart';
+import 'package:fitness_app/services/workouts.dart';
+import 'package:fitness_app/ui/done-button.dart';
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'package:fitness_app/pages/workout-details-page.dart';
-import 'package:fitness_app/services/shared-pref-helper.dart';
-import 'package:fitness_app/services/workouts.dart';
 
 class WorkoutPlan extends StatefulWidget {
   @override
@@ -16,55 +16,51 @@ class WorkoutPlan extends StatefulWidget {
 }
 
 class _WorkoutPlanState extends State<WorkoutPlan> {
-  Future<List<Workouts>> futureWorkouts;
-  SharedPreferences prefs;
+  Future<List<Workouts>> _futureWorkouts;
+  SharedPreferences _prefs;
 
   String _apiLink = '';
   int _planLength;
 
   int _currentProgress;
   int _userLevel;
-  int progressToLevelUp;
+  int _progressToLevelUp;
   String _motivation;
 
   @override
   void initState() {
     super.initState();
-    _init();
-    setData();
+    _initData();
   }
 
-  void _init() async {
-    prefs = await SharedPreferences.getInstance();
-  }
-
-  void setData() async {
-    SharedPreferencesHelper.getCurrentProgress(prefs).then((progress) {
+  void _initData() async {
+    _prefs = await SharedPreferences.getInstance();
+    SharedPreferencesHelper.getCurrentProgress(_prefs).then((progress) {
       setState(() {
         this._currentProgress = progress;
       });
     });
-    SharedPreferencesHelper.getProgressToLevelUp(prefs)
+    SharedPreferencesHelper.getProgressToLevelUp(_prefs)
         .then((progressToLevelUp) {
       setState(() {
-        this.progressToLevelUp = progressToLevelUp;
+        this._progressToLevelUp = progressToLevelUp;
       });
     });
-    SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
+    SharedPreferencesHelper.getMotivation(_prefs).then((motivation) {
       setState(() {
         this._motivation = motivation;
       });
     });
-    SharedPreferencesHelper.getUserLevel(prefs).then((level) {
+    SharedPreferencesHelper.getUserLevel(_prefs).then((level) {
       setState(() {
         this._userLevel = level;
       });
     });
-    futureWorkouts = _getWorkouts();
+    _futureWorkouts = _getWorkouts();
   }
 
   Future<List<Workouts>> _getWorkouts() async {
-    await SharedPreferencesHelper.getUserLevel(prefs).then((level) {
+    await SharedPreferencesHelper.getUserLevel(_prefs).then((level) {
       if (_motivation == 'I want to gain strength') {
         if (level == 1) {
           _apiLink =
@@ -106,82 +102,81 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     return workouts;
   }
 
+  FutureBuilder _listBuilder() {
+    return FutureBuilder(
+      future: _futureWorkouts,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (snapshot.data == null) {
+          return Container(
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        } else {
+          return ListView.builder(
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text(snapshot.data[index].workoutName),
+                //value: snapshot.data[index].isChecked,
+                onTap: () {
+                  /*setState(() {
+                            snapshot.data[index].isChecked = ;
+                          });*/
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          WorkoutDetailsPage(snapshot.data[index]),
+                    ),
+                  );
+                  _currentProgress++;
+                  SharedPreferencesHelper.setCurrentProgress(_currentProgress);
+                },
+              );
+            },
+          );
+        }
+      },
+    );
+  }
+
+  void _updateStats() {
+    if (_currentProgress < _planLength) {
+      Navigator.pop(context);
+    } else {
+      Navigator.pop(context);
+      _currentProgress = 0;
+      SharedPreferencesHelper.setCurrentProgress(_currentProgress);
+      _progressToLevelUp++;
+      SharedPreferencesHelper.setProgressToLevelUp(_progressToLevelUp);
+    }
+    if (_progressToLevelUp == 2) {
+      _userLevel++;
+      SharedPreferencesHelper.setUserLevel(_userLevel);
+      _progressToLevelUp = 0;
+      SharedPreferencesHelper.setProgressToLevelUp(_progressToLevelUp);
+    } else {
+      print(_progressToLevelUp);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
+    return Scaffold(
+      appBar: AppBar(
         title: Text('Workout List'),
         automaticallyImplyLeading: false,
       ),
       body: Column(
         children: <Widget>[
           Expanded(
-            child: FutureBuilder(
-              future: futureWorkouts,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.data == null) {
-                  return Container(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                } else {
-                  return ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        title: Text(snapshot.data[index].workoutName),
-                        //value: snapshot.data[index].isChecked,
-                        onTap: () {
-                          /*setState(() {
-                            snapshot.data[index].isChecked = ;
-                          });*/
-                          Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                              builder: (context) =>
-                                  WorkoutDetailsPage(snapshot.data[index]),
-                            ),
-                          );
-                          _currentProgress++;
-                          SharedPreferencesHelper.setCurrentProgress(
-                              _currentProgress);
-                        },
-                      );
-                    },
-                  );
-                }
-              },
-            ),
+            child: _listBuilder(),
           ),
-          MaterialButton(
-            minWidth: double.infinity,
-            height: 50.0,
+          DoneButton(
             onPressed: () {
-              if (_currentProgress < _planLength) {
-                //_alert(context);
-                Navigator.pop(context);
-              } else {
-                Navigator.pop(context);
-                _currentProgress = 0;
-                SharedPreferencesHelper.setCurrentProgress(_currentProgress);
-                progressToLevelUp++;
-                SharedPreferencesHelper.setProgressToLevelUp(progressToLevelUp);
-              }
-              if (progressToLevelUp == 2) {
-                _userLevel++;
-                SharedPreferencesHelper.setUserLevel(_userLevel);
-                progressToLevelUp = 0;
-                SharedPreferencesHelper.setProgressToLevelUp(progressToLevelUp);
-              } else {
-                print(progressToLevelUp);
-              }
+              _updateStats();
             },
-            child: Text(
-              'I\'m Done'.toUpperCase(),
-            ),
-            color: Colors.lightBlue,
-            textColor: Colors.white,
           ),
         ],
       ),

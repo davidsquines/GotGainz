@@ -67,32 +67,42 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
       itemCount: widget.workout.exerciseInfo == null
           ? 0
           : widget.workout.exerciseInfo.length,
-      itemBuilder: (BuildContext context, int i) {
+      itemBuilder: (BuildContext context, int index) {
         return CheckboxListTile(
-          title: Text(widget.workout.exerciseInfo.elementAt(i).exerciseName),
-          subtitle: Text('Sets = ' +
-              widget.workout.exerciseInfo.elementAt(i).sets.toString() +
-              ' x Reps = ' +
-              widget.workout.exerciseInfo.elementAt(i).reps.toString()),
-          value: widget.workout.exerciseInfo.elementAt(i).isChecked,
+          title: Text(
+            widget.workout.exerciseInfo.elementAt(index).exerciseName,
+          ),
+          subtitle: Text(
+            'Sets = ' +
+                widget.workout.exerciseInfo.elementAt(index).sets.toString() +
+                ' x Reps = ' +
+                widget.workout.exerciseInfo.elementAt(index).reps.toString(),
+          ),
+          value: widget.workout.exerciseInfo.elementAt(index).isChecked,
           onChanged: (value) {
             _currentProgress++;
-            setState(() {
-              widget.workout.exerciseInfo.elementAt(i).isChecked = true;
-              _exercises.forEach((element) {
-                if (widget.workout.exerciseInfo.elementAt(i).exerciseName ==
-                    element.exerciseName) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ExerciseDetailsPage(
-                        element,
-                      ),
-                    ),
-                  );
-                }
-              });
-            });
+            setState(
+              () {
+                widget.workout.exerciseInfo.elementAt(index).isChecked = true;
+                _exercises.forEach(
+                  (element) {
+                    if (widget.workout.exerciseInfo
+                            .elementAt(index)
+                            .exerciseName ==
+                        element.exerciseName) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ExerciseDetailsPage(
+                            element,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                );
+              },
+            );
           },
         );
       },

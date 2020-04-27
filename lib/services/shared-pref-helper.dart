@@ -18,8 +18,7 @@ class SharedPreferencesHelper {
   static final String _shouldersLevel = 'shouldersLevel';
   static final String _legsLevel = 'legsLevel';
   static final String _strengthLevel = 'strengthLevel';
-  static final String _weightLossLevel =
-      'weightLossLevel'; //TODO: need to find a better name for this
+  static final String _weightLossLevel = 'weightLossLevel';
 
   static Future<bool> setOnBoardingStatus(bool value, SharedPreferences prefs) {
     return prefs.setBool(_currentOnBoardingStatus, value);
