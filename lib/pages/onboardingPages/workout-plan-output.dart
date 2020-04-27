@@ -1,9 +1,9 @@
+import 'package:fitness_app/tabs/tabs.dart';
+import 'package:fitness_app/services/shared-pref-helper.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
-import 'package:fitness_app/tabs/tabs.dart';
-import 'package:fitness_app/services/shared-pref-helper.dart';
 
 class WorkoutPlanOutput extends StatefulWidget {
   @override
@@ -25,15 +25,12 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   @override
   void initState() {
     super.initState();
-    _init();
-    setData();
+
+    _initData();
   }
 
-  void _init() async {
+  void _initData() async {
     prefs = await SharedPreferences.getInstance();
-  }
-
-  void setData() async {
     SharedPreferencesHelper.getFirstName(prefs).then((firstName) {
       setState(() {
         this._firstName = firstName;
@@ -78,7 +75,11 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
     });
   }
 
-  void setInitValues() {
+  TextStyle _textStyle() {
+    return TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400);
+  }
+
+  void _setInitValues() {
     int beginner = 0;
     int normal = 10;
     int pro = 20;
@@ -129,13 +130,12 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
         backgroundColor: Colors.lightBlueAccent,
         elevation: 0.0,
       ),
-      body: Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Container(
-              margin: EdgeInsets.all(24.0),
-              child: Column(children: <Widget>[
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.all(24.0),
+            child: Column(
+              children: <Widget>[
                 SizedBox(height: 14.0),
                 Image(
                   image: AssetImage('assets/workoutplan.png'),
@@ -160,24 +160,30 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text('• $_firstName $_lastName',
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
-                          Text('• $_gender',
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
-                          Text('• $_motivation',
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
-                          Text('• $_height',
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
-                          Text('• $_weight',
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
-                          Text('• $_experience',
-                              style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.w400)),
+                          Text(
+                            '• $_firstName $_lastName',
+                            style: _textStyle(),
+                          ),
+                          Text(
+                            '• $_gender',
+                            style: _textStyle(),
+                          ),
+                          Text(
+                            '• $_motivation',
+                            style: _textStyle(),
+                          ),
+                          Text(
+                            '• $_height',
+                            style: _textStyle(),
+                          ),
+                          Text(
+                            '• $_weight',
+                            style: _textStyle(),
+                          ),
+                          Text(
+                            '• $_experience',
+                            style: _textStyle(),
+                          ),
                         ],
                       ),
                     ),
@@ -189,7 +195,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
                   child: Text(
                     'Based on your entered data, you have been assigned the $_plan plan. ',
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 22.0,
                       color: Colors.black,
                     ),
                     textAlign: TextAlign.center,
@@ -197,29 +203,30 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
                 ),
                 SizedBox(height: 40.0),
                 MaterialButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                      side: BorderSide(color: Colors.deepOrange),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.deepOrange),
+                  ),
+                  minWidth: 30.0,
+                  height: 50.0,
+                  color: Colors.orange[700],
+                  textColor: Colors.white,
+                  child: Text(
+                    'Start Workout',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
                     ),
-                    minWidth: 30.0,
-                    height: 50.0,
-                    color: Colors.orange[700],
-                    textColor: Colors.white,
-                    child: Text(
-                      'Start Workout',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    onPressed: () {
-                      setInitValues();
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(builder: (context) => Tabs()),
-                        (Route<dynamic> route) => false,
-                      );
-                    }),
-              ]),
+                  ),
+                  onPressed: () {
+                    _setInitValues();
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => Tabs()),
+                      (Route<dynamic> route) => false,
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ),
