@@ -30,7 +30,8 @@ class _ExercisePageState extends State<ExercisePage> {
                     'Positive,',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Colors.orange,
+                        fontStyle: FontStyle.italic,
                         fontSize: 30.0),
                   ),
                   Text(
@@ -44,7 +45,8 @@ class _ExercisePageState extends State<ExercisePage> {
                     'Hard,',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Colors.orange,
+                        fontStyle: FontStyle.italic,
                         fontSize: 30.0),
                   ),
                   Text(
@@ -58,10 +60,11 @@ class _ExercisePageState extends State<ExercisePage> {
                     'Happen.',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Colors.orange,
+                        fontStyle: FontStyle.italic,
                         fontSize: 30.0),
                   ),
-                  SizedBox(height: 130.0),
+                  SizedBox(height: 105.0),
                   ChoiceButton(
                     text: 'Continue your workout plan',
                     onPressed: () {

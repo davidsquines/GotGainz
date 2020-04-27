@@ -78,7 +78,7 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: Text(
-                    'How to:',
+                    'Description:',
                     style: TextStyle(fontSize: 20.0),
                   ),
                 ),

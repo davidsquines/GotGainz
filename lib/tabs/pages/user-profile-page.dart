@@ -113,31 +113,39 @@ class _UserProfilePageState extends State<UserProfilePage> {
               ),
             ],
           ),
-          backgroundColor: Colors.blue,
           body: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.purpleAccent,
+                  Colors.deepPurple,
+                ],
+              ),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                new InitialNameAvatar(
+                  '${_firstName[0]} ${_lastName[0]}',
+                  circleAvatar: true,
+                  borderColor: Colors.orange,
+                  borderSize: 10.0,
+                  backgroundColor: Colors.orange,
+                  foregroundColor: Colors.black,
+                  padding: 20.0,
+                  textSize: 30.0,
+                ),
+                SizedBox(height: 50.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    new InitialNameAvatar(
-                      '${_firstName[0]} ${_lastName[0]}',
-                      circleAvatar: true,
-                      borderColor: Colors.white,
-                      borderSize: 4.0,
-                      backgroundColor: Colors.deepOrange,
-                      foregroundColor: Colors.blue,
-                      padding: 20.0,
-                      textSize: 30.0,
-                    ),
                     SizedBox(width: 15.0),
                     Text(
                       '$_firstName $_lastName',
                         style: TextStyle(
                         fontSize: 30.0,
                         letterSpacing: 1.5,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -151,10 +159,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   height: 10.0,
                 ),
                 Text(
+                    'About You'
+                ),
+                Text(
                   _motivation,
                   style: TextStyle(
                     fontSize: 20.0,
-                    color: Colors.white70,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

@@ -110,7 +110,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: Text('Workout List'),
+        title: Text('Workout Plan'),
         automaticallyImplyLeading: false,
       ),
       body: Column(
@@ -126,11 +126,12 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
                     ),
                   );
                 } else {
-                  return ListView.builder(
+                  return ListView.separated(
                     itemCount: snapshot.data.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
                         title: Text(snapshot.data[index].workoutName),
+                        trailing: Icon(Icons.keyboard_arrow_right),
                         //value: snapshot.data[index].isChecked,
                         onTap: () {
                           /*setState(() {
@@ -148,6 +149,9 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
                               _currentProgress);
                         },
                       );
+                    },
+                    separatorBuilder: (BuildContext context, int index) {
+                      return Divider();
                     },
                   );
                 }
