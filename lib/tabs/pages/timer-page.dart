@@ -458,39 +458,47 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   //widget menu
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+    try {
+      return Scaffold(
         backgroundColor: Colors.white,
-        elevation: 0.0,
-        bottom: TabBar(
-          indicatorWeight: 2.0,
-          indicatorColor: Colors.lightBlueAccent,
-          tabs: <Widget>[
-            Text('Timer',
-                style: TextStyle(
-                    color: Colors.deepOrange, fontWeight: FontWeight.bold)),
-            Text('StopWatch',
-                style: TextStyle(
-                    color: Colors.deepOrange, fontWeight: FontWeight.bold)),
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 0.0,
+          bottom: TabBar(
+            indicatorWeight: 2.0,
+            indicatorColor: Colors.lightBlueAccent,
+            tabs: <Widget>[
+              Text('Timer',
+                  style: TextStyle(
+                      color: Colors.deepOrange, fontWeight: FontWeight.bold)),
+              Text('StopWatch',
+                  style: TextStyle(
+                      color: Colors.deepOrange, fontWeight: FontWeight.bold)),
+            ],
+            labelPadding: EdgeInsets.only(
+              bottom: 10.0,
+            ),
+            labelStyle: TextStyle(
+              fontSize: 18.0,
+            ),
+            unselectedLabelColor: Colors.grey[300],
+            controller: _tb,
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            _timer(),
+            _stopWatch(),
           ],
-          labelPadding: EdgeInsets.only(
-            bottom: 10.0,
-          ),
-          labelStyle: TextStyle(
-            fontSize: 18.0,
-          ),
-          unselectedLabelColor: Colors.grey[300],
           controller: _tb,
         ),
-      ),
-      body: TabBarView(
-        children: <Widget>[
-          _timer(),
-          _stopWatch(),
-        ],
-        controller: _tb,
-      ),
-    );
+      );
+    } catch (e) {
+      return Container(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
   }
 }

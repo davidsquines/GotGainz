@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fitness_app/pages/onboarding-builder.dart';
 import 'package:fitness_app/ui/alert-dialog.dart';
 import 'package:flutter/material.dart';
@@ -26,15 +28,11 @@ class _UserProfilePageState extends State<UserProfilePage> {
   @override
   void initState() {
     super.initState();
-    _init();
-    setData();
+    _initData();
   }
 
-  void _init() async {
+  void _initData() async {
     prefs = await SharedPreferences.getInstance();
-  }
-
-  void setData() async {
     SharedPreferencesHelper.getFirstName(prefs).then((firstName) {
       setState(() {
         this._firstName = firstName;
@@ -68,7 +66,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
     });
   }
 
-  Widget genderIcon() {
+  Widget _genderIcon() {
     if (_gender == 'Male') {
       return FaIcon(FontAwesomeIcons.mars);
     } else if (_gender == 'Female') {
@@ -78,7 +76,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
     }
   }
 
-  void alert(BuildContext context) {
+  void _alert(BuildContext context) {
     return ShowAlertDialog(
             cancelButtonToggle: true,
             mainButtonText: 'Continue',
@@ -99,6 +97,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    try {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -109,7 +108,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             actions: <Widget>[
               MaterialButton(
                 onPressed: () {
-                  alert(context);
+                  _alert(context);
                 },
                 child: Text('Erase All Data'),
                 textColor: Colors.white,
@@ -155,21 +154,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     SizedBox(
                       width: 10.0,
                     ),
-                    genderIcon(),
+                    _genderIcon(),
                   ],
                 ),
                 SizedBox(
                   height: 25.0,
                 ),
-                Text(
-                  'About You',
-                  style: TextStyle(
-                    fontSize: 20.0
-                  )
-                ),
-                SizedBox(
-                  height: 10.0
-                ),
+                Text('About You', style: TextStyle(fontSize: 20.0)),
+                SizedBox(height: 10.0),
                 Card(
                   margin: EdgeInsets.symmetric(
                     vertical: 5.0,
@@ -220,6 +212,12 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
         ),
       );
+    } catch (e) {
+      return Container(
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
     }
   }
-
+}
