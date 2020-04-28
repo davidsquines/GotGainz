@@ -17,7 +17,8 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
   String _lastName;
   String _gender;
   String _motivation;
-  String _height;
+  int _heightFeet;
+  int _heightInches;
   String _weight;
   String _experience;
   String _plan;
@@ -60,7 +61,8 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
     });
     SharedPreferencesHelper.getHeight(prefs).then((height) {
       setState(() {
-        this._height = height;
+        this._heightFeet = height ~/ 12.0;
+        this._heightInches = height % 12;
       });
     });
     SharedPreferencesHelper.getWeight(prefs).then((weight) {
@@ -173,7 +175,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
                             style: _textStyle(),
                           ),
                           Text(
-                            '• $_height',
+                            '• $_heightFeet feet $_heightInches inches',
                             style: _textStyle(),
                           ),
                           Text(
