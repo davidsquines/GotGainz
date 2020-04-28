@@ -109,21 +109,26 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
             ),
           );
         } else {
-          return ListView.builder(
+          return ListView.separated(
+            separatorBuilder: (BuildContext context, int index) {
+              return Divider();
+            },
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 title: Text(snapshot.data[index].workoutName),
+                trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          WorkoutDetailsPage(snapshot.data[index]),
-                    ),
-                  );
-                  _currentProgress++;
-                  SharedPreferencesHelper.setCurrentProgress(_currentProgress);
+                  setState(() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            WorkoutDetailsPage(snapshot.data[index],
+                        ),
+                      ),
+                    );
+                  });
                 },
               );
             },
