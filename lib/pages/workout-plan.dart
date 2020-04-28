@@ -20,12 +20,16 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
   SharedPreferences _prefs;
 
   String _apiLink = '';
+  String _mainLink =
+      'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master';
   int _planLength;
 
   int _currentProgress;
   int _userLevel;
   int _progressToLevelUp;
   String _motivation;
+
+  List<Workouts> workouts;
 
   @override
   void initState() {
@@ -63,37 +67,29 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
     await SharedPreferencesHelper.getUserLevel(_prefs).then((level) {
       if (_motivation == 'I want to gain strength') {
         if (level == 1) {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/strengthLevel1.json'; //level 1
+          _apiLink = '$_mainLink/strengthLevel1.json'; //level 1
         } else if (level == 2) {
           print(_userLevel);
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/strengthLevel2.json'; //level 2
+          _apiLink = '$_mainLink/strengthLevel2.json'; //level 2
         } else if (level >= 3) {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json'; //default
+          _apiLink = '$_mainLink/generated.json'; //default
         }
       } else if (_motivation == 'I want to lose weight') {
         if (level == 1) {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/weightLossLevel1.json'; //level 1
+          _apiLink = '$_mainLink/weightLossLevel1.json'; //level 1
         } else if (level == 2) {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/weightLossLevel2.json'; //level 2
+          _apiLink = '$_mainLink/weightLossLevel2.json'; //level 2
         } else if (level >= 3) {
-          _apiLink =
-              'https://raw.githubusercontent.com/tonynguyen98/Fake-JSON-Server/master/generated.json';
+          _apiLink = '$_mainLink/generated.json';
         } //default
       } else {
         print('ERROR'); //default list
       }
     });
 
-    sleep(Duration(microseconds: 30));
-
     var data = await http.get(_apiLink);
-    List<Workouts> workouts;
 
+    List<Workouts> workouts;
     workouts = (json.decode(data.body) as List)
         .map((i) => Workouts.fromJson(i))
         .toList();
@@ -118,11 +114,7 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 title: Text(snapshot.data[index].workoutName),
-                //value: snapshot.data[index].isChecked,
                 onTap: () {
-                  /*setState(() {
-                            snapshot.data[index].isChecked = ;
-                          });*/
                   Navigator.push(
                     context,
                     MaterialPageRoute(

@@ -2,26 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-/*
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Time',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: TimerPage(),
-    );
-  }
-}
-*/
-
 class TimerPage extends StatefulWidget {
   @override
   _TimerPageState createState() => _TimerPageState();

@@ -65,7 +65,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         this._strengthLevel = strengthLevel;
       });
     });
-    SharedPreferencesHelper.getCalorieLevel(_prefs).then((weightLossLevel) {
+    SharedPreferencesHelper.getWeightLossLevel(_prefs).then((weightLossLevel) {
       setState(() {
         this._weightLossLevel = weightLossLevel;
       });
@@ -108,7 +108,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
       SharedPreferencesHelper.setStrengthLevel(_strengthLevel);
     } else if (widget.exercise.strength == 0) {
       _weightLossLevel++;
-      SharedPreferencesHelper.setCalorieLevel(_weightLossLevel);
+      SharedPreferencesHelper.setWeightLossLevel(_weightLossLevel);
     } else {
       print('ERROR');
     }

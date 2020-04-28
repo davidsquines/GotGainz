@@ -95,10 +95,10 @@ class SharedPreferencesHelper {
     return prefs.setInt(_userHeight, height);
   }
 
-  static Future<String> getHeight(SharedPreferences prefs) async {
+  static Future<int> getHeight(SharedPreferences prefs) async {
     prefs = await SharedPreferences.getInstance();
     int _height = prefs.getInt(_userHeight);
-    return _height.toString() + ' inches tall';
+    return _height;
   }
 
   static Future<bool> setWeight(int weight) async {
@@ -232,12 +232,12 @@ class SharedPreferencesHelper {
     return _strength;
   }
 
-  static Future<bool> setCalorieLevel(int calorie) async {
+  static Future<bool> setWeightLossLevel(int calorie) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.setInt(_weightLossLevel, calorie);
   }
 
-  static Future<int> getCalorieLevel(SharedPreferences prefs) async {
+  static Future<int> getWeightLossLevel(SharedPreferences prefs) async {
     prefs = await SharedPreferences.getInstance();
     int _calorie = prefs.getInt(_weightLossLevel);
     return _calorie;

@@ -19,7 +19,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
   String _lastName;
   String _gender;
   String _motivation;
-  String _height;
+  int _heightFeet;
+  int _heightInches;
   String _weight;
 
   @override
@@ -56,7 +57,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
     });
     SharedPreferencesHelper.getHeight(prefs).then((height) {
       setState(() {
-        _height = height;
+        this._heightFeet = height ~/ 12.0;
+        this._heightInches = height % 12;
       });
     });
     SharedPreferencesHelper.getWeight(prefs).then((weight) {
@@ -101,7 +103,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
+            backgroundColor: Colors.transparent,
             elevation: 0.0,
             actions: <Widget>[
               MaterialButton(
@@ -125,7 +129,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new InitialNameAvatar(
+                InitialNameAvatar(
                   '${_firstName[0]} ${_lastName[0]}',
                   circleAvatar: true,
                   borderColor: Colors.orange,
@@ -158,9 +162,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 SizedBox(
                   height: 10.0,
                 ),
-                Text(
-                    'About You'
-                ),
+                Text('About You'),
                 Text(
                   _motivation,
                   style: TextStyle(
@@ -183,7 +185,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   ),
                   child: ListTile(
                     title: Text(
-                      _height,
+                      '$_heightFeet feet $_heightInches inches',
                       style: TextStyle(
                         fontSize: 17.0,
                         color: Colors.black,
