@@ -24,7 +24,7 @@ class MultiColorText extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            '\n$textOne',
+            '$textOne',
             style: TextStyle(
               color: colorOne,
               fontSize: fontSize,
@@ -35,7 +35,7 @@ class MultiColorText extends StatelessWidget {
             width: 3.0,
           ),
           Text(
-            '\n$textTwo',
+            '$textTwo',
             style: TextStyle(color: colorTwo, fontSize: fontSize),
             //textAlign: TextAlign.start,
           ),

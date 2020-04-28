@@ -145,7 +145,6 @@ class _ProgressPageState extends State<ProgressPage> {
 
   @override
   Widget build(BuildContext context) {
-    try {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -154,13 +153,18 @@ class _ProgressPageState extends State<ProgressPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                Container(
+                  child: Image(
+                    image: AssetImage('assets/progresspage.png'),
+                    width: 300.0,
+                    height: 300.0,
+                  ),
+                ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
+                  child: ListWheelScrollView(
+                    itemExtent: 50.0,
+                      diameterRatio: 1.8,
                       children: <Widget>[
-                        Image(
-                          image: AssetImage('assets/progresspage.png'),
-                        ),
                         MultiColorText(
                           textOne: 'Workout Goal:',
                           textTwo: '$_motivation ',
@@ -189,43 +193,65 @@ class _ProgressPageState extends State<ProgressPage> {
                           colorTwo: Colors.blue,
                           fontSize: 16.0,
                         ),
-                        Text(
-                            '\nWeeks Left Until Level Up: ${2 - _progressToLevelUp} ',
-                            style:
-                                TextStyle(color: Colors.blue, fontSize: 16.0)),
-                        Text('\nChest Level: $_chestLevel ',
-                            style:
-                                TextStyle(color: Colors.blue, fontSize: 15.0)),
-                        Text('\nBack Level: $_backLevel ',
-                            style:
-                                TextStyle(color: Colors.blue, fontSize: 15.0)),
-                        Text('\nArms Level: $_armsLevel ',
-                            style:
-                                TextStyle(color: Colors.blue, fontSize: 15.0)),
-                        Text('\nShoulders  Level: $_shouldersLevel ',
-                            style:
-                                TextStyle(color: Colors.blue, fontSize: 15.0)),
-                        Text('\nLegs Level: $_legsLevel ',
-                            style:
-                                TextStyle(color: Colors.blue, fontSize: 15.0)),
-                        Text('\nStrength Level: $_strengthLevel ',
-                            style:
-                                TextStyle(color: Colors.blue, fontSize: 15.0)),
-                        Text(
-                          '\nWeight-Loss Level: $_weightLossLevel',
-                          style: TextStyle(color: Colors.blue, fontSize: 15.0),
+                        MultiColorText(
+                          textOne: 'Chest Level:',
+                          textTwo: '$_chestLevel',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
+                        ),
+                        MultiColorText(
+                          textOne: 'Back Level:',
+                          textTwo: '$_backLevel',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
+                        ),
+                        MultiColorText(
+                          textOne: 'Arms Level:',
+                          textTwo: '$_armsLevel',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
+                        ),
+                        MultiColorText(
+                          textOne: 'Shoulder Level:',
+                          textTwo: '$_shouldersLevel',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
+                        ),
+                        MultiColorText(
+                          textOne: 'Legs Level:',
+                          textTwo: '$_legsLevel',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
+                        ),
+                        MultiColorText(
+                          textOne: 'Strength Level:',
+                          textTwo: '$_strengthLevel',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
+                        ),
+                        MultiColorText(
+                          textOne: 'Weight-Loss Level:',
+                          textTwo: '$_weightLossLevel',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
                         ),
                       ],
                     ),
                   ),
-                ),
                 MaterialButton(
                   minWidth: double.infinity,
-                  height: 50.0,
+                  height: 40.0,
                   child: Text(
                     "View Progress",
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: 16.0,
                     ),
                   ),
                   onPressed: () {
@@ -245,21 +271,11 @@ class _ProgressPageState extends State<ProgressPage> {
                   color: Colors.lightBlue,
                   textColor: Colors.white,
                 ),
-              ],
+              ]
             ),
           ),
         ),
       );
-    } catch (e) {
-      if (e != null) {
-        return Container(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
-      } else {
-        return null;
-      }
     }
-  }
 }
+

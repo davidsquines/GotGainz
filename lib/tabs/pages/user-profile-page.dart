@@ -99,7 +99,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    try {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
@@ -136,7 +135,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   borderSize: 10.0,
                   backgroundColor: Colors.orange,
                   foregroundColor: Colors.black,
-                  padding: 20.0,
+                  padding: 10.0,
                   textSize: 30.0,
                 ),
                 SizedBox(height: 50.0),
@@ -160,22 +159,30 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   ],
                 ),
                 SizedBox(
-                  height: 10.0,
+                  height: 25.0,
                 ),
-                Text('About You'),
                 Text(
-                  _motivation,
+                  'About You',
                   style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                  ),
+                    fontSize: 20.0
+                  )
                 ),
                 SizedBox(
-                  height: 20.0,
-                  width: 150.0,
-                  child: Divider(
-                    color: Colors.teal[900],
+                  height: 10.0
+                ),
+                Card(
+                  margin: EdgeInsets.symmetric(
+                    vertical: 5.0,
+                    horizontal: 100.0,
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      _motivation,
+                      style: TextStyle(
+                        fontSize: 17.0,
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
                 ),
                 Card(
@@ -213,16 +220,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
           ),
         ),
       );
-    } catch (e) {
-      if (e != null) {
-        return Container(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
-      } else {
-        return null;
-      }
     }
   }
-}
+
