@@ -145,106 +145,103 @@ class _ProgressPageState extends State<ProgressPage> {
 
   @override
   Widget build(BuildContext context) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          backgroundColor: Colors.white,
-          body: SafeArea(
-            child: Column(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  child: Image(
-                    image: AssetImage('assets/progresspage.png'),
-                    width: 300.0,
-                    height: 300.0,
-                  ),
+                SizedBox(height: 40.0),
+                Image(
+                  image: AssetImage('assets/progresspage.png'),
                 ),
-                Expanded(
+                Flexible(
                   child: ListWheelScrollView(
                     itemExtent: 50.0,
-                      diameterRatio: 1.8,
-                      children: <Widget>[
-                        MultiColorText(
-                          textOne: 'Workout Goal:',
-                          textTwo: '$_motivation ',
-                          colorOne: Colors.black,
-                          colorTwo: Colors.black,
-                          fontSize: 18.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Current Level:',
-                          textTwo: '$_level',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Current Week Progress:',
-                          textTwo: '$_currentProgress',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Weeks Left Until Level Up:',
-                          textTwo: '${2 - _progressToLevelUp}',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Chest Level:',
-                          textTwo: '$_chestLevel',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Back Level:',
-                          textTwo: '$_backLevel',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Arms Level:',
-                          textTwo: '$_armsLevel',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Shoulder Level:',
-                          textTwo: '$_shouldersLevel',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Legs Level:',
-                          textTwo: '$_legsLevel',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Strength Level:',
-                          textTwo: '$_strengthLevel',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                        MultiColorText(
-                          textOne: 'Weight-Loss Level:',
-                          textTwo: '$_weightLossLevel',
-                          colorOne: Colors.orange,
-                          colorTwo: Colors.blue,
-                          fontSize: 16.0,
-                        ),
-                      ],
-                    ),
+                    diameterRatio: 1.8,
+                    children: <Widget>[
+                      MultiColorText(
+                        textOne: 'Workout Goal:',
+                        textTwo: '$_motivation ',
+                        colorOne: Colors.black,
+                        colorTwo: Colors.black,
+                        fontSize: 18.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Current Level:',
+                        textTwo: '$_level',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Current Week Progress:',
+                        textTwo: '$_currentProgress',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Weeks Left Until Level Up:',
+                        textTwo: '${2 - _progressToLevelUp}',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Chest Level:',
+                        textTwo: '$_chestLevel',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Back Level:',
+                        textTwo: '$_backLevel',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Arms Level:',
+                        textTwo: '$_armsLevel',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Shoulder Level:',
+                        textTwo: '$_shouldersLevel',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Legs Level:',
+                        textTwo: '$_legsLevel',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Strength Level:',
+                        textTwo: '$_strengthLevel',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                      MultiColorText(
+                        textOne: 'Weight-Loss Level:',
+                        textTwo: '$_weightLossLevel',
+                        colorOne: Colors.orange,
+                        colorTwo: Colors.blue,
+                        fontSize: 16.0,
+                      ),
+                    ],
                   ),
+                ),
                 MaterialButton(
                   minWidth: double.infinity,
                   height: 40.0,
@@ -271,11 +268,9 @@ class _ProgressPageState extends State<ProgressPage> {
                   color: Colors.lightBlue,
                   textColor: Colors.white,
                 ),
-              ]
-            ),
-          ),
+              ]),
         ),
-      );
-    }
+      ),
+    );
+  }
 }
-
