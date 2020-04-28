@@ -95,7 +95,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
       SharedPreferencesHelper.setShouldersLevel(beginner);
       SharedPreferencesHelper.setLegsLevel(beginner);
       SharedPreferencesHelper.setStrengthLevel(beginner);
-      SharedPreferencesHelper.setCalorieLevel(beginner);
+      SharedPreferencesHelper.setWeightLossLevel(beginner);
     } else if (_experience == 'I have some gym experience') {
       SharedPreferencesHelper.setChestLevel(normal);
       SharedPreferencesHelper.setBackLevel(normal);
@@ -103,7 +103,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
       SharedPreferencesHelper.setShouldersLevel(normal);
       SharedPreferencesHelper.setLegsLevel(normal);
       SharedPreferencesHelper.setStrengthLevel(normal);
-      SharedPreferencesHelper.setCalorieLevel(normal);
+      SharedPreferencesHelper.setWeightLossLevel(normal);
     } else if (_experience == 'I have gym experience') {
       SharedPreferencesHelper.setChestLevel(pro);
       SharedPreferencesHelper.setBackLevel(pro);
@@ -111,7 +111,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
       SharedPreferencesHelper.setShouldersLevel(pro);
       SharedPreferencesHelper.setLegsLevel(pro);
       SharedPreferencesHelper.setStrengthLevel(pro);
-      SharedPreferencesHelper.setCalorieLevel(pro);
+      SharedPreferencesHelper.setWeightLossLevel(pro);
     } else {
       SharedPreferencesHelper.setChestLevel(error);
       SharedPreferencesHelper.setBackLevel(error);
@@ -119,7 +119,7 @@ class _WorkoutPlanOutputState extends State<WorkoutPlanOutput> {
       SharedPreferencesHelper.setShouldersLevel(error);
       SharedPreferencesHelper.setLegsLevel(error);
       SharedPreferencesHelper.setStrengthLevel(error);
-      SharedPreferencesHelper.setCalorieLevel(error);
+      SharedPreferencesHelper.setWeightLossLevel(error);
     }
   }
 

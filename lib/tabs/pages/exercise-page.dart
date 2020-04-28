@@ -10,6 +10,28 @@ class ExercisePage extends StatefulWidget {
 }
 
 class _ExercisePageState extends State<ExercisePage> {
+  Text _mainText({String text}) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: Colors.black,
+        fontSize: 60.0,
+      ),
+    );
+  }
+
+  Text _subText({String text}) {
+    return Text(
+      text,
+      style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.orange,
+          fontStyle: FontStyle.italic,
+          fontSize: 30.0),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -19,50 +41,15 @@ class _ExercisePageState extends State<ExercisePage> {
             child: SafeArea(
               child: Column(
                 children: <Widget>[
-                  Text(
-                    'Stay',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 60.0),
-                  ),
-                  Text(
-                    'Positive,',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.orange,
-                        fontStyle: FontStyle.italic,
-                        fontSize: 30.0),
-                  ),
-                  Text(
-                    'Work',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 60.0),
-                  ),
-                  Text(
-                    'Hard,',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.orange,
-                        fontStyle: FontStyle.italic,
-                        fontSize: 30.0),
-                  ),
-                  Text(
-                    'Make It',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 60.0),
-                  ),
-                  Text(
-                    'Happen.',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.orange,
-                        fontStyle: FontStyle.italic,
-                        fontSize: 30.0),
+                  Column(
+                    children: <Widget>[
+                      _mainText(text: 'Stay'),
+                      _subText(text: 'Positive,'),
+                      _mainText(text: 'Work'),
+                      _subText(text: 'Hard,'),
+                      _mainText(text: 'Make It'),
+                      _subText(text: 'Happen.'),
+                    ],
                   ),
                   SizedBox(height: 105.0),
                   ChoiceButton(

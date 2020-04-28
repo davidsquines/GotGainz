@@ -1,3 +1,5 @@
+import 'package:fitness_app/ui/alert-dialog.dart';
+import 'package:fitness_app/ui/multi-color-text.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
@@ -22,20 +24,18 @@ class _ProgressPageState extends State<ProgressPage> {
   int _shouldersLevel;
   int _legsLevel;
   int _strengthLevel;
-  int _calorieLevel;
+  int _weightLossLevel;
+
+  String _alertContent = '';
 
   @override
   void initState() {
     super.initState();
-    _init();
-    setData();
+    _initData();
   }
 
-  void _init() async {
+  void _initData() async {
     prefs = await SharedPreferences.getInstance();
-  }
-
-  void setData() async {
     SharedPreferencesHelper.getMotivation(prefs).then((motivation) {
       setState(() {
         _motivation = motivation;
@@ -87,153 +87,60 @@ class _ProgressPageState extends State<ProgressPage> {
         this._strengthLevel = strengthLevel;
       });
     });
-    SharedPreferencesHelper.getCalorieLevel(prefs).then((calorieLevel) {
+    SharedPreferencesHelper.getWeightLossLevel(prefs).then((calorieLevel) {
       setState(() {
-        this._calorieLevel = calorieLevel;
+        this._weightLossLevel = calorieLevel;
       });
     });
   }
 
-  void showAlertDialog(BuildContext context) {
-    Widget closeButton = FlatButton(
-      child: Text('Close'),
-      onPressed: () {
+  void _feedback() {
+    if (_motivation == 'I want to gain strength') {
+      if (_chestLevel % 5 == 0) {
+        _alertContent = 'chest';
+        _alert(context);
+      }
+      if (_backLevel % 5 == 0) {
+        _alertContent = 'back';
+        _alert(context);
+      }
+      if (_armsLevel % 5 == 0) {
+        _alertContent = 'arms';
+        _alert(context);
+      }
+      if (_shouldersLevel % 5 == 0) {
+        _alertContent = 'shoulder';
+        _alert(context);
+      }
+      if (_legsLevel % 5 == 0) {
+        _alertContent = 'legs';
+        _alert(context);
+      }
+      if (_strengthLevel % 5 == 0) {
+        _alertContent = 'overall';
+        _alert(context);
+      }
+    } else {
+      _alert(context);
+    }
+  }
+
+  void _alert(BuildContext context) {
+    String _comment;
+    if (_motivation == 'I want to gain strength') {
+      _comment = 'You have progressed your $_alertContent strength!';
+    } else if (_motivation == 'I want to lose weight') {
+      _comment = 'You\'re losing weight. Keep up the good work';
+    }
+    return ShowAlertDialog(
+      cancelButtonToggle: false,
+      mainButtonText: 'Close',
+      mainButtonOnPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
       },
-    );
-//    Widget continueButton = FlatButton(
-//      child: Text('Continue'),
-//      onPressed: () {
-//        Navigator.of(context, rootNavigator: true).pop();
-//        Navigator.pop(context);
-//      },
-//    );
-    if (_chestLevel % 2 == 0) {
-      AlertDialog alert = AlertDialog(
-        title: Text('Congratulations'),
-        content: Text('You have completed this chest workout!'),
-        actions: [
-          closeButton,
-          // continueButton,
-        ],
-      );
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    }
-
-    if (_backLevel % 2 == 0) {
-      AlertDialog alert = AlertDialog(
-        title: Text('Congratulations'),
-        content: Text('You have completed this back workout!'),
-        actions: [
-          closeButton,
-          // continueButton,
-        ],
-      );
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    }
-
-    if (_armsLevel % 2 == 0) {
-      AlertDialog alert = AlertDialog(
-        title: Text('Congratulations'),
-        content: Text('You have completed this arm workout!'),
-        actions: [
-          closeButton,
-          // continueButton,
-        ],
-      );
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    }
-
-    if (_shouldersLevel % 2 == 0) {
-      AlertDialog alert = AlertDialog(
-        title: Text('Congratulations'),
-        content: Text('You have completed this shoulder workout!'),
-        actions: [
-          closeButton,
-          // continueButton,
-        ],
-      );
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    }
-
-    if (_legsLevel % 2 == 0) {
-      AlertDialog alert = AlertDialog(
-        title: Text('Congratulations'),
-        content: Text('You have completed this leg workout!'),
-        actions: [
-          closeButton,
-          // continueButton,
-        ],
-      );
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    }
-
-    if (_strengthLevel % 2 == 0) {
-      AlertDialog alert = AlertDialog(
-        title: Text('Nicely Done!'),
-        content: Text("You're getting stronger!"),
-        actions: [
-          closeButton,
-          // continueButton,
-        ],
-      );
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    }
-
-    if (_calorieLevel % 2 == 0) {
-      AlertDialog alert = AlertDialog(
-        title: Text('Nice Job!'),
-        content: Text("You're losing weight\n"
-            "Keep up the good work"),
-        actions: [
-          closeButton,
-          // continueButton,
-        ],
-      );
-
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        },
-      );
-    }
+      alertTitle: 'Congratulations',
+      alertContent: _comment,
+    ).showAlertDialog(context);
   }
 
   @override
@@ -244,67 +151,101 @@ class _ProgressPageState extends State<ProgressPage> {
         home: Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    Image(
-                      image: AssetImage('assets/progresspage.png'),
-                    ),
-                    Text('Workout Goal: $_motivation',
-                        style: TextStyle(color: Colors.black, fontSize: 18.0)),
-                    Text('\nCurrent Level: $_level ',
-                        style: TextStyle(color: Colors.blue, fontSize: 16.0)),
-                    Text('\nCurrent Week Progress: $_currentProgress ',
-                        style: TextStyle(color: Colors.blue, fontSize: 16.0)),
-                    Text(
-                        '\nWeeks Left Until Level Up: ${2 - _progressToLevelUp} ',
-                        style: TextStyle(color: Colors.blue, fontSize: 16.0)),
-                    Text('\nChest Level: $_chestLevel ',
-                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
-                    Text('\nBack Level: $_backLevel ',
-                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
-                    Text('\nArms Level: $_armsLevel ',
-                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
-                    Text('\nShoulders  Level: $_shouldersLevel ',
-                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
-                    Text('\nLegs Level: $_legsLevel ',
-                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
-                    Text('\nStrength Level: $_strengthLevel ',
-                        style: TextStyle(color: Colors.blue, fontSize: 15.0)),
-                    Text(
-                      '\nWeight-Loss Level: $_calorieLevel',
-                      style: TextStyle(color: Colors.blue, fontSize: 15.0),
-                    ),
-
-                    MaterialButton(
-                      minWidth: double.infinity,
-                      height: 50.0,
-                      onPressed: () {
-                        if (_armsLevel % 2 == 0 ||
-                            _chestLevel % 2 == 0 ||
-                            _backLevel % 2 == 0 ||
-                            _shouldersLevel % 2 == 0 ||
-                            _legsLevel % 2 == 0 ||
-                            _strengthLevel % 2 == 0 ||
-                            _calorieLevel % 2 == 0) {
-                          showAlertDialog(context);
-                          //  displayResults();
-                        } else {
-                          return null;
-                        }
-                      },
-                      child: Text(
-                        "View Progress",
-                        style: TextStyle(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        Image(
+                          image: AssetImage('assets/progresspage.png'),
+                        ),
+                        MultiColorText(
+                          textOne: 'Workout Goal:',
+                          textTwo: '$_motivation ',
+                          colorOne: Colors.black,
+                          colorTwo: Colors.black,
                           fontSize: 18.0,
                         ),
-                      ),
+                        MultiColorText(
+                          textOne: 'Current Level:',
+                          textTwo: '$_level',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
+                        ),
+                        MultiColorText(
+                          textOne: 'Current Week Progress:',
+                          textTwo: '$_currentProgress',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
+                        ),
+                        MultiColorText(
+                          textOne: 'Weeks Left Until Level Up:',
+                          textTwo: '${2 - _progressToLevelUp}',
+                          colorOne: Colors.orange,
+                          colorTwo: Colors.blue,
+                          fontSize: 16.0,
+                        ),
+                        Text(
+                            '\nWeeks Left Until Level Up: ${2 - _progressToLevelUp} ',
+                            style:
+                                TextStyle(color: Colors.blue, fontSize: 16.0)),
+                        Text('\nChest Level: $_chestLevel ',
+                            style:
+                                TextStyle(color: Colors.blue, fontSize: 15.0)),
+                        Text('\nBack Level: $_backLevel ',
+                            style:
+                                TextStyle(color: Colors.blue, fontSize: 15.0)),
+                        Text('\nArms Level: $_armsLevel ',
+                            style:
+                                TextStyle(color: Colors.blue, fontSize: 15.0)),
+                        Text('\nShoulders  Level: $_shouldersLevel ',
+                            style:
+                                TextStyle(color: Colors.blue, fontSize: 15.0)),
+                        Text('\nLegs Level: $_legsLevel ',
+                            style:
+                                TextStyle(color: Colors.blue, fontSize: 15.0)),
+                        Text('\nStrength Level: $_strengthLevel ',
+                            style:
+                                TextStyle(color: Colors.blue, fontSize: 15.0)),
+                        Text(
+                          '\nWeight-Loss Level: $_weightLossLevel',
+                          style: TextStyle(color: Colors.blue, fontSize: 15.0),
+                        ),
+                      ],
                     ),
-                    // ),
-                  ],
+                  ),
                 ),
-              ),
+                MaterialButton(
+                  minWidth: double.infinity,
+                  height: 50.0,
+                  child: Text(
+                    "View Progress",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    if (_armsLevel >= 2 ||
+                        _chestLevel >= 2 ||
+                        _backLevel >= 2 ||
+                        _shouldersLevel >= 2 ||
+                        _legsLevel >= 2 ||
+                        _strengthLevel >= 2 ||
+                        _weightLossLevel >= 2) {
+                      _feedback();
+                      //  displayResults();
+                    } else {
+                      return null;
+                    }
+                  },
+                  color: Colors.lightBlue,
+                  textColor: Colors.white,
+                ),
+              ],
             ),
           ),
         ),

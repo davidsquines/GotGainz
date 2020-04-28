@@ -83,7 +83,7 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                 ? Icons.check_box
                 : Icons.check_box_outline_blank,
           ),
-          onLongPress: () {
+          onTap: () {
             _currentProgress++;
             setState(
               () {
@@ -109,12 +109,12 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
               },
             );
           },
-          onTap: () {
+          /*onTap: () {
             _currentProgress++;
             setState(() {
               widget.workout.exerciseInfo.elementAt(index).isChecked = true;
             });
-          },
+          },*/
         );
       },
     );

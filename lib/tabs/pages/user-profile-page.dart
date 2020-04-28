@@ -125,7 +125,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                new InitialNameAvatar(
+                InitialNameAvatar(
                   '${_firstName[0]} ${_lastName[0]}',
                   circleAvatar: true,
                   borderColor: Colors.orange,
@@ -158,9 +158,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 SizedBox(
                   height: 10.0,
                 ),
-                Text(
-                    'About You'
-                ),
+                Text('About You'),
                 Text(
                   _motivation,
                   style: TextStyle(
