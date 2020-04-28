@@ -119,9 +119,15 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
+        SizedBox(
+          height: 12.0,
+        ),
         Text(
           _text,
-          style: TextStyle(fontSize: 16.0),
+          style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold
+          ),
         ),
         Image.network(
           _location,
@@ -164,27 +170,34 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+                  SizedBox(
+                    height: 45.0,
+                  ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: Text(
                       'Instructions:',
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                  ),
-                  Flexible(
-                    child: Scrollbar(
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            widget.exercise.description,
-                            style: TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                        ),
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                       ),
                     ),
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    color: Colors.orangeAccent[400],
+                    elevation: 10,
+                    child: Padding(
+                      padding: const EdgeInsets.all(25.0),
+                    child: Text(
+                        widget.exercise.description,
+                        style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ),
                   ),
                 ],
               ),
