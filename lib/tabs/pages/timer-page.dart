@@ -8,193 +8,172 @@ class TimerPage extends StatefulWidget {
 }
 
 class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
-  TabController tb;
-  int hour = 0;
-  int minute = 0;
-  int second = 0;
-  bool started = true;
-  bool stopped = true;
-  int timeForTimer = 0;
-  String timeToDisplay = '0';
-  bool checkTimer = true;
+  TabController _tb;
+  int _hour = 0;
+  int _minute = 0;
+  int _second = 0;
+  bool _started = true;
+  bool _stopped = true;
+  int _timeForTimer = 0;
+  String _timeToDisplay = '0';
+  bool _checkTimer = true;
 
-  bool reset = true;
-
-  int hours = 0;
-  int minutes = 0;
-  int seconds = 0;
-  bool startedSW = true;
-  bool stoppedSW = true;
-  int timeForTimerSW = 0;
-  String timeToDisplaySW = '0';
-  bool checkTimerSW = true;
-
-  bool resetSW = true;
+  int _hours = 0;
+  int _minutes = 0;
+  int _seconds = 0;
+  bool _startedSW = true;
+  bool _stoppedSW = true;
+  int _timeForTimerSW = 0;
+  String _timeToDisplaySW = '0';
+  bool _checkTimerSW = true;
 
   @override
   void initState() {
-    tb = TabController(
+    _tb = TabController(
       length: 2,
       vsync: this,
     );
     super.initState();
   }
 
-  void start() {
-    setState(() {
-      started = false;
-      stopped = false;
-      reset = false;
-    });
+  void _start() {
+    setState(
+      () {
+        _started = false;
+        _stopped = false;
+      },
+    );
 
-    //   if(resetter==false){
-    timeForTimer = ((hour * 3600) + (minute * 60) + second);
-//    }
+    _timeForTimer = ((_hour * 3600) + (_minute * 60) + _second);
 
-//    else{
-//      timeForTimer = 0;
-//    }
-    // debugPrint(timeForTimer.toString());
     Timer.periodic(
-        Duration(
-          seconds: 1,
-        ), (Timer t) {
-      setState(() {
-        if (timeForTimer < 1 || checkTimer == false) {
-          t.cancel();
-          checkTimer = true;
+      Duration(
+        seconds: 1,
+      ),
+      (Timer t) {
+        setState(
+          () {
+            if (_timeForTimer < 1 || _checkTimer == false) {
+              t.cancel();
+              _checkTimer = true;
 
-          /// resets time limit
-          timeToDisplay = '0';
+              /// resets time limit
+              _timeToDisplay = '0';
 
-          ///end on 0
+              ///reset buttons
+              _started = true;
 
-//          if(timeForTimer == 0){
-//           // debugPrint('stopped by default');
-//          }
-//          checkTimer = true;
+              /// problem, timer sets default for SW
+              _stopped = true;
 
-          ///reset buttons
-          started = true;
+              /// default should be 0 fo SW
 
-          /// problem, timer sets default for SW
-          stopped = true;
-
-          /// default should be 0 fo SW
-
-          /// add pause/reset function
-//          Navigator.pushReplacement(context, MaterialPageRoute(
-//            builder: (context) => TimerPage(),
-//          ));
-          //timeToDisplay = timeForTimer.toString();
-          // timeToDisplay = '';
-        } else if (timeForTimer < 60) {
-          timeToDisplay = timeForTimer.toString();
-          timeForTimer -= 1;
-        } else if (timeForTimer < 3600) {
-          int min = timeForTimer ~/ 60;
-          int sec = timeForTimer - (60 * min);
-          timeToDisplay = min.toString() + ':' + sec.toString();
-          timeForTimer -= 1;
-        } else {
-          int h = timeForTimer ~/ 3600;
-          int t = timeForTimer - (3600 * h);
-          int min = t ~/ 60;
-          int sec = t - (60 * min);
-          timeToDisplay =
-              h.toString() + ':' + min.toString() + ':' + sec.toString();
-          timeForTimer -= 1;
-        }
-
-//      else{
-//          timeForTimer -= 1;
-//        }
-//        timeToDisplay = timeForTimer.toString();
-      });
-    });
+              /// add pause/reset function
+            } else if (_timeForTimer < 10) {
+              _timeToDisplay = _timeForTimer.toString().padLeft(2, '0');
+              _timeForTimer -= 1;
+            } else if (_timeForTimer < 60) {
+              _timeToDisplay = _timeForTimer.toString();
+              _timeForTimer -= 1;
+            } else if (_timeForTimer < 3600) {
+              int min = _timeForTimer ~/ 60;
+              int sec = _timeForTimer - (60 * min);
+              _timeToDisplay =
+                  min.toString() + ':' + sec.toString().padLeft(2, '0');
+              _timeForTimer -= 1;
+            } else {
+              int h = _timeForTimer ~/ 3600;
+              int t = _timeForTimer - (3600 * h);
+              int min = t ~/ 60;
+              int sec = t - (60 * min);
+              _timeToDisplay = h.toString() +
+                  ':' +
+                  min.toString() +
+                  ':' +
+                  sec.toString().padLeft(2, '0');
+              _timeForTimer -= 1;
+            }
+          },
+        );
+      },
+    );
   }
 
-  void stop() {
-    setState(() {
-      started = true;
-      stopped = true;
-      reset = true;
-      checkTimer = false;
-    });
+  void _stop() {
+    setState(
+      () {
+        _started = true;
+        _stopped = true;
+        _checkTimer = false;
+      },
+    );
   }
-
-//  void reset(){
-//    started = true;
-//    stopped = true;
-//    resetter = true;
-//    checkTimer = false;
-//  }
 
   /// add pause function ///////////////////////////////////////////////////////
+  void _startSW() {
+    setState(
+      () {
+        _startedSW = false;
+        _stoppedSW = false;
 
-  void startSW() {
-    setState(() {
-      startedSW = false;
-      stoppedSW = false;
-
-      ///reset to 0
-      timeForTimerSW = ((hours * 3600) + (minutes * 60) + seconds);
-      Timer.periodic(
+        ///reset to 0
+        _timeForTimerSW = ((_hours * 3600) + (_minutes * 60) + _seconds);
+        Timer.periodic(
           Duration(
             seconds: 1,
-          ), (Timer sw) {
-        setState(() {
-          if (checkTimerSW == false) {
-            sw.cancel();
-            checkTimerSW = true;
+          ),
+          (Timer sw) {
+            setState(
+              () {
+                if (_checkTimerSW == false) {
+                  sw.cancel();
+                  _checkTimerSW = true;
 
-            /// stay at current point when stopped
-            timeToDisplaySW = '0';
-
-//            Navigator.pushReplacement(context, MaterialPageRoute(
-//              builder: (context) => TimerPage(),
-//            ));
-            //timeToDisplay = timeForTimer.toString();
-            //timeToDisplay = '';
-          }
-
-          ///adjust time formatting
-          else if (timeForTimerSW > 60) {
-            timeToDisplaySW = timeForTimerSW.toString();
-            timeForTimerSW += 1;
-          } else if (timeForTimerSW > 3600) {
-            int min = timeForTimerSW ~/ 60;
-            int sec = timeForTimer - (60 * min);
-            timeToDisplaySW = min.toString() + ':' + sec.toString();
-            timeForTimerSW += 1;
-          } else {
-            int h = timeForTimerSW ~/ 3600;
-            int t = timeForTimerSW - (3600 * h);
-            int min = t ~/ 60;
-            int sec = t - (60 * min);
-            timeToDisplaySW =
-                h.toString() + ':' + min.toString() + ':' + sec.toString();
-            timeForTimerSW += 1;
-          }
-
-//      else{
-//          timeForTimer -= 1;
-//        }
-//        timeToDisplay = timeForTimer.toString();
-        });
-      });
-    });
+                  /// stay at current point when stopped
+                  _timeToDisplaySW = '0';
+                } else if (_timeForTimerSW > 0 && _timeForTimerSW < 10) {
+                  _timeToDisplaySW = _timeForTimerSW.toString().padLeft(2, '0');
+                  _timeForTimerSW += 1;
+                } else if (_timeForTimerSW < 60) {
+                  _timeToDisplaySW = _timeForTimerSW.toString();
+                  _timeForTimerSW += 1;
+                } else if (_timeForTimerSW >= 60 && _timeForTimerSW <= 3600) {
+                  int min = _timeForTimerSW ~/ 60;
+                  int sec = _timeForTimerSW - (60 * min);
+                  _timeToDisplaySW =
+                      min.toString() + ':' + sec.toString().padLeft(2, '0');
+                  _timeForTimerSW += 1;
+                } else {
+                  int h = _timeForTimerSW ~/ 3600;
+                  int t = _timeForTimerSW - (3600 * h);
+                  int min = t ~/ 60;
+                  int sec = t - (60 * min);
+                  _timeToDisplaySW = h.toString() +
+                      ':' +
+                      min.toString() +
+                      ':' +
+                      sec.toString().padLeft(2, '0');
+                  _timeForTimerSW += 1;
+                }
+              },
+            );
+          },
+        );
+      },
+    );
   }
 
-  void stopSW() {
-    setState(() {
-      startedSW = true;
-      stoppedSW = true;
-      checkTimerSW = false;
-    });
+  void _stopSW() {
+    setState(
+      () {
+        _startedSW = true;
+        _stoppedSW = true;
+        _checkTimerSW = false;
+      },
+    );
   }
 
-  Widget timer() {
+  Widget _timer() {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -220,13 +199,13 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                       ),
                     ),
                     NumberPicker.integer(
-                        initialValue: hour,
+                        initialValue: _hour,
                         minValue: 0,
                         maxValue: 23,
                         listViewWidth: 60.0,
                         onChanged: (val) {
                           setState(() {
-                            hour = val;
+                            _hour = val;
                           });
                         }),
                   ],
@@ -247,13 +226,13 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                       ),
                     ),
                     NumberPicker.integer(
-                        initialValue: minute,
+                        initialValue: _minute,
                         minValue: 0,
                         maxValue: 59,
                         listViewWidth: 60.0,
                         onChanged: (val) {
                           setState(() {
-                            minute = val;
+                            _minute = val;
                           });
                         }),
                   ],
@@ -274,7 +253,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                       ),
                     ),
                     NumberPicker.integer(
-                        initialValue: second,
+                        initialValue: _second,
                         minValue: 0,
 
                         /// change to 0 + prevent call on 0
@@ -282,7 +261,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                         listViewWidth: 60.0,
                         onChanged: (val) {
                           setState(() {
-                            second = val;
+                            _second = val;
                           });
                         }),
                   ],
@@ -293,7 +272,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
           Expanded(
             flex: 1,
             child: Text(
-              timeToDisplay,
+              _timeToDisplay,
               style: TextStyle(
                 fontSize: 35.0,
                 fontWeight: FontWeight.w600,
@@ -306,7 +285,8 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 RaisedButton(
-                  onPressed: started ? start : null, //if true start, else null
+                  onPressed:
+                      _started ? _start : null, //if true start, else null
                   padding: EdgeInsets.symmetric(
                     horizontal: 40.0,
                     vertical: 10.0,
@@ -325,7 +305,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                   ),
                 ),
                 RaisedButton(
-                  onPressed: stopped ? null : stop,
+                  onPressed: _stopped ? null : _stop,
                   padding: EdgeInsets.symmetric(
                     horizontal: 40.0,
                     vertical: 10.0,
@@ -342,24 +322,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
-//                RaisedButton(
-//                  onPressed: resetter ? null : reset,
-//                  padding: EdgeInsets.symmetric(
-//                    horizontal: 40.0,
-//                    vertical: 10.0,
-//                  ),
-//                  color: Colors.blue ,
-//                  child: Text(
-//                    'Reset',
-//                    style: TextStyle(
-//                      fontSize: 18.0,
-//                      color:Colors.white,
-//                    ),
-//                  ),
-//                  shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(15.0),
-//                  ),
-//               ),
               ],
             ),
           ),
@@ -368,7 +330,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
     );
   }
 
-  Widget stopWatch() {
+  Widget _stopWatch() {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -393,17 +355,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                         ),
                       ),
                     ),
-                    // NumberPicker.integer(
-//                        initialValue: hour,
-//                        minValue: 0,
-//                        maxValue: 23,
-//                        listViewWidth: 60.0,
-//                        onChanged: (val){
-//                          setState(() {
-//                            hour = val;
-//                          });
-//                        }
-//                    ),
                   ],
                 ),
                 Column(
@@ -421,17 +372,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                         ),
                       ),
                     ),
-//                    NumberPicker.integer(
-//                        initialValue: minute,
-//                        minValue: 0,
-//                        maxValue: 59,
-//                        listViewWidth: 60.0,
-//                        onChanged: (val){
-//                          setState(() {
-//                            minute = val;
-//                          });
-//                        }
-//                    ),
                   ],
                 ),
                 Column(
@@ -449,17 +389,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                         ),
                       ),
                     ),
-//                    NumberPicker.integer(
-//                        initialValue: second,
-//                        minValue: 0,
-//                        maxValue: 59,
-//                        listViewWidth: 60.0,
-//                        onChanged: (val){
-//                          setState(() {
-//                            second = val;
-//                          });
-//                        }
-//                    ),
                   ],
                 ),
               ],
@@ -468,7 +397,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
           Expanded(
             flex: 1,
             child: Text(
-              timeToDisplaySW,
+              _timeToDisplaySW,
               style: TextStyle(
                 fontSize: 35.0,
                 fontWeight: FontWeight.w600,
@@ -482,7 +411,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
               children: <Widget>[
                 RaisedButton(
                   onPressed:
-                      startedSW ? startSW : null, //if true start, else null
+                      _startedSW ? _startSW : null, //if true start, else null
                   padding: EdgeInsets.symmetric(
                     horizontal: 40.0,
                     vertical: 10.0,
@@ -501,7 +430,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                   ),
                 ),
                 RaisedButton(
-                  onPressed: stoppedSW ? null : stopSW,
+                  onPressed: _stoppedSW ? null : _stopSW,
                   padding: EdgeInsets.symmetric(
                     horizontal: 40.0,
                     vertical: 10.0,
@@ -518,24 +447,6 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
-//                  RaisedButton(
-//                    onPressed: stopped ? null : stop,
-//                    padding: EdgeInsets.symmetric(
-//                      horizontal: 40.0,
-//                      vertical: 10.0,
-//                    ),
-//                    color: Colors.blue ,
-//                    child: Text(
-//                      'Reset',
-//                      style: TextStyle(
-//                        fontSize: 18.0,
-//                        color:Colors.white,
-//                      ),
-//                    ),
-//                    shape: RoundedRectangleBorder(
-//                      borderRadius: BorderRadius.circular(15.0),
-//                    ),
-//                  ),
               ],
             ),
           ),
@@ -570,25 +481,16 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
             fontSize: 18.0,
           ),
           unselectedLabelColor: Colors.grey[300],
-          controller: tb,
+          controller: _tb,
         ),
       ),
       body: TabBarView(
         children: <Widget>[
-          timer(),
-//          Text(
-//            'Timer'
-//          ),
-          stopWatch(),
+          _timer(),
+          _stopWatch(),
         ],
-        controller: tb,
+        controller: _tb,
       ),
     );
   }
-}
-
-/// stopWatch //////////////////////////////////////////////////////////////////
-
-Widget stopWatch() {
-  return null;
 }
