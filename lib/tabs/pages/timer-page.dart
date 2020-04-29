@@ -459,40 +459,51 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     try {
-      return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
+      return LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints viewportConstraints) {
+        return Scaffold(
           backgroundColor: Colors.white,
-          elevation: 0.0,
-          bottom: TabBar(
-            indicatorWeight: 2.0,
-            indicatorColor: Colors.lightBlueAccent,
-            tabs: <Widget>[
-              Text('Timer',
-                  style: TextStyle(
-                      color: Colors.deepOrange, fontWeight: FontWeight.bold)),
-              Text('StopWatch',
-                  style: TextStyle(
-                      color: Colors.deepOrange, fontWeight: FontWeight.bold)),
-            ],
-            labelPadding: EdgeInsets.only(
-              bottom: 10.0,
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0.0,
+            bottom: TabBar(
+              indicatorWeight: 2.0,
+              indicatorColor: Colors.lightBlueAccent,
+              tabs: <Widget>[
+                Text('Timer',
+                    style: TextStyle(
+                        color: Colors.deepOrange, fontWeight: FontWeight.bold)),
+                Text('StopWatch',
+                    style: TextStyle(
+                        color: Colors.deepOrange, fontWeight: FontWeight.bold)),
+              ],
+              labelPadding: EdgeInsets.only(
+                bottom: 10.0,
+              ),
+              labelStyle: TextStyle(
+                fontSize: 18.0,
+              ),
+              unselectedLabelColor: Colors.grey[300],
+              controller: _tb,
             ),
-            labelStyle: TextStyle(
-              fontSize: 18.0,
-            ),
-            unselectedLabelColor: Colors.grey[300],
-            controller: _tb,
           ),
-        ),
-        body: TabBarView(
-          children: <Widget>[
-            _timer(),
-            _stopWatch(),
-          ],
-          controller: _tb,
-        ),
-      );
+          body: SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                  maxHeight: viewportConstraints.maxHeight - 100.0),
+              child: Container(
+                child: TabBarView(
+                  children: <Widget>[
+                    _timer(),
+                    _stopWatch(),
+                  ],
+                  controller: _tb,
+                ),
+              ),
+            ),
+          ),
+        );
+      });
     } catch (e) {
       return Container(
         child: Center(

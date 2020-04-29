@@ -115,100 +115,108 @@ class _UserProfilePageState extends State<UserProfilePage> {
               ),
             ],
           ),
-          body: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.purpleAccent,
-                  Colors.deepPurple,
-                ],
+          body: Stack(
+            children: <Widget>[
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Colors.purpleAccent,
+                      Colors.deepPurple,
+                    ],
+                  ),
+                ),
               ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                InitialNameAvatar(
-                  '${_firstName[0]} ${_lastName[0]}',
-                  circleAvatar: true,
-                  borderColor: Colors.orange,
-                  borderSize: 10.0,
-                  backgroundColor: Colors.orange,
-                  foregroundColor: Colors.black,
-                  padding: 10.0,
-                  textSize: 30.0,
-                ),
-                SizedBox(height: 50.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(width: 15.0),
-                    Text(
-                      '$_firstName $_lastName',
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        letterSpacing: 1.5,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+              Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      InitialNameAvatar(
+                        '${_firstName[0]} ${_lastName[0]}',
+                        circleAvatar: true,
+                        borderColor: Colors.orange,
+                        borderSize: 10.0,
+                        backgroundColor: Colors.orange,
+                        foregroundColor: Colors.black,
+                        padding: 10.0,
+                        textSize: 30.0,
                       ),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    _genderIcon(),
-                  ],
-                ),
-                SizedBox(
-                  height: 25.0,
-                ),
-                Text('About You', style: TextStyle(fontSize: 20.0)),
-                SizedBox(height: 10.0),
-                Card(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5.0,
-                    horizontal: 100.0,
-                  ),
-                  child: ListTile(
-                    title: Text(
-                      _motivation,
-                      style: TextStyle(
-                        fontSize: 17.0,
-                        color: Colors.black,
+                      SizedBox(height: 50.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          SizedBox(width: 15.0),
+                          Text(
+                            '$_firstName $_lastName',
+                            style: TextStyle(
+                              fontSize: 30.0,
+                              letterSpacing: 1.5,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          _genderIcon(),
+                        ],
                       ),
-                    ),
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5.0,
-                    horizontal: 100.0,
-                  ),
-                  child: ListTile(
-                    title: Text(
-                      '$_heightFeet feet $_heightInches inches',
-                      style: TextStyle(
-                        fontSize: 17.0,
-                        color: Colors.black,
+                      SizedBox(
+                        height: 25.0,
                       ),
-                    ),
-                  ),
-                ),
-                Card(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 5.0,
-                    horizontal: 100.0,
-                  ),
-                  child: ListTile(
-                    title: Text(
-                      _weight,
-                      style: TextStyle(
-                        fontSize: 17.0,
-                        color: Colors.black,
+                      Text('About You', style: TextStyle(fontSize: 20.0)),
+                      SizedBox(height: 10.0),
+                      Card(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 5.0,
+                          horizontal: 100.0,
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            _motivation,
+                            style: TextStyle(
+                              fontSize: 17.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      Card(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 5.0,
+                          horizontal: 100.0,
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            '$_heightFeet feet $_heightInches inches',
+                            style: TextStyle(
+                              fontSize: 17.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Card(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 5.0,
+                          horizontal: 100.0,
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            _weight,
+                            style: TextStyle(
+                              fontSize: 17.0,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       );

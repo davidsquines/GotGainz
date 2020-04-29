@@ -124,10 +124,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         ),
         Text(
           _text,
-          style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold
-          ),
+          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
         ),
         Image.network(
           _location,
@@ -162,44 +159,48 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            if (widget.exercise.muscleBody != null ||
-                widget.exercise.exerciseExample != null)
-              _imageBuilder(),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  SizedBox(
-                    height: 45.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: Text(
-                      'Instructions:',
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
+              child: SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      if (widget.exercise.muscleBody != null ||
+                          widget.exercise.exerciseExample != null)
+                        _imageBuilder(),
+                      /*SizedBox(
+                        height: 45.0,
+                      ),*/
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                        child: Text(
+                          'Instructions:',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    color: Colors.orangeAccent[400],
-                    elevation: 10,
-                    child: Padding(
-                      padding: const EdgeInsets.all(25.0),
-                    child: Text(
-                        widget.exercise.description,
-                        style: TextStyle(
-                        fontSize: 18.0,
+                      Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                        ),
+                        color: Colors.orangeAccent[400],
+                        elevation: 10,
+                        child: Padding(
+                          padding: const EdgeInsets.all(25.0),
+                          child: Text(
+                            widget.exercise.description,
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                  ),
-                ],
+                ),
               ),
             ),
             DoneButton(
