@@ -121,8 +121,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Colors.purpleAccent,
-                      Colors.deepPurple,
+                      Colors.lightBlueAccent,
+                      Colors.blue[800],
                     ],
                   ),
                 ),
@@ -158,20 +158,36 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           ),
                           SizedBox(
                             width: 10.0,
+                            height: 10.0
                           ),
                           _genderIcon(),
                         ],
                       ),
                       SizedBox(
-                        height: 25.0,
+                        height: 30.0,
                       ),
-                      Text('About You', style: TextStyle(fontSize: 20.0)),
+                      Card(
+                        margin: EdgeInsets.symmetric(
+                          vertical: 5.0,
+                          horizontal: 100.0,
+                        ),
+                        elevation: 10,
+                        color: Colors.orange,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[Text(' about you ' .toUpperCase()), Icon(Icons.account_box)],
+                          ),
+                        ),
+                      ),
                       SizedBox(height: 10.0),
                       Card(
                         margin: EdgeInsets.symmetric(
                           vertical: 5.0,
                           horizontal: 100.0,
                         ),
+                        elevation: 10,
                         child: ListTile(
                           title: Text(
                             _motivation,
@@ -187,6 +203,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           vertical: 5.0,
                           horizontal: 100.0,
                         ),
+                        elevation: 10,
                         child: ListTile(
                           title: Text(
                             '$_heightFeet feet $_heightInches inches',
@@ -202,6 +219,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           vertical: 5.0,
                           horizontal: 100.0,
                         ),
+                        elevation: 10,
                         child: ListTile(
                           title: Text(
                             _weight,

@@ -125,7 +125,11 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         ),
         Text(
           _text,
-          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.lightBlueAccent
+          ),
         ),
         Card(
           shape: RoundedRectangleBorder(
