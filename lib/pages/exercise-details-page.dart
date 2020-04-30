@@ -246,23 +246,3 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     );
   }
 }
-
-class FullImage extends StatelessWidget {
-  FullImage(this._location);
-
-  final String _location;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Image.network(
-          _location,
-          height: 700.0,
-          width: 700.0,
-        ),
-      ),
-    );
-  }
-}
