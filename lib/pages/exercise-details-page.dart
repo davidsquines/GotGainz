@@ -1,3 +1,4 @@
+import 'package:fitness_app/pages/full-image.dart';
 import 'package:fitness_app/services/shared-pref-helper.dart';
 import 'package:fitness_app/ui/done-button.dart';
 import 'package:fitness_app/services/exercises.dart';
@@ -124,10 +125,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         ),
         Text(
           _text,
-          style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold
-          ),
+          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
         ),
         Card(
           shape: RoundedRectangleBorder(
@@ -137,13 +135,19 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
           elevation: 10,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
-          child: Image.network(
-            _location,
-            height: 150.0,
-            width: 150.0,
+            child: GestureDetector(
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => FullImage(_location))),
+              child: Image.network(
+                _location,
+                height: 150.0,
+                width: 150.0,
+              ),
+            ),
           ),
         ),
-       ),
       ],
     );
   }
@@ -153,12 +157,10 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
       children: <Widget>[
         Expanded(
             child: _imageStyle(
-                'Exercise Image:', widget.exercise.exerciseExample)
-        ),
+                'Exercise Image:', widget.exercise.exerciseExample)),
         Expanded(
             child:
-                _imageStyle('Body Part Worked:', widget.exercise.muscleBody)
-        ),
+                _imageStyle('Body Part Worked:', widget.exercise.muscleBody)),
       ],
     );
   }
@@ -172,8 +174,8 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         title: Text(
           widget.exercise.exerciseName,
           style: TextStyle(
-              color: Colors.black,
-              decoration: TextDecoration.underline,
+            color: Colors.black,
+            decoration: TextDecoration.underline,
           ),
         ),
         iconTheme: IconThemeData(
@@ -239,6 +241,26 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
               height: 10.0,
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class FullImage extends StatelessWidget {
+  FullImage(this._location);
+
+  final String _location;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Center(
+        child: Image.network(
+          _location,
+          height: 700.0,
+          width: 700.0,
         ),
       ),
     );
