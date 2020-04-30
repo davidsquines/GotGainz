@@ -124,13 +124,26 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         ),
         Text(
           _text,
-          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold
+          ),
         ),
-        Image.network(
-          _location,
-          height: 150.0,
-          width: 150.0,
+        Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+          ),
+          color: Colors.white,
+          elevation: 10,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 5, 12, 5),
+          child: Image.network(
+            _location,
+            height: 150.0,
+            width: 150.0,
+          ),
         ),
+       ),
       ],
     );
   }
@@ -140,10 +153,12 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
       children: <Widget>[
         Expanded(
             child: _imageStyle(
-                'Exercise Image:', widget.exercise.exerciseExample)),
+                'Exercise Image:', widget.exercise.exerciseExample)
+        ),
         Expanded(
             child:
-                _imageStyle('Body Part Worked:', widget.exercise.muscleBody)),
+                _imageStyle('Body Part Worked:', widget.exercise.muscleBody)
+        ),
       ],
     );
   }
@@ -152,7 +167,18 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.exercise.exerciseName),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        title: Text(
+          widget.exercise.exerciseName,
+          style: TextStyle(
+              color: Colors.black,
+              decoration: TextDecoration.underline,
+          ),
+        ),
+        iconTheme: IconThemeData(
+          color: Colors.black, //change your color here
+        ),
       ),
       body: SafeArea(
         child: Column(
@@ -169,9 +195,9 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
                       if (widget.exercise.muscleBody != null ||
                           widget.exercise.exerciseExample != null)
                         _imageBuilder(),
-                      /*SizedBox(
-                        height: 45.0,
-                      ),*/
+                      SizedBox(
+                        height: 20.0,
+                      ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         child: Text(
@@ -184,16 +210,16 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
                       ),
                       Card(
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
+                          borderRadius: BorderRadius.circular(60.0),
                         ),
-                        color: Colors.orangeAccent[400],
+                        color: Colors.orange,
                         elevation: 10,
                         child: Padding(
-                          padding: const EdgeInsets.all(25.0),
+                          padding: const EdgeInsets.all(30.0),
                           child: Text(
                             widget.exercise.description,
                             style: TextStyle(
-                              fontSize: 18.0,
+                              fontSize: 16.0,
                             ),
                           ),
                         ),
@@ -208,6 +234,9 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
                 _updateBodyStrengthLevel();
                 Navigator.pop(context);
               },
+            ),
+            SizedBox(
+              height: 10.0,
             ),
           ],
         ),

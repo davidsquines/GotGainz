@@ -88,7 +88,6 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
             setState(
               () {
                 widget.workout.exerciseInfo.elementAt(index).isChecked = true;
-
                 _exercises.forEach(
                   (element) {
                     if (widget.workout.exerciseInfo

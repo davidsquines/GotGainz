@@ -8,14 +8,21 @@ class DoneButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      minWidth: double.infinity,
-      height: 50.0,
-      onPressed: onPressed,
-      child: Text(
-        'I\'m Done'.toUpperCase(),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(18.0),
+        side: BorderSide(color: Colors.white70),
       ),
-      color: Colors.lightBlue,
-      textColor: Colors.white,
+      minWidth: 150.0,
+      height: 50.0,
+      color: Colors.lightBlueAccent,
+      textColor: Colors.black,
+      onPressed: onPressed,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[Text('I\m Done' .toUpperCase()), Icon(Icons.mood)],
+      ),
     );
+
   }
 }
+

@@ -158,89 +158,176 @@ class _ProgressPageState extends State<ProgressPage> {
                 Image(
                   image: AssetImage('assets/progresspage.png'),
                 ),
-                Flexible(
-                  child: ListWheelScrollView(
-                    itemExtent: 50.0,
-                    diameterRatio: 1.8,
-                    children: <Widget>[
-                      MultiColorText(
+                SingleChildScrollView(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    color: Colors.orange,
+                    elevation: 10,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: MultiColorText(
                         textOne: 'Workout Goal:',
-                        textTwo: '$_motivation ',
-                        colorOne: Colors.black,
+                        textTwo: '$_motivation',
+                        colorOne: Colors.white,
                         colorTwo: Colors.black,
-                        fontSize: 18.0,
-                      ),
-                      MultiColorText(
-                        textOne: 'Current Level:',
-                        textTwo: '$_level',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
                         fontSize: 16.0,
                       ),
-                      MultiColorText(
-                        textOne: 'Current Week Progress:',
-                        textTwo: '$_currentProgress',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
-                        fontSize: 16.0,
-                      ),
-                      MultiColorText(
-                        textOne: 'Weeks Left Until Level Up:',
-                        textTwo: '${2 - _progressToLevelUp}',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
-                        fontSize: 16.0,
-                      ),
-                      MultiColorText(
-                        textOne: 'Chest Level:',
-                        textTwo: '$_chestLevel',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
-                        fontSize: 16.0,
-                      ),
-                      MultiColorText(
-                        textOne: 'Back Level:',
-                        textTwo: '$_backLevel',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
-                        fontSize: 16.0,
-                      ),
-                      MultiColorText(
-                        textOne: 'Arms Level:',
-                        textTwo: '$_armsLevel',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
-                        fontSize: 16.0,
-                      ),
-                      MultiColorText(
-                        textOne: 'Shoulder Level:',
-                        textTwo: '$_shouldersLevel',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
-                        fontSize: 16.0,
-                      ),
-                      MultiColorText(
-                        textOne: 'Legs Level:',
-                        textTwo: '$_legsLevel',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
-                        fontSize: 16.0,
-                      ),
-                      MultiColorText(
-                        textOne: 'Strength Level:',
-                        textTwo: '$_strengthLevel',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
-                        fontSize: 16.0,
-                      ),
-                      MultiColorText(
-                        textOne: 'Weight-Loss Level:',
-                        textTwo: '$_weightLossLevel',
-                        colorOne: Colors.orange,
-                        colorTwo: Colors.blue,
-                        fontSize: 16.0,
-                      ),
-                    ],
+                    ),
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Colors.orange,
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MultiColorText(
+                      textOne: 'Current Level:',
+                      textTwo: '$_level',
+                      colorOne: Colors.white,
+                      colorTwo: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Colors.orange,
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MultiColorText(
+                      textOne: 'Current Week Progress:',
+                      textTwo: '$_currentProgress',
+                      colorOne: Colors.white,
+                      colorTwo: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Colors.orange,
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MultiColorText(
+                      textOne: 'Weeks Left Until Level Up:',
+                      textTwo: '${2 - _progressToLevelUp}',
+                      colorOne: Colors.white,
+                      colorTwo: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Colors.orange,
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MultiColorText(
+                      textOne: 'Chest Level:',
+                      textTwo: '$_chestLevel',
+                      colorOne: Colors.white,
+                      colorTwo: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Colors.orange,
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MultiColorText(
+                      textOne: 'Back Level:',
+                      textTwo: '$_backLevel',
+                      colorOne: Colors.white,
+                      colorTwo: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Colors.orange,
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MultiColorText(
+                      textOne: 'Arms Level:',
+                      textTwo: '$_armsLevel',
+                      colorOne: Colors.white,
+                      colorTwo: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Colors.orange,
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MultiColorText(
+                      textOne: 'Shoulder Level:',
+                      textTwo: '$_shouldersLevel',
+                      colorOne: Colors.white,
+                      colorTwo: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Colors.orange,
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MultiColorText(
+                      textOne: 'Strength Level:',
+                      textTwo: '$_strengthLevel',
+                      colorOne: Colors.white,
+                      colorTwo: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                  ),
+                ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  color: Colors.orange,
+                  elevation: 10,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MultiColorText(
+                      textOne: 'Weight-Loss Level:',
+                      textTwo: '$_weightLossLevel',
+                      colorOne: Colors.white,
+                      colorTwo: Colors.black,
+                      fontSize: 16.0,
+                    ),
                   ),
                 ),
                 MaterialButton(
