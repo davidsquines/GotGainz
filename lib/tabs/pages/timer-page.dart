@@ -130,7 +130,7 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
                   _checkTimerSW = true;
 
                   /// stay at current point when stopped
-                  _timeToDisplaySW = '0';
+                  //_timeToDisplaySW = '0';
                 } else if (_timeForTimerSW > 0 && _timeForTimerSW < 10) {
                   _timeToDisplaySW = _timeForTimerSW.toString().padLeft(2, '0');
                   _timeForTimerSW += 1;
