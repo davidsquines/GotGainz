@@ -172,7 +172,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                           horizontal: 100.0,
                         ),
                         elevation: 10,
-                        color: Colors.orange,
+                        color: Colors.blue,
                         child: Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Row(

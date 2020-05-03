@@ -51,7 +51,7 @@ class _ExercisePageState extends State<ExercisePage> {
                       _subText(text: 'Happen.'),
                     ],
                   ),
-                  SizedBox(height: 105.0),
+                  SizedBox(height: 100.0),
                   ChoiceButton(
                     text: 'Continue your workout plan',
                     onPressed: () {

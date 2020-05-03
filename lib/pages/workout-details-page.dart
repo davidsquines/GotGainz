@@ -139,20 +139,31 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: Text(
                     'Description:',
-                    style: TextStyle(fontSize: 20.0),
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold
+                    ),
                   ),
                 ),
                 Scrollbar(
                   child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.workout.description,
-                        style: TextStyle(
-                          fontSize: 18.0,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(60.0),
+                      ),
+                      color: Colors.orange,
+                      elevation: 10,
+                      child: Padding(
+                        padding: const EdgeInsets.all(30.0),
+                        child: Text(
+                          widget.workout.description,
+                          style: TextStyle(
+                            fontSize: 18.0,
+                          ),
                         ),
                       ),
                     ),
+
                   ),
                 ),
                 Expanded(

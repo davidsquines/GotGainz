@@ -472,10 +472,10 @@ class _TimerPageState extends State<TimerPage> with TickerProviderStateMixin {
               tabs: <Widget>[
                 Text('Timer',
                     style: TextStyle(
-                        color: Colors.deepOrange, fontWeight: FontWeight.bold)),
+                        color: Colors.orange, fontWeight: FontWeight.bold)),
                 Text('StopWatch',
                     style: TextStyle(
-                        color: Colors.deepOrange, fontWeight: FontWeight.bold)),
+                        color: Colors.orange, fontWeight: FontWeight.bold)),
               ],
               labelPadding: EdgeInsets.only(
                 bottom: 10.0,
