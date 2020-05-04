@@ -139,10 +139,8 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: Text(
                     'Description:',
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold
-                    ),
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Scrollbar(
@@ -163,7 +161,6 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
                         ),
                       ),
                     ),
-
                   ),
                 ),
                 Expanded(
@@ -176,8 +173,8 @@ class _WorkoutDetailsPageState extends State<WorkoutDetailsPage> {
             onPressed: () {
               _planLength = widget.workout.exerciseInfo.length - 1;
               if (_currentProgress < _planLength) {
-                //_alert(context);
-                Navigator.pop(context);
+                _alert(context);
+                //Navigator.pop(context);
               } else {
                 Navigator.pop(context);
                 _currentProgress = 0;

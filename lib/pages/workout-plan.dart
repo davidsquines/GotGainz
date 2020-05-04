@@ -119,16 +119,21 @@ class _WorkoutPlanState extends State<WorkoutPlan> {
                 title: Text(snapshot.data[index].workoutName),
                 trailing: Icon(Icons.keyboard_arrow_right),
                 onTap: () {
-                  setState(() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            WorkoutDetailsPage(snapshot.data[index],
+                  setState(
+                    () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => WorkoutDetailsPage(
+                            snapshot.data[index],
+                          ),
                         ),
-                      ),
-                    );
-                  });
+                      );
+                      _currentProgress++;
+                      SharedPreferencesHelper.setCurrentProgress(
+                          _currentProgress);
+                    },
+                  );
                 },
               );
             },

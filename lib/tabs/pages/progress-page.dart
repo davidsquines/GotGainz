@@ -151,17 +151,20 @@ class _ProgressPageState extends State<ProgressPage> {
         home: Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+            child: SingleChildScrollView(
+              child: Column(
                 children: <Widget>[
-                  SizedBox(height: 30.0),
-                  Image(
-                    image: AssetImage('assets/progresspage.png'),
-                  ),
-                  SizedBox(height: 10.0),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      SizedBox(height: 10.0),
+                      Image(
+                        image: AssetImage(
+                          'assets/progresspage.png',
+                        ),
+                      ),
+                      SizedBox(height: 10.0),
+                      Column(
                         children: <Widget>[
                           Card(
                             shape: RoundedRectangleBorder(
@@ -333,12 +336,12 @@ class _ProgressPageState extends State<ProgressPage> {
                               ),
                             ),
                           ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
                         ],
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.0,
+                    ],
                   ),
                   MaterialButton(
                     shape: RoundedRectangleBorder(
@@ -371,10 +374,9 @@ class _ProgressPageState extends State<ProgressPage> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 2.5
-                  ),
-                ]
+                  SizedBox(height: 2.5),
+                ],
+              ),
             ),
           ),
         ),
