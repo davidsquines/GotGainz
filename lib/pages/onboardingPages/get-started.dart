@@ -22,7 +22,7 @@ class GetStarted extends StatelessWidget {
                   ),
                   Text(
                     'Welcome to Got Gainz',
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.orange[800],
                       fontSize: 30.0,
