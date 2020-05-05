@@ -311,6 +311,23 @@ class _ProgressPageState extends State<ProgressPage> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: MultiColorText(
+                                textOne: 'Legs Level:',
+                                textTwo: '$_legsLevel',
+                                colorOne: Colors.white,
+                                colorTwo: Colors.black,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ),
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            color: Colors.orange,
+                            elevation: 10,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: MultiColorText(
                                 textOne: 'Strength Level:',
                                 textTwo: '$_strengthLevel',
                                 colorOne: Colors.white,
