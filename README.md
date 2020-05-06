@@ -1,4 +1,4 @@
-# fitness_app
+# GOT GAINZ
 
 Comp 380 Semester Project. 
 Tony Nguyen. 
